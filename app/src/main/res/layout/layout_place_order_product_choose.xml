@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/Padding.Material.Standard"
+    >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/Text.PlaceOrder.Label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="商品条码"/>
+
+        <!--<Spinner-->
+            <!--android:id="@+id/layout_place_order_product_number_spinner"-->
+            <!--style="@style/NoDividerSpinnerStyle"-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:prompt="@string/select_product_prompt"-->
+            <!--/>-->
+        <TextView
+            android:id="@+id/layout_place_order_product_number_spinner"
+            style="@style/NoDividerSpinnerStyle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="@dimen/Padding.Large"
+            android:paddingRight="@dimen/Padding.Large"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:textColor="@color/TextColor.Grey"
+            android:text="@string/select_product_prompt"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/Text.PlaceOrder.Label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="商品名称"/>
+
+        <TextView
+            android:id="@+id/layout_place_order_product_name"
+            style="@style/Text.PlaceOrder.Message"
+            android:layout_width="0.0dip"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/Padding.Material.Standard"
+            android:layout_marginRight="@dimen/Padding.Material.Standard.Triple"
+            android:layout_weight="1.0"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/Text.PlaceOrder.Label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:text="商品售价"/>
+
+        <LinearLayout
+            android:layout_width="0.0dip"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/Padding.Material.Standard"
+            android:layout_marginRight="@dimen/Padding.Material.Standard.Triple"
+            android:layout_weight="1.0"
+            android:orientation="horizontal"
+            >
+
+            <EditText
+                android:id="@+id/layout_place_order_product_price"
+                style="@style/Text.PlaceOrder.Input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:singleLine="true"
+                android:text=""
+                />
+
+            <TextView
+                android:id="@+id/layout_place_order_product_price_fixed"
+                style="@style/Text.PlaceOrder.Message"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                />
+        </LinearLayout>
+
+
+        <!--<TextView-->
+            <!--style="@style/Text.PlaceOrder.Label"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:gravity="center_vertical"-->
+            <!--android:text="数量"/>-->
+
+        <Spinner
+            android:id="@+id/layout_place_order_product_quantity"
+            style="@style/PlaceOrder.Spinner.Small"
+            android:layout_marginLeft="@dimen/Padding.Standard"
+            android:layout_width="0.0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:gravity="right"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_place_order_vip_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:visibility="gone"
+        >
+        <TextView
+            style="@style/Text.PlaceOrder.Label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="会员卡号:"
+            />
+        <TextView
+            style="@style/Text.PlaceOrder.Label"
+            android:id="@+id/place_order_vip_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/Padding.Material.Standard"
+            />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/abc_ic_clear_mtrl_alpha"
+            />
+    </LinearLayout>
+
+    <!--<android.support.v7.widget.CardView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="right"-->
+        <!--android:layout_marginRight="16.0dip"-->
+        <!--android:gravity="center"-->
+        <!--android:text="加入购物车">-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        >
+        <TextView
+            android:id="@+id/layout_place_order_product_add_button"
+            style="@style/Text.PlaceOrder.ProductChooseView.AddButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginRight="16.0dip"
+            android:text="加入购物车" />
+
+        <TextView
+            android:id="@+id/layout_place_order_checkout_button"
+            style="@style/Text.PlaceOrder.ProductChooseView.AddButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginRight="16.0dip"
+            android:text="结   算" />
+    </LinearLayout>
+
+    <!--</android.support.v7.widget.CardView>-->
+
+</LinearLayout>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@color/White"
+              android:orientation="vertical">
+
+    <TextView
+        style="@style/Text.PaidInfo.Title.Card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/OrderHistory.PaymentInfo.CardTitle"/>
+
+    <TextView
+        android:id="@+id/view_payment_info_payment_title"
+        style="@style/Text.PaidInfo.Title.Section"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/page_payment"/>
+
+    <LinearLayout
+        android:id="@+id/view_payment_info_paymentsContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="16.0dip"
+        android:paddingRight="16.0dip"/>
+
+    <TextView
+        style="@style/Text.PaidInfo.Title.Section"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/OrderHistory.PaymentInfo.OrderTotalTitle"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="16.0dip"
+        android:paddingRight="16.0dip">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/Padding.Small">
+
+            <TextView
+                style="@style/Text.PaidInfo.Detail"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:text="@string/View.OrderTotals.Label.Discount"
+                android:textIsSelectable="true"/>
+
+            <TextView
+                android:id="@+id/view_payment_info_subTotal"
+                style="@style/Text.PaidInfo.Detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/Padding.Small"
+                android:gravity="right"
+                android:textIsSelectable="true"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/Padding.Small">
+
+            <TextView
+                android:id="@+id/view_order_total_actual_textview"
+                style="@style/Text.PaidInfo.Detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|left"
+                android:gravity="center_vertical"
+                android:text="@string/View.OrderTotals.Label.ActualPayment"
+                android:textIsSelectable="true"/>
+
+            <TextView
+                android:id="@+id/view_payment_info_actualPayment"
+                style="@style/Text.PaidInfo.Detail"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|right"
+                android:layout_marginLeft="@dimen/Padding.Small"
+                android:layout_weight="1.0"
+                android:gravity="right"
+                android:textIsSelectable="true"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24.0dip"
+            android:layout_marginTop="@dimen/Padding.Material.Standard">
+
+            <TextView
+                style="@style/Text.PaidInfo.Total.Label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center|left"
+                android:text="@string/OrderHistory.PaymentInfo.Total"
+                android:textIsSelectable="true"/>
+
+            <TextView
+                android:id="@+id/view_payment_info_orderTotal"
+                style="@style/Text.PaidInfo.Total.Value"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/Padding.Small"
+                android:layout_weight="1.0"
+                android:gravity="center|right"
+                android:textIsSelectable="true"/>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

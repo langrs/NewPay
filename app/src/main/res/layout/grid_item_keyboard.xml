@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/grid_item_keyboard_item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="48dp"
+    android:padding="@dimen/Padding.Standard"
+    android:background="@drawable/bg_keyboard_item_selector"
+    android:textStyle="bold"
+    android:gravity="center"
+    />

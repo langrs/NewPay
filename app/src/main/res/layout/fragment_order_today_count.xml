@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fadingEdge="none"
+    android:overScrollMode="never">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/BrightOffWhite"
+        android:orientation="vertical"
+        >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/Text.TodayCount.Body"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="销售数量:"/>
+
+            <TextView
+                android:id="@+id/fragment_order_today_sale_count"
+                style="@style/Text.TodayCount.Body"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/Padding.Material.Standard"
+                android:layout_marginRight="@dimen/Padding.Material.Standard.Triple"
+                android:layout_weight="1.0"
+                android:text="0单"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/Text.TodayCount.Body"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="销售总额:"/>
+
+            <TextView
+                android:id="@+id/fragment_order_today_sale_total"
+                style="@style/Text.TodayCount.Body"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/Padding.Material.Standard"
+                android:layout_marginRight="@dimen/Padding.Material.Standard.Triple"
+                android:layout_weight="1.0"
+                android:text="0.00"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/Text.TodayCount.Body"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="退货数量:"/>
+
+            <TextView
+                android:id="@+id/fragment_order_today_refund_count"
+                style="@style/Text.TodayCount.Body"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/Padding.Material.Standard"
+                android:layout_marginRight="@dimen/Padding.Material.Standard.Triple"
+                android:layout_weight="1.0"
+                android:text="0单"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/Text.TodayCount.Body"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="退货总额:"/>
+
+            <TextView
+                android:id="@+id/fragment_order_today_refund_totals"
+                style="@style/Text.TodayCount.Body"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/Padding.Material.Standard"
+                android:layout_marginRight="@dimen/Padding.Material.Standard.Triple"
+                android:layout_weight="1.0"
+                android:text="0.00"
+                />
+        </LinearLayout>
+
+        <View
+            style="@style/Divider.Horizontal.Light"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/Divider.Light"
+            android:layout_marginBottom="@dimen/Padding.Large"
+            android:layout_marginLeft="@dimen/PlaceOrder.Divider.Margin"
+            android:layout_marginTop="@dimen/Padding.Large"/>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/Text.Material.Headline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/Padding.Gigantic"
+                android:text="总营业额:"/>
+
+            <TextView
+                android:id="@+id/fragment_order_today_totals"
+                style="@style/Text.Material.Headline"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/Padding.Material.Standard"
+                android:layout_marginRight="@dimen/Padding.Material.Standard.Triple"
+                android:layout_weight="1.0"
+                android:text="0.00"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:paddingBottom="@dimen/Padding.Material.Standard"
+                android:paddingLeft="@dimen/Padding.Gigantic"
+                android:paddingTop="@dimen/Padding.Material.Standard"
+                android:text="类型"
+                android:textSize="@dimen/TextSize.Material.Body"
+                />
+
+            <TextView
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:paddingBottom="@dimen/Padding.Material.Standard"
+                android:paddingTop="@dimen/Padding.Material.Standard"
+                android:text="金额"
+                android:textSize="@dimen/TextSize.Material.Body"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_order_statistics_payments"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="42.0dip" />
+    </LinearLayout>
+</ScrollView>

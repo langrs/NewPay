@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:background="@color/PrimaryBlue"
+              android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/Padding.Material.Standard.Triple"
+                android:layout_marginTop="@dimen/Drawer.Logo.TopMargin"
+                android:padding="@dimen/Padding.Material.Standard.Double"
+                android:src="@drawable/ic_drawer_user" />
+
+            <RelativeLayout
+                android:id="@+id/fragment_drawer_user_layout"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_transparent_selector">
+
+                <ImageView
+                    android:id="@+id/user_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/Padding.Material.Standard.Double"
+                    android:padding="@dimen/Padding.Material.Standard.Double"
+                    android:src="@drawable/ic_drawer_user" />
+
+                <ImageView
+                    android:id="@+id/fragment_drawer_account_action_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/bg_transparent_selector"
+                    android:clickable="true"
+                    android:padding="@dimen/Padding.Material.Standard.Double"
+                    android:src="@drawable/abc_ic_menu_moreoverflow_mtrl_alpha" />
+
+                <TextView
+                    android:id="@+id/fragment_drawer_greeting"
+                    style="@style/Text.NavDrawer.User"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_alignWithParentIfMissing="true"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@id/fragment_drawer_account_action_button"
+                    android:layout_toRightOf="@id/user_icon"
+                    android:text="张三" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/fragment_drawer_contentList"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/White"
+                android:orientation="vertical" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="TextColor.SaleDetail.Title">#80565656</color>
+
+    <color name="TextColor.Orange">#ffff9933</color>
+    <color name="TextColor.Accent">#ff03a9f4</color>
+
+    <color name="Gray">#ff666666</color>
+    <color name="Error">#ffba2f22</color>
+    <color name="TextColor.HeaderOffWhite">#ff8a8a8a</color>
+    <color name="BrightOffWhite">#fff8f8f8</color>
+    <color name="OffWhite">#fff0f0f0</color>
+
+    <color name="FloatingActionButton.Background.Yellow">#fffad317</color>
+    <color name="FloatingActionButton.Background.Yellow.Pressed">#ffc7a812</color>
+
+
+    <color name="HighlightedBlue">#9933b5e5</color>
+
+    <!-- Home Drawer -->
+    <color name="Drawer.Divider">#ccafafaf</color>
+    <color name="Drawer.ItemColor">#ff9f9f9f</color>
+
+    <color name="TextColor.PlaceOrder">#ff565656</color>
+
+    <color name="TextColor.Payment.Coupon">#ff9d55b8</color>
+    <color name="TextColor.Payment.Gift">#ff4156cd</color>
+    <color name="TextColor.Payment.Wechat">#ff11cd6e</color>
+    <color name="TextColor.Payment.Ali">#ff5aace4</color>
+    <color name="TextColor.Payment.Bankcard">#ffea8010</color>
+    <color name="TextColor.Payment.Cash">#ff34475e</color>
+
+    <color name="Header.Settings">#ffededed</color>
+</resources>

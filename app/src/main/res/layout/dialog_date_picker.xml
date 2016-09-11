@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:background="@color/White"
+              android:orientation="vertical">
+
+    <ScrollView
+        android:id="@+id/view_dialog_scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="0.0dip"
+        android:layout_gravity="top"
+        android:layout_weight="1.0"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/dialog_text_holder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="24.0dip"
+            android:paddingRight="24.0dip"
+            android:paddingTop="24.0dip">
+
+            <TextView
+                android:id="@+id/dialog_title"
+                style="@style/Text.Material.Title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Title Text"
+                android:textColor="@color/TextColor.Black.87"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <DatePicker
+                    android:id="@+id/dialog_datePicker"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:calendarViewShown="false"
+                    android:spinnersShown="true"
+                    />
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/dialog_footer"
+        style="@style/Dialog.Action.Layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_note_footer"
+        android:gravity="right"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/dialog_negative"
+            style="@style/Dialog.Action.Material"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_white_button_selector"
+            android:text="取消"/>
+
+        <Button
+            android:id="@+id/dialog_positive"
+            style="@style/Dialog.Action.Material"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="4.0dip"
+            android:background="@drawable/bg_white_button_selector"
+            android:text="确定"/>
+    </LinearLayout>
+</LinearLayout>

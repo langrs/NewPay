@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="Margin.Material.Standard">8.0dip</dimen>
+    <dimen name="Margin.Material.Standard.Half">4.0dip</dimen>
+    <dimen name="Margin.Material.Standard.Double">16.0dip</dimen>
+    <dimen name="Margin.Material.Standard.Triple">24.0dip</dimen>
+    <dimen name="Margin.Material.Standard.Quadruple">32.0dip</dimen>
+    <dimen name="Margin.Material.Standard.Quintuple">40.0dip</dimen>
+    <dimen name="Margin.Material.Standard.Sextuple">48.0dip</dimen>
+
+    <dimen name="Margin.Gigantic">20.0dip</dimen>
+    <dimen name="Margin.Large">10.0dip</dimen>
+    <dimen name="Margin.ListItem.Between">5.0dip</dimen>
+    <dimen name="Margin.ListItem.Inner">5.0dip</dimen>
+    <dimen name="Margin.SlightlyLarge">7.0dip</dimen>
+    <dimen name="Margin.Small">3.0dip</dimen>
+    <dimen name="Margin.Standard">5.0dip</dimen>
+    <dimen name="Margin.Tiny">1.0dip</dimen>
+    <dimen name="Margin.VeryLarge">14.0dip</dimen>
+    <dimen name="Margin.VerySmall">2.0dip</dimen>
+    <dimen name="Margin.Zero">0.0dip</dimen>
+
+    <dimen name="Padding.Material.Standard">8.0dip</dimen>
+    <dimen name="Padding.Material.Standard.Half">4.0dip</dimen>
+    <dimen name="Padding.Material.Standard.Double">16.0dip</dimen>
+    <dimen name="Padding.Material.Standard.Triple">24.0dip</dimen>
+    <dimen name="Padding.Material.Standard.Quadruple">32.0dip</dimen>
+    <dimen name="Padding.Material.Standard.Quintuple">40.0dip</dimen>
+    <dimen name="Padding.Material.Standard.Sextuple">48.0dip</dimen>
+
+    <dimen name="Padding.Gigantic">20.0dip</dimen>
+    <dimen name="Padding.Large">10.0dip</dimen>
+    <dimen name="Padding.SlightlyLarge">7.0dip</dimen>
+    <dimen name="Padding.Small">3.0dip</dimen>
+    <dimen name="Padding.Standard">5.0dip</dimen>
+    <dimen name="Padding.Tiny">1.0dip</dimen>
+    <dimen name="Padding.VeryLarge">14.0dip</dimen>
+    <dimen name="Padding.VerySmall">2.0dip</dimen>
+
+    <dimen name="Padding.Material.Toolbar.TitleWithIcon">16.0dip</dimen>
+
+    <dimen name="TextSize.Material.Body">14.0sp</dimen>
+    <dimen name="TextSize.Material.Caption">12.0sp</dimen>
+    <dimen name="TextSize.Material.Display1">34.0sp</dimen>
+    <dimen name="TextSize.Material.Display2">45.0sp</dimen>
+    <dimen name="TextSize.Material.Display3">56.0sp</dimen>
+    <dimen name="TextSize.Material.Display4">112.0sp</dimen>
+    <dimen name="TextSize.Material.Headline">24.0sp</dimen>
+    <dimen name="TextSize.Material.Subhead">16.0sp</dimen>
+    <dimen name="TextSize.Material.Title">20.0sp</dimen>
+
+    <dimen name="TextSize.Tiny">8.0sp</dimen>
+    <dimen name="TextSize.VerySmall">10.0sp</dimen>
+    <dimen name="TextSize.Small">12.0sp</dimen>
+    <dimen name="TextSize.Standard">14.0sp</dimen>
+    <dimen name="TextSize.Large">16.0sp</dimen>
+    <dimen name="TextSize.VeryLarge">18.0sp</dimen>
+    <dimen name="TextSize.Gigantic">20.0sp</dimen>
+    <dimen name="TextSize.ExtraGigantic">22.0sp</dimen>
+    <dimen name="TextSize.SuperGigantic">24.0sp</dimen>
+
+
+    <dimen name="FloatingActionButton.Margin">16.0dip</dimen>
+    <dimen name="FloatingActionButton.BottomMargin.Normal">16.0dip</dimen>
+    <dimen name="FloatingActionButton.Diameter.Normal">56.0dip</dimen>
+    <dimen name="FloatingActionButton.Elevation">8.0dip</dimen>
+    <dimen name="FloatingActionButton.Elevation.High">4.0dip</dimen>
+    <dimen name="FloatingActionButton.Elevation.Low">1.0dip</dimen>
+    <dimen name="FloatingActionButton.EndMargin.Normal">16.0dip</dimen>
+    <dimen name="FloatingActionButton.Radius.Normal">36.0dip</dimen>
+    <dimen name="FloatingActionButton.TopMargin.Normal">364.0dip</dimen>
+
+    <dimen name="Divider.CandyStripe">2.0dip</dimen>
+    <dimen name="Divider.Large">4.0px</dimen>
+    <dimen name="Divider.Light">1.0px</dimen>
+    <dimen name="Divider.Normal">2.0px</dimen>
+
+    <dimen name="MinTouchableArea">48.0dip</dimen>
+
+    <dimen name="EditText.Material.StrokeWidth">1.0dip</dimen>
+
+    <!--<dimen name="drawer_width">304.0dip</dimen>-->
+    <dimen name="drawer_width">260.0dip</dimen>
+
+    <dimen name="Spinner.DropDownVerticalOffset">-4.0dip</dimen>
+
+    <dimen name="Badge.Circle.Radius">8.0dip</dimen>
+    <dimen name="Badge.Icon.Padding">6.0dip</dimen>
+    <dimen name="Badge.TextSize">10.0sp</dimen>
+
+    <dimen name="Components.ActionBarHeight.Large">130.0dip</dimen>
+
+    <dimen name="Toolbar.ShadowHeight">5.0dip</dimen>
+
+    <dimen name="Dialog.Fragment.Width.Min">300.0dip</dimen>
+
+    <dimen name="GridView.Item.Margin">8dp</dimen>
+
+    <dimen name="Card.CornerRadius">3.0dip</dimen>
+    <dimen name="Card.Padding.Material.Standard">16.0dip</dimen>
+    <dimen name="Cart.Please.Note.Height">44.0dip</dimen>
+    <dimen name="Cart.SpecialMessageTitle.LeftRightMargin">50.0dip</dimen>
+    <dimen name="Cart.Tooltip.MarginBottom">24.0dip</dimen>
+    <dimen name="Cart.Tooltip.MarginRight">72.0dip</dimen>
+</resources>

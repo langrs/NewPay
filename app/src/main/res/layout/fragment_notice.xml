@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/BrightOffWhite"
+            android:fillViewport="false"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:paddingBottom="@dimen/Padding.Gigantic"
+            android:paddingTop="@dimen/Padding.Gigantic"
+            android:text="合胜百货周年庆"
+            android:textColor="@color/TextColor.Black"
+            android:textSize="@dimen/TextSize.Material.Subhead"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/Padding.Material.Standard.Double"
+            android:paddingRight="@dimen/Padding.Material.Standard.Double"
+            android:text="限时抢购:\n限时超低折扣,26～28日每天均有不同品牌不同优惠"
+            android:textColor="@color/TextColor.Black"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/Padding.Gigantic"
+            android:paddingTop="@dimen/Padding.Gigantic"
+            android:gravity="center_horizontal"
+            android:text="具体活动详情请以专柜为准"
+            android:textSize="@dimen/TextSize.Material.Body"
+            android:textColor="@color/TextColor.Black.54"
+            />
+    </LinearLayout>
+</ScrollView>

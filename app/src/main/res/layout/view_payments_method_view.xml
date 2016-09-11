@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginBottom="@dimen/Card.Padding.Material.Standard"
+              android:orientation="vertical">
+
+    <ViewFlipper
+        android:id="@+id/view_payments_method_view_flipper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:measureAllChildren="false">
+
+        <Button
+            android:id="@+id/view_payments_method_view_add_method_button"
+            style="@style/Text.Standard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/Card.Padding.Material.Standard"
+            android:background="@drawable/bg_list_item_product_list"
+            android:drawableLeft="@drawable/ic_payment_info_normal"
+            android:drawablePadding="@dimen/Padding.Material.Standard"
+            android:gravity="center|left"
+            android:minHeight="@dimen/MinTouchableArea"
+            android:paddingLeft="@dimen/Card.Padding.Material.Standard"
+            android:paddingRight="@dimen/Card.Padding.Material.Standard"
+            android:text="@string/add_payment_method"/>
+
+        <com.unioncloud.newpay.presentation.ui.checkout.PaymentMethodView
+            android:id="@+id/view_payments_method_view_default_method_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </ViewFlipper>
+
+    <!--<Button-->
+        <!--android:id="@+id/view_payments_method_view_add_gift_reward_card_button"-->
+        <!--style="@style/Text.Standard"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:background="@drawable/bg_list_item_product_list"-->
+        <!--android:drawableLeft="@drawable/ic_payment_giftcard_normal"-->
+        <!--android:drawablePadding="@dimen/Padding.Material.Standard"-->
+        <!--android:gravity="center|left"-->
+        <!--android:minHeight="@dimen/MinTouchableArea"-->
+        <!--android:paddingLeft="@dimen/Card.Padding.Material.Standard"-->
+        <!--android:paddingRight="@dimen/Card.Padding.Material.Standard"-->
+        <!--android:text="@string/checkout_add_gift_reward_card"/>-->
+
+    <!--<Button-->
+        <!--android:id="@+id/view_payments_method_view_bill_me_later_button"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:background="@drawable/bg_list_item_product_list"-->
+        <!--android:drawableLeft="@drawable/ic_checkout_bml_normal"-->
+        <!--android:drawablePadding="@dimen/Padding.Material.Standard"-->
+        <!--android:gravity="center|left"-->
+        <!--android:minHeight="@dimen/MinTouchableArea"-->
+        <!--android:visibility="gone"/>-->
+</LinearLayout>

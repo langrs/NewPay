@@ -1,0 +1,328 @@
+<resources>
+
+    <!-- application theme Demo -->
+    <style name="AppBaseDemo" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <!--导航栏底色-->
+        <item name="colorPrimary">@color/PrimaryBlue</item>
+        <!--状态栏底色-->
+        <item name="colorPrimaryDark">@color/PrimaryBlue.Dark</item>
+        <!--导航栏上的标题颜色-->
+        <item name="android:textColorPrimary">@android:color/black</item>
+        <!--Activity窗口的颜色-->
+        <item name="android:windowBackground">@color/material_blue_grey_800</item>
+        <!--按钮选中或者点击获得焦点后的颜色-->
+        <item name="colorAccent">#00ff00</item>
+        <!--和 colorAccent相反，正常状态下按钮的颜色-->
+        <item name="colorControlNormal">#ff0000</item>
+        <!--Button按钮正常状态颜色-->
+        <item name="colorButtonNormal">@color/accent_material_light</item>
+        <!--EditText 输入框中字体的颜色-->
+        <item name="editTextColor">@android:color/white</item>
+    </style>
+
+    <!-- material design -->
+    <style name="AppBaseTheme.New" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorAccent">@color/PrimaryBlue</item>
+    </style>
+
+    <style name="AppTheme.New" parent="AppBaseTheme.New">
+        <item name="android:colorBackground">@color/WindowBackground</item>
+        <item name="android:windowBackground">@color/WindowBackground</item>
+        <item name="android:actionBarStyle">@style/AppTheme.New.ActionBar</item>
+        <item name="android:actionOverflowButtonStyle">@style/Overflow</item>
+        <item name="android:homeAsUpIndicator">@drawable/abc_ic_ab_back_mtrl_am_alpha</item>
+        <item name="windowActionModeOverlay">true</item>
+        <item name="actionModeStyle">@style/AppTheme.New.ActionMode</item>
+    </style>
+
+    <!-- Activity style start -->
+    <style name="Activity.TabPage" parent="AppTheme.New" />
+
+    <style name="Activity.AddEditAction" parent="@style/AppTheme.New" />
+
+    <style name="Activity.Dialog" parent="@style/Theme.AppCompat.Light.Dialog">
+        <item name="android:colorBackground">@color/WindowBackground</item>
+        <item name="android:backgroundDimAmount">0.4</item>
+        <item name="android:windowBackground">@color/WindowBackground</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Activity.NoAnimation" parent="@style/AppTheme.New">
+        <item name="android:windowAnimationStyle">@null</item>
+    </style>
+    <!-- Activity style end -->
+
+    <!-- ActionBar style start -->
+    <style name="ActionBarBase" parent="@style/Widget.AppCompat.Light.ActionBar">
+        <item name="titleTextStyle">@style/Text.ActionBar.Title</item>
+        <item name="background">@color/PrimaryBlue</item>
+        <item name="actionOverflowButtonStyle">@style/Overflow</item>
+    </style>
+
+    <style name="LightActionBarBase" parent="@style/Widget.AppCompat.Light.ActionBar.Solid">
+        <item name="titleTextStyle">@style/Text.ActionBar.Light.Title</item>
+    </style>
+
+    <style name="AppTheme.New.ActionBar" parent="@style/ActionBarBase">
+        <item name="android:background">@color/PrimaryBlue</item>
+        <item name="android:displayOptions">showTitle</item>
+        <item name="android:titleTextStyle">@style/Text.ActionBar.Title</item>
+        <item name="android:actionMenuTextColor">@color/White</item>
+    </style>
+
+    <style name="AppTheme.New.ActionMode" parent="@style/Widget.AppCompat.ActionMode">
+        <item name="background">@color/Background.Dark</item>
+    </style>
+
+    <style name="Overflow" parent="@style/Widget.AppCompat.ActionButton.Overflow">
+        <item name="android:src">@drawable/abc_ic_menu_moreoverflow_mtrl_alpha</item>
+    </style>
+
+    <style name="Text.ActionBar.Light.Title" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">@color/TextColor.Normal</item>
+    </style>
+
+    <style name="Text.ActionBar.Title" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">#ffffffff</item>
+    </style>
+    <!-- ActionBar style end -->
+
+    <!-- Text style start -->
+    <style name="Text.Standard" parent="@android:style/TextAppearance.Small">
+        <item name="android:textColor">@color/TextColor.Grey</item>
+    </style>
+
+    <style name="Text.Material.Body" parent="@android:style/TextAppearance.Small">
+    </style>
+
+    <style name="Text.Material.Headline" parent="@style/Text.Standard" >
+        <item name="android:textSize">@dimen/TextSize.Material.Headline</item>
+    </style>
+
+    <style name="Text.Material.Subhead" parent="@style/Text.Standard" >
+        <item name="android:textSize">@dimen/TextSize.Material.Subhead</item>
+    </style>
+
+    <style name="Text.Material.Caption" parent="@style/Text.Standard" >
+        <item name="android:textSize">@dimen/TextSize.Material.Caption</item>
+    </style>
+
+    <style name="Text.Material.Title" parent="@style/Text.Standard" >
+        <item name="android:textSize">@dimen/TextSize.Material.Title</item>
+    </style>
+
+    <style name="Text.Material.Button" parent="@style/Text.Standard">
+        <item name="android:textSize">@dimen/TextSize.Material.Body</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="Text.Title" parent="@style/Text.Standard" >
+        <item name="android:textSize">@dimen/TextSize.Material.Subhead</item>
+    </style>
+
+    <style name="Text.Subtitle" parent="@style/Text.Standard" >
+        <item name="android:textSize">@dimen/TextSize.Material.Caption</item>
+    </style>
+
+    <style name="Text.Card.Action.Ink" parent="@style/Text.Material.Button">
+        <item name="android:padding">8.0dip</item>
+        <item name="android:layout_height">36.0dip</item>
+        <item name="android:layout_marginTop">8.0dip</item>
+        <item name="android:layout_marginBottom">8.0dip</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+    <!-- Text style end -->
+
+    <!-- Button style start -->
+    <style name="Button.Standard" parent="@style/Text.Title">
+        <item name="android:textColor">@drawable/button_text_light_color_selector</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/button_background_default_color_selector</item>
+        <item name="android:paddingLeft">@dimen/Padding.VeryLarge</item>
+        <item name="android:paddingTop">@dimen/Padding.Standard</item>
+        <item name="android:paddingRight">@dimen/Padding.VeryLarge</item>
+        <item name="android:paddingBottom">@dimen/Padding.Standard</item>
+        <item name="android:minWidth">@dimen/MinTouchableArea</item>
+        <item name="android:minHeight">@dimen/MinTouchableArea</item>
+    </style>
+
+    <style name="Button.Material.Flat" parent="@style/Button.Standard">
+        <item name="android:textSize">@dimen/TextSize.Material.Body</item>
+        <item name="android:textColor">@color/TextColor.Blue</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">?android:selectableItemBackground</item>
+        <item name="android:paddingLeft">@dimen/Padding.Material.Standard</item>
+        <item name="android:paddingTop">0.0dip</item>
+        <item name="android:paddingRight">@dimen/Padding.Material.Standard</item>
+        <item name="android:paddingBottom">0.0dip</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+    <!-- Button style end -->
+
+
+    <!-- TextInputLayout start -->
+    <style name="BaseTextInputLayout">
+        <item name="android:paddingTop">16.0dip</item>
+        <item name="android:paddingBottom">8.0dip</item>
+        <item name="hintTextAppearance">@style/TextAppearance.Design.Hint</item>
+    </style>
+
+    <style name="TextInputLayout.Blue" parent="@style/BaseTextInputLayout">
+        <item name="hintTextAppearance">@style/TextInputLayout.HintTextAppearance.Blue</item>
+    </style>
+
+    <style name="TextInputLayout.HintTextAppearance.Blue" parent="@style/TextAppearance.Design.Hint">-->
+        <item name="android:textColor">@color/TextColor.Blue</item>
+    </style>
+    <!-- TextInputLayout end -->
+
+    <!-- EditText style start -->
+    <style name="EditText.Standard" parent="@style/Text.Standard">
+        <item name="android:textColorHint">@color/edittext_material_blue_selector</item>
+        <item name="android:background">@drawable/edittext_material_bg_blue</item>
+        <item name="android:minHeight">32.0dip</item>
+        <item name="android:singleLine">true</item>
+        <!-- android:textCursorDrawable="@null" 可以让光标颜色和text color一样 -->
+        <item name="android:textCursorDrawable">@drawable/edit_text_cursor_blue</item>
+    </style>
+
+    <style name="EditText.Standard.Input" parent="@style/EditText.Standard">
+        <item name="android:layout_marginTop">@dimen/Padding.Material.Standard</item>
+        <item name="android:layout_marginBottom">@dimen/Padding.Material.Standard</item>
+    </style>
+    <!-- EditText style end -->
+
+    <!-- Dialog style start -->
+    <style name="Dialog.Material.Title" parent="@style/Text.Material.Title">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/TextColor.Black.87</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:background">@color/White</item>
+        <item name="android:paddingLeft">@dimen/Padding.Material.Standard.Triple</item>
+        <item name="android:paddingTop">@dimen/Padding.Material.Standard.Triple</item>
+        <item name="android:paddingRight">@dimen/Padding.Material.Standard.Triple</item>
+        <item name="android:paddingBottom">20.0dip</item>
+    </style>
+
+    <style name="Dialog.Action.Layout" parent="@style/Text.Material.Button">
+        <item name="android:padding">@dimen/Padding.Material.Standard</item>
+        <item name="android:paddingLeft">@dimen/Padding.Material.Standard.Half</item>
+        <item name="android:paddingRight">@dimen/Padding.Material.Standard.Half</item>
+    </style>
+
+    <style name="Dialog.Action.Material" parent="@style/Text.Material.Button">
+        <item name="android:textColor">@color/PrimaryBlue</item>
+        <item name="android:paddingLeft">8.0dip</item>
+        <item name="android:paddingTop">@dimen/Padding.Material.Standard</item>
+        <item name="android:paddingRight">8.0dip</item>
+        <item name="android:paddingBottom">@dimen/Padding.Material.Standard</item>
+        <item name="android:layout_marginLeft">2.0dip</item>
+        <item name="android:layout_marginRight">2.0dip</item>
+        <item name="android:minWidth">64.0dip</item>
+        <item name="android:minHeight">36.0dip</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <!-- Dialog style end -->
+
+    <!-- Divider start -->
+
+    <style name="Divider.Horizontal.Normal" parent="@style/AppTheme.New">
+        <item name="android:background">@color/Divider</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">@dimen/Divider.Normal</item>
+    </style>
+    <style name="Divider.Horizontal.Light" parent="@style/Divider.Horizontal.Normal">
+        <item name="android:layout_height">@dimen/Divider.Light</item>
+    </style>
+
+    <style name="Divider.Horizontal.Lighter" parent="@style/Divider.Horizontal.Light">
+        <item name="android:background">@color/Divider.Light</item>
+        <item name="android:layout_height">@dimen/Divider.Light</item>
+    </style>
+
+    <style name="Divider.Vertical.Normal" parent="@style/AppTheme.New">
+        <item name="android:background">@color/Divider</item>
+        <item name="android:layout_width">@dimen/Divider.Normal</item>
+        <item name="android:layout_height">fill_parent</item>
+    </style>
+
+    <style name="Divider.Vertical.Light" parent="@style/Divider.Vertical.Normal">
+        <item name="android:layout_width">@dimen/Divider.Light</item>
+    </style>
+    <!-- Divider end -->
+
+    <style name="NoDividerSpinnerStyle" parent="@style/Base.Widget.AppCompat.Spinner">
+        <item name="android:popupBackground">@drawable/spinner_popup_background</item>
+        <item name="android:dropDownVerticalOffset">
+            @dimen/Spinner.DropDownVerticalOffset
+        </item>
+    </style>
+
+    <style name="Text.ListItem.Standard" parent="@style/Text.Standard">
+        <item name="android:textSize">@dimen/TextSize.Material.Caption</item>
+    </style>
+
+    <style name="ToolbarShadow">
+        <item name="android:background">@drawable/toolbar_shadow</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">@dimen/Toolbar.ShadowHeight</item>
+    </style>
+
+
+    <!-- PermissionsDialog start -->
+    <style name="PermissionsDialog.Title" parent="@style/Text.Material.Title">
+        <item name="android:textColor">@color/TextColor.Black.87</item>
+        <item name="android:paddingLeft">24.0dip</item>
+        <item name="android:paddingTop">24.0dip</item>
+        <item name="android:paddingRight">24.0dip</item>
+    </style>
+
+    <style name="PermissionsDialog.Body" parent="@style/Text.Material.Subhead">
+        <item name="android:textColor">@color/TextColor.Black.54</item>
+        <item name="android:paddingLeft">24.0dip</item>
+        <item name="android:paddingTop">20.0dip</item>
+        <item name="android:paddingRight">24.0dip</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="PermissionsDialog.CommonActionMessage" parent="@style/PermissionsDialog.Body">
+        <item name="android:textColor">@color/TextColor.Black.87</item>
+    </style>
+
+    <style name="PermissionsDialog.Action" parent="@style/Text.Material.Button">
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/bg_transparent_selector</item>
+        <item name="android:paddingLeft">8.0dip</item>
+        <item name="android:paddingTop">16.0dip</item>
+        <item name="android:paddingRight">8.0dip</item>
+        <item name="android:paddingBottom">16.0dip</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minWidth">64.0dip</item>
+    </style>
+
+    <style name="PermissionsDialog.Action.Yes" parent="@style/PermissionsDialog.Action">
+        <item name="android:textColor">@color/PrimaryBlue</item>
+    </style>
+    <!-- PermissionsDialog end -->
+
+    <!-- EmptyView start -->
+    <style name="Text.EmptyCard.ButtonTitle" parent="@style/Text.Material.Button">
+        <item name="android:textColor">@color/PrimaryBlue</item>
+        <item name="android:gravity">center|left</item>
+        <item name="android:background">@drawable/btn_raised_shadow</item>
+        <item name="android:padding">@dimen/Card.Padding.Material.Standard</item>
+        <item name="android:layout_marginBottom">8.0dip</item>
+        <item name="android:drawablePadding">8.0dip</item>
+    </style>
+    <style name="Text.EmptyCard.CardTitle.Material" parent="@style/Text.Material.Headline">
+        <item name="android:layout_marginLeft">@dimen/Card.Padding.Material.Standard</item>
+        <item name="android:layout_marginTop">24.0dip</item>
+        <item name="android:layout_marginRight">@dimen/Card.Padding.Material.Standard</item>
+    </style>
+    <!-- EmptyView end -->
+
+
+</resources>

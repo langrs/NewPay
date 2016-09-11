@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="Animation.Fade.Duration.Default">500</integer>
+    <integer name="Animation.Slide.Duration.Default">500</integer>
+    <integer name="Animation.Fade.Activity.Duration.Default">250</integer>
+</resources>

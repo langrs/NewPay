@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/navigation_browse"
+            android:checked="true"
+            android:title="商品选购"
+            />
+
+        <item
+            android:id="@+id/navigation_search"
+            android:title="交易查询"
+            />
+
+        <item
+            android:id="@+id/navigation_refund"
+            android:title="交易退货"/>
+
+        <item
+            android:id="@+id/navigation_count"
+            android:title="交易日结"/>
+
+        <item
+            android:id="@+id/navigation_setting"
+            android:title="设置"/>
+    </group>
+</menu>

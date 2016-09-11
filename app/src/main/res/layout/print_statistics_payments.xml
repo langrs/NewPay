@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="@dimen/print_width"
+              android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_width="@dimen/print_width"
+        android:layout_height="wrap_content"
+        >
+        <TextView
+            android:id="@+id/print_statistics_sale_count_prompt"
+            style="@style/print_text_size"
+            android:text="销售数量:"/>
+
+        <TextView
+            android:id="@+id/print_statistics_sale_count"
+            style="@style/print_text_size"
+            android:text="0单"
+            android:layout_toRightOf="@id/print_statistics_sale_count_prompt"
+            android:paddingLeft="10dip"
+            />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="@dimen/print_width"
+        android:layout_height="wrap_content"
+        >
+        <TextView
+            android:id="@+id/print_statistics_sale_total_prompt"
+            style="@style/print_text_size"
+            android:text="销售总额:"/>
+
+        <TextView
+            android:id="@+id/print_statistics_sale_total"
+            style="@style/print_text_size"
+            android:text="0.00"
+            android:layout_toRightOf="@id/print_statistics_sale_total_prompt"
+            android:paddingLeft="10dip"
+            />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="@dimen/print_width"
+        android:layout_height="wrap_content"
+        >
+        <TextView
+            android:id="@+id/print_statistics_refund_count_prompt"
+            style="@style/print_text_size"
+            android:text="退货数量:"/>
+
+        <TextView
+            android:id="@+id/print_statistics_refund_count"
+            style="@style/print_text_size"
+            android:text="0单"
+            android:layout_toRightOf="@id/print_statistics_refund_count_prompt"
+            android:paddingLeft="10dip"
+            />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="@dimen/print_width"
+        android:layout_height="wrap_content"
+        >
+        <TextView
+            android:id="@+id/print_statistics_refund_total_prompt"
+            style="@style/print_text_size"
+            android:text="退货总额:"/>
+
+        <TextView
+            android:id="@+id/print_statistics_refund_total"
+            style="@style/print_text_size"
+            android:text="0.00"
+            android:layout_toRightOf="@id/print_statistics_refund_total_prompt"
+            android:paddingLeft="10dip"
+            />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/print_line_tag"
+        style="@style/print_text_size_big"
+        android:layout_marginBottom="5.0dip"
+        android:text="----------------------------------"
+        android:textStyle="bold"/>
+
+    <RelativeLayout
+        android:layout_width="@dimen/print_width"
+        android:layout_height="wrap_content"
+        >
+        <TextView
+            android:id="@+id/print_statistics_total_prompt"
+            style="@style/print_text_size"
+            android:text="总营业额:"/>
+
+        <TextView
+            android:id="@+id/print_statistics_total"
+            style="@style/print_text_size"
+            android:text="0.00"
+            android:layout_toRightOf="@id/print_statistics_total_prompt"
+            android:paddingLeft="10dip"
+            />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/print_payment_name_label"
+            style="@style/print_text_size_item"
+            android:layout_width="153.6dip"
+            android:layout_height="wrap_content"
+            android:text="类型"
+            />
+        <TextView
+            style="@style/print_text_size_item"
+            android:layout_width="90dip"
+            android:layout_height="wrap_content"
+            android:text="金额"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/print_statistics_payments_container"
+        android:layout_width="@dimen/print_width"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        />
+</LinearLayout>

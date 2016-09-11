@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="@dimen/print_width"
+             android:layout_height="wrap_content"
+             android:background="#ffffffff">
+
+    <LinearLayout
+        android:id="@+id/print_order_header"
+        android:layout_width="@dimen/print_width"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"/>
+
+    <LinearLayout
+        android:id="@+id/print_order_merchant"
+        android:layout_width="@dimen/print_width"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"/>
+
+    <LinearLayout
+        android:id="@+id/print_order_products"
+        android:layout_width="@dimen/print_width"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"/>
+
+    <LinearLayout
+        android:id="@+id/print_order_pays"
+        android:layout_width="@dimen/print_width"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"/>
+
+    <LinearLayout
+        android:id="@+id/print_order_vip"
+        android:layout_width="@dimen/print_width"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"/>
+
+    <LinearLayout
+        android:id="@+id/print_order_footer"
+        android:layout_width="@dimen/print_width"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="120.0dip"
+        android:orientation="vertical"/>
+</TableLayout>

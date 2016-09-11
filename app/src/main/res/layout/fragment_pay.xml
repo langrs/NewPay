@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/White"
+              android:minWidth="@dimen/Dialog.Fragment.Width.Min"
+    >
+
+    <TextView
+        android:id="@+id/fragment_pay_title"
+        style="@style/Dialog.Material.Title"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:text="" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16.0dip"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/Padding.Material.Standard"
+            >
+            <TextView
+                android:id="@+id/fragment_pay_unpay_label"
+                style="@style/Text.Checkout.CardBody"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="待付金额:"
+                />
+            <TextView
+                android:id="@+id/fragment_pay_uppay"
+                style="@style/Text.Checkout.CardBody"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8.0dip"
+                android:gravity="right"
+                android:text="0"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/fragment_pay_willpay_label"
+                style="@style/Text.Checkout.CardOrderTotal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="现支付:"
+                />
+            <TextView
+                android:id="@+id/fragment_pay_willpay"
+                style="@style/Text.Checkout.CardOrderTotal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?attr/editTextBackground"
+                />
+        </LinearLayout>
+    </LinearLayout>
+
+    <GridView
+        android:id="@+id/fragment_pay_input_keyboard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/Margin.Material.Standard.Double"
+        android:layout_marginRight="@dimen/Margin.Material.Standard.Double"
+        android:numColumns="3"
+        />
+        <!--android:visibility="gone"-->
+
+    <Button
+        android:id="@+id/fragment_pay_ok_button"
+        style="@style/Register.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/Padding.Material.Standard.Triple"
+        android:layout_gravity="right"
+        android:text="确认" />
+
+</LinearLayout>

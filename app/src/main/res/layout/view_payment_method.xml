@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/Card.Padding.Material.Standard">
+
+    <ImageView
+        android:id="@+id/list_item_payment_method_Image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/Card.Padding.Material.Standard"
+        android:contentDescription="@string/payment_method_type"
+        android:src="@drawable/ic_payment_info_normal"/>
+
+    <!-- 支付类型 -->
+    <TextView
+        android:id="@+id/list_item_payment_method_type"
+        style="@style/Text.Standard"
+        android:layout_width="0.0dip"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@id/list_item_payment_method_Image"
+        />
+
+    <!-- 关联号码 -->
+    <TextView
+        android:id="@+id/list_item_payment_method_number"
+        style="@style/Text.Checkout.PaymentMethodBody"
+        android:layout_width="0.0dip"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/list_item_payment_method_type"
+        android:layout_alignRight="@id/list_item_payment_method_type"
+        android:layout_below="@id/list_item_payment_method_type"
+        />
+
+    <!-- 有效日期 -->
+    <TextView
+        android:id="@+id/list_item_payment_method_expiration"
+        style="@style/Text.Checkout.PaymentMethodBody"
+        android:layout_width="0.0dip"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/list_item_payment_method_number"
+        android:layout_alignRight="@id/list_item_payment_method_number"
+        android:layout_below="@id/list_item_payment_method_number"
+        />
+
+    <!-- 可用金额 -->
+    <TextView
+        android:id="@+id/list_item_payment_method_amount_applied"
+        style="@style/Text.Checkout.PaymentMethodBody"
+        android:layout_width="0.0dip"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/list_item_payment_method_expiration"
+        android:layout_alignRight="@id/list_item_payment_method_expiration"
+        android:layout_below="@id/list_item_payment_method_expiration"
+        />
+</RelativeLayout>

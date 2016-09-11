@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:fadingEdge="none"
+    android:overScrollMode="never">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/Padding.Material.Standard.Triple">
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/Text.PlaceOrder.Label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="商品条码"/>
+
+            <Spinner
+                android:id="@+id/layout_PlaceOrder_product_number_spinner"
+                style="@style/PlaceOrder.SpinnerStyle"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/Text.PlaceOrder.Label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="商品名称"/>
+
+            <TextView
+                android:id="@+id/layout_PlaceOrder_product_brand"
+                style="@style/Text.PlaceOrder.Message"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/Padding.Material.Standard"
+                android:layout_marginRight="@dimen/Padding.Material.Standard.Triple"
+                android:layout_weight="1.0"
+                android:text="百丽女鞋"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/Text.PlaceOrder.Label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:text="商品售价"/>
+
+            <LinearLayout
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/Padding.Material.Standard"
+                android:layout_marginRight="@dimen/Padding.Material.Standard.Triple"
+                android:layout_weight="1.0"
+                android:orientation="horizontal"
+                >
+
+                <EditText
+                    android:id="@+id/layout_PlaceOrder_product_price"
+                    style="@style/Text.PlaceOrder.Input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberDecimal|textCapWords"
+                    android:singleLine="true"
+                    android:text=""
+                    />
+
+                <TextView
+                    android:id="@+id/layout_PlaceOrder_product_price_fixed"
+                    style="@style/Text.PlaceOrder.Message"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="09.2994"
+                    android:visibility="gone"
+                    />
+            </LinearLayout>
+
+
+            <TextView
+                style="@style/Text.PlaceOrder.Label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:text="选购数量"/>
+
+            <Spinner
+                android:id="@+id/layout_PlaceOrder_product_quantity"
+                style="@style/PlaceOrder.Spinner.Small"
+                android:layout_marginLeft="@dimen/Padding.Standard"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:gravity="right"
+                />
+        </LinearLayout>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="@color/White"
+            app:cardUseCompatPadding="true"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    style="@style/Text.PlaceOrder.Label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="会员卡号"
+                    />
+
+                <TextView
+                    style="@style/Text.PlaceOrder.Label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1992883883"
+                    />
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:id="@+id/layout_PlaceOrder_vip_used_label"
+                style="@style/Text.PlaceOrder.Label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="会  员  卡"
+                />
+
+            <CheckBox
+                style="@style/Text.PlaceOrder.Label"
+                android:id="@+id/layout_PlaceOrder_product_vip_used"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/Margin.Material.Standard"
+                android:layout_toRightOf="@id/layout_PlaceOrder_vip_used_label"
+                android:minWidth="120dp"
+                android:text="未启用"
+                android:textColor="@drawable/checkbox_textcolor_selecter"
+                />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_PlaceOrder_vip_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/Background.Transparent.Light.Gray"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                style="@style/Text.PlaceOrder.Label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:paddingTop="@dimen/Padding.Material.Standard"
+                android:text="会员信息"
+                android:textStyle="bold"
+                />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/Text.PlaceOrder.Label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:text="会员帐号"/>
+
+                <EditText
+                    android:id="@+id/layout_PlaceOrder_vip_number"
+                    style="@style/Text.PlaceOrder.Input.Small"
+                    android:layout_width="0.0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/Padding.Material.Standard"
+                    android:layout_marginRight="@dimen/Padding.Material.Standard.Triple"
+                    android:layout_weight="1.0"
+                    android:text=""
+                    android:hint="请输入会员卡号"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/Text.PlaceOrder.Label.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="持  卡  人"/>
+
+                <TextView
+                    android:id="@+id/layout_PlaceOrder_vip_name"
+                    style="@style/Text.PlaceOrder.Message.Small"
+                    android:layout_width="0.0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/Padding.Material.Standard"
+                    android:layout_marginRight="@dimen/Padding.Material.Standard.Triple"
+                    android:layout_weight="1.0"
+                    android:text="张三"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/Text.PlaceOrder.Label.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:text="积分余额"/>
+
+                <TextView
+                    android:id="@+id/layout_PlaceOrder_vip_pointer"
+                    style="@style/Text.PlaceOrder.Input.Small"
+                    android:layout_width="0.0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/Padding.Material.Standard"
+                    android:layout_marginRight="@dimen/Padding.Material.Standard.Triple"
+                    android:layout_weight="1.0"
+                    android:singleLine="true"
+                    android:text="19999"
+                    android:textColor="@color/PrimaryBlue"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/Text.PlaceOrder.Label.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:text="折        扣"/>
+
+                <EditText
+                    style="@style/Text.PlaceOrder.Input.Small"
+                    android:id="@+id/layout_PlaceOrder_vip_discount"
+                    android:layout_width="0.0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/Padding.Material.Standard"
+                    android:layout_weight="1.0"
+                    android:hint="折扣"
+                    android:inputType="textPersonName|textCapWords"
+                    android:singleLine="true"
+                    android:text="0.9"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 购物车根据是否有预结算来判断是否加载总计页面 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fragment_cart_footer_contents"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/fragment_cart_edit_vip_button"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/Padding.Large"
+        android:background="@drawable/bg_card_button_ripple"
+        android:drawableLeft="@drawable/ic_cart_edit_vip"
+        android:drawablePadding="@dimen/Padding.Standard"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/Padding.Material.Standard"
+        android:text="@string/cart_button_edit_vip"
+        android:textColor="@color/Gray"
+        android:textSize="@dimen/TextSize.Large"
+        android:visibility="visible" />
+
+    <!--<Button-->
+        <!--android:id="@+id/fragment_cart_shipping_estimate_button"-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginTop="@dimen/Padding.Large"-->
+        <!--android:background="@drawable/bg_card_button_ripple"-->
+        <!--android:drawableLeft="@drawable/ic_cart_calculator"-->
+        <!--android:drawablePadding="@dimen/Padding.Standard"-->
+        <!--android:gravity="center_vertical"-->
+        <!--android:paddingLeft="@dimen/Padding.Material.Standard"-->
+        <!--android:text="@string/cart_button_estimate_shipping"-->
+        <!--android:textColor="@color/Gray"-->
+        <!--android:textSize="@dimen/TextSize.Large" />-->
+
+    <include
+        layout="@layout/view_cart_order_total"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/Padding.ListItem.Between"
+        android:layout_marginTop="@dimen/Padding.Large" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/FloatingActionButton.Diameter.Normal"
+        android:layout_margin="@dimen/Padding.Material.Standard.Half"
+        android:background="@android:color/transparent" />
+</LinearLayout>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="WindowBackground">#fff0f0f0</color>
+
+    <color name="PrimaryBlue">#2196F3</color>
+    <color name="PrimaryBlue.Light">#21AAF3</color>
+    <color name="PrimaryBlue.Dark">#1976D2</color>
+
+    <color name="White">@android:color/white</color>
+
+    <color name="TextColor.Black">#212121</color>
+    <color name="TextColor.Black.15">#26000000</color>
+    <color name="TextColor.Black.20">#33000000</color>
+    <color name="TextColor.Black.27">#44000000</color>
+    <color name="TextColor.Black.54">#8a000000</color>
+    <color name="TextColor.Black.87">#dd000000</color>
+    <color name="TextColor.Dark">#ff58595b</color>
+    <color name="TextColor.Normal">#ff616161</color>
+    <color name="TextColor.Blue">#03A9F4</color>
+    <color name="TextColor.Grey">#727272</color>
+    <color name="TextColor.Light">#9A9A9A</color>
+    <color name="TextColor.Description">#ff565656</color>
+    <color name="TextColor.GroupHead">#ff969696</color>
+    <color name="TextColor.VeryLight">#ffbdbdbd</color>
+
+    <color name="Background.Dark">#FF434242</color>
+    <color name="Background.Darker">#FF303231</color>
+    <color name="Background.Gray">#FFCCCCCC</color>
+    <color name="Background.Gray.SlightlyDarker">#FF888888</color>
+    <color name="Background.Gray.Transparent">#F3D0D0D0</color>
+    <color name="Background.LightGray">#FFEBEBEB</color>
+    <color name="Background.NotTooLightGray">#FFCACACA</color>
+    <color name="Background.Transparent.Light.Gray">#80E0E0E0</color>
+
+    <color name="Divider">#33666666</color>
+    <color name="Divider.Brighter">#FFE0E0E0</color>
+    <color name="Divider.Bright">#B6B6B6</color>
+    <color name="Divider.Dark">#FF5D5D5D</color>
+    <color name="Divider.Light">#FF656565</color>
+    <color name="Divider.White">#55FFFFFF</color>
+
+    <color name="Dialog.BackgroundColor.Blue">#ff03a9f4</color>
+    <color name="Dialog.ButtonColor">#ff212121</color>
+    <color name="Dialog.ContentColor">#ff999999</color>
+    <color name="Dialog.ItemColor">#ff999999</color>
+    <color name="Dialog.TitleColor">#ff474747</color>
+
+    <color name="StandardButton">@color/TextColor.Blue</color>
+    <color name="StandardButton.Selected">@color/PrimaryBlue.Dark</color>
+
+    <color name="Card.Pressed">#40888888</color>
+    <color name="CardBackground">#ffffffff</color>
+
+    <color name="Selected">#ffeff4fa</color>
+    <color name="Selected.Transparent">#33859bb5</color>
+
+    <color name="FloatingActionButton.Background.Blue">#ff4168bb</color>
+    <color name="FloatingActionButton.Background.Blue.Pressed">#ff2e4a85</color>
+
+    <color name="Badge.Color.Red">#FFD02719</color>
+</resources>

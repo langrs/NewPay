@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@drawable/bg_item_nav_drawer"
+              android:clickable="true"
+              android:focusable="true"
+              android:orientation="vertical">
+
+    <View
+        android:id="@+id/view_drawer_item_top_divider"
+        android:layout_width="match_parent"
+        android:layout_height="1.0dip"
+        android:background="@color/Drawer.Divider"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/Padding.Material.Standard.Double">
+
+        <ImageView
+            android:id="@+id/view_drawer_item_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="@dimen/Padding.Material.Standard.Double"
+            android:paddingRight="@dimen/Padding.Material.Standard.Double"
+            android:src="@drawable/ic_drawer_user"/>
+
+        <TextView
+            android:id="@+id/view_drawer_item_title"
+            style="@style/Text.NavDrawer.ListItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="@dimen/Padding.Material.Standard.Half"
+            android:gravity="center_vertical"/>
+
+        <TextView
+            android:id="@+id/view_drawer_item_badge"
+            style="@style/Text.NavDrawer.Badge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical"/>
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view_drawer_item_bottom_divider"
+        android:layout_width="match_parent"
+        android:layout_height="1.0dip"
+        android:background="@color/Drawer.Divider"/>
+</LinearLayout>

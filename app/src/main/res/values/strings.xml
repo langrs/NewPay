@@ -1,0 +1,42 @@
+<resources>
+    <string name="app_name">移动收银</string>
+
+    <string name="drawer_open">目录</string>
+    <string name="drawer_close">主页</string>
+
+    <string name="login_account_number_hint">请输入账号</string>
+    <string name="login_password_hint">请输入密码</string>
+    <string name="login_in">登录</string>
+    <string name="Dialog.InProgress.Login">登录中...</string>
+
+    <string name="register_pos_type_prompt">选择类型</string>
+
+    <string name="menu_title_add_vip">会员卡</string>
+    <string name="menu_title_clear_cart">清空</string>
+
+    <string name="select_product_prompt">请选择商品条码</string>
+
+    <string name="Cart.Empty.Title">购物车中没有商品</string>
+    <string name="cart_button_edit_vip">使用会员卡</string>
+    <string name="View.OrderTotals.Label.Subtotal">订单总额:</string>
+    <string name="View.OrderTotals.Label.Total">应付总额:</string>
+
+    <!-- Checkout -->
+    <string name="payment_method_type">支付方式</string>
+    <string name="add_payment_method">添加支付方式</string>
+
+
+    <string name="cash_change"><![CDATA[找零金额: <font color="#00AC8E">￥ %1$s</font> ]]></string>
+    <string name="Settings.Current.SN">当前流水 %1$s</string>
+
+    <!-- 历史订单 -->
+    <string name="OrderHistory.PaymentInfo.CardTitle">支付信息</string>
+    <string name="OrderHistory.PaymentInfo.OrderTotalTitle">总金额</string>
+    <string name="OrderHistory.PaymentInfo.Total">总计:</string>
+    <string name="OrderHistory.Order.Count">数量: %1$d单</string>
+    <string name="OrderHistory.Order.Total">总计: ￥ %1$s</string>
+    <string name="page_payment">支付方式</string>
+    <string name="View.OrderTotals.Label.Discount">折扣:</string>
+    <string name="View.OrderTotals.Label.ActualPayment">实付:</string>
+
+</resources>

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout
+    android:id="@+id/activity_browse_drawer"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fitsSystemWindows="true">
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <FrameLayout
+            android:id="@+id/activity_browse_actionBarFrame"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/Components.ActionBarHeight.Large"
+            android:background="@color/PrimaryBlue">
+
+            <TextView
+                android:id="@+id/activity_browse_searchTitle"
+                style="@style/Browse.Search.Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center_vertical"
+                android:layout_marginLeft="@dimen/Inset.Title"
+                android:text="商品类别"
+                android:ellipsize="end"
+                android:singleLine="true"/>
+
+            <ProgressBar
+                android:id="@+id/activity_browse_actionBarProgress"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="-7.0dip"
+                android:indeterminate="true"
+                android:visibility="invisible"/>
+
+            <include
+                layout="@layout/toolbar"/>
+        </FrameLayout>
+
+        <LinearLayout
+            android:id="@+id/search_container"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_alignBaseline="@id/activity_browse_actionBarFrame"
+            android:layout_alignParentBottom="true"
+            android:layout_below="@id/activity_browse_actionBarFrame"
+            android:background="@color/White"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:id="@+id/activity_browse_contentFrame"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:animateLayoutChanges="true"/>
+        </LinearLayout>
+
+        <View
+            android:id="@+id/activity_browse_actionBar_shadow"
+            style="@style/ToolbarShadow"
+            android:layout_below="@id/activity_browse_actionBarFrame"/>
+
+        <!--<ViewFlipper-->
+            <!--android:id="@+id/activity_browse_fabFlipper"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_above="@id/search_container"-->
+            <!---->
+            <!--android:layout_gravity="end|bottom|center"-->
+            <!--android:clipChildren="false"-->
+            <!--android:clipToPadding="false"-->
+            <!--&gt;-->
+
+            <ImageButton
+                android:id="@+id/activity_browse_fab_add"
+                android:layout_width="@dimen/FloatingActionButton.Diameter.Normal"
+                android:layout_height="@dimen/FloatingActionButton.Diameter.Normal"
+                android:background="@drawable/bg_fab_yellow"
+                android:contentDescription="搜索"
+                android:src="@drawable/ic_floating_button_search"
+                android:layout_alignParentRight="true"
+                android:layout_above="@id/search_container"
+                android:layout_marginBottom="@dimen/FloatingActionButton.EndMargin.Normal"
+                android:layout_marginRight="@dimen/FloatingActionButton.EndMargin.Normal"
+                android:translationY="44.0dip"
+                />
+
+            <!--<ImageButton-->
+                <!--android:id="@+id/activity_browse_fab_add"-->
+                <!--android:layout_width="@dimen/FloatingActionButton.Diameter.Normal"-->
+                <!--android:layout_height="@dimen/FloatingActionButton.Diameter.Normal"-->
+                <!--android:background="@drawable/bg_fab_yellow"-->
+                <!--android:contentDescription="添加"-->
+                <!--android:src="@drawable/ic_floating_button_search"/>-->
+
+        <!--</ViewFlipper>-->
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/activity_browse_fab_add"
+            android:layout_alignBottom="@id/activity_browse_fab_add"
+            android:layout_alignTop="@id/activity_browse_fab_add"
+            android:layout_toLeftOf="@id/activity_browse_fab_add"
+            android:translationY="@dimen/FloatingActionButton.Radius.Normal"
+            android:visibility="gone"
+            >
+            <include
+                android:id="@+id/activity_browse_tooltip"
+                layout="@layout/view_floating_action_button_tooltip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                />
+        </FrameLayout>
+
+    </RelativeLayout>
+
+    <android.support.design.widget.NavigationView
+        android:id="@+id/activity_browse_drawer_content"
+        android:layout_width="@dimen/drawer_width"
+        android:layout_height="fill_parent"
+        android:layout_gravity="left"
+        android:background="@color/White"
+        android:fitsSystemWindows="true"
+        />
+
+</android.support.v4.widget.DrawerLayout>

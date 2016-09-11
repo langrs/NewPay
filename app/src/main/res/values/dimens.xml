@@ -1,0 +1,53 @@
+<resources>
+
+    <dimen name="Padding.ListItem.Inner">5.0dip</dimen>
+    <dimen name="Padding.ListItem.Between">5.0dip</dimen>
+
+    <!-- Drawer -->
+    <dimen name="Drawer.Logo.TopMargin">0.0dip</dimen>
+
+    <!-- PlaceOrder -->
+    <dimen name="PlaceOrder.Divider.Margin">16.0dip</dimen>
+    
+    
+    
+    <!-- Checkout -->
+    <style name="Text.Checkout.PaymentMethodBody" parent="@style/Text.Material.Subhead">
+        <item name="android:textColor">@color/TextColor.Black.54</item>
+    </style>
+
+
+    <!--Register -->
+    <dimen name="Spinner.Register.PosType.DropDownVerticalOffset">-66.0dip</dimen>
+
+    <!-- Browse -->
+    <dimen name="Inset.Title">44.0dip</dimen>
+
+    <!-- Payment -->
+    <dimen name="Payment.Card.SidePadding">16.0dip</dimen>
+    <dimen name="Payment.Card.TopMargin">8.0dip</dimen>
+    <dimen name="Payment.Card.SideMargin">8.0dip</dimen>
+
+    <!-- Cart -->
+    <dimen name="Cart.Tooltip.MarginBottom">24.0dip</dimen>
+    <dimen name="Cart.Tooltip.MarginRight">72.0dip</dimen>
+    <dimen name="Cart.Please.Note.Height">44.0dip</dimen>
+
+    <dimen name="Spinner.Cart.CartItem.Quantity.DropDownVerticalOffset">-74.0dip</dimen>
+
+    <dimen name="Single.Pane.Layout.LeftRightMargin">10.0dip</dimen>
+
+    <dimen name="Product.ImageWidth.ListItem">60.0dip</dimen>
+    <dimen name="Product.PriceColumn.MinWidth">95.0dip</dimen>
+
+
+    <!-- print -->
+    <dimen name="print_width">384.0dip</dimen>
+    <dimen name="print_half_width">192.0dip</dimen>
+    <dimen name="print_text_size_small">20.0dip</dimen>
+    <dimen name="print_text_size_normal">25.0dip</dimen>
+    <dimen name="print_text_size_big_more">28.0dip</dimen>
+    <dimen name="line_space">-9.0dip</dimen>
+    <!--<dimen name="line_space_small">-7.0dip</dimen>-->
+    <dimen name="line_space_small">-5.0dip</dimen>
+</resources>

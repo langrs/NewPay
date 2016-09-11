@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/bananaPeel_cardView"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_gravity="center">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/bananaPeel_ImageView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/bananaPeel_TextView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/Padding.Gigantic"
+            android:layout_marginLeft="@dimen/Padding.Gigantic"
+            android:layout_marginRight="@dimen/Padding.Gigantic"
+            android:layout_marginTop="@dimen/Padding.Gigantic"
+            android:gravity="center"
+            android:textColor="@color/TextColor.Light"
+            android:textSize="@dimen/TextSize.Gigantic"/>
+
+        <TextView
+            android:id="@+id/bananaPeel_TextView_Line2"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/Padding.Gigantic"
+            android:layout_marginLeft="@dimen/Padding.Gigantic"
+            android:layout_marginRight="@dimen/Padding.Gigantic"
+            android:layout_marginTop="@dimen/Padding.Gigantic"
+            android:gravity="center"
+            android:visibility="gone"/>
+    </LinearLayout>
+</android.support.v7.widget.CardView>

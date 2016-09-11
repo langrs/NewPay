@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:background="@color/White"
+              android:divider="@android:drawable/divider_horizontal_bright"
+              android:minWidth="400dp"
+              android:orientation="vertical"
+              android:showDividers="middle">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="112dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/Padding.Material.Standard"
+                android:textColor="@color/TextColor.Black.87"
+                android:text="交易单号" />
+            <EditText
+                android:id="@+id/fragment_refund_query_input"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginLeft="@dimen/Padding.Material.Standard"
+                android:layout_marginRight="@dimen/Padding.Material.Standard"
+                android:inputType="number"
+                android:hint="请输入号码"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginTop="@dimen/Margin.VeryLarge"
+        android:layout_margin="@dimen/Padding.Material.Standard"
+        android:gravity="center"
+        android:text="@string/login_in"
+        app:cardBackgroundColor="@color/PrimaryBlue"
+        >
+        <Button
+            android:id="@+id/fragment_refund_query_button"
+            style="@style/Login.Login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="查询"
+            android:clickable="true"
+            >
+        </Button>
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="@dimen/print_width"
+              android:layout_height="wrap_content"
+              android:background="#ffffffff"
+    >
+
+    <TextView
+        android:id="@+id/print_thirdparty_title"
+        style="@style/print_text_size_title"
+        android:layout_width="@dimen/print_width"
+        android:gravity="center"
+        android:text="合胜百货购物券"
+        />
+
+    <RelativeLayout
+        android:layout_width="@dimen/print_width"
+        android:layout_height="wrap_content"
+        >
+
+        <TextView
+            android:id="@+id/print_coupon_no_prompt"
+            style="@style/print_text_size"
+            android:text="券号:"/>
+
+        <TextView
+            android:id="@+id/print_coupon_no"
+            style="@style/print_text_size"
+            android:layout_alignParentRight="true"
+            android:paddingRight="10dip"
+            />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="@dimen/print_width"
+        android:layout_height="wrap_content"
+        >
+
+        <TextView
+            android:id="@+id/print_coupon_value_prompt"
+            style="@style/print_text_size"
+            android:text="金额:"/>
+
+        <TextView
+            android:id="@+id/print_coupon_value"
+            style="@style/print_text_size"
+            android:layout_alignParentRight="true"
+            android:paddingRight="10dip"
+            />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="@dimen/print_width"
+        android:layout_height="wrap_content"
+        >
+
+        <TextView
+            android:id="@+id/print_coupon_endDate_prompt"
+            style="@style/print_text_size"
+            android:text="截止日期:"/>
+
+        <TextView
+            android:id="@+id/print_coupon_endDate"
+            style="@style/print_text_size"
+            android:text=""
+            android:layout_alignParentRight="true"
+            android:paddingRight="10dip"
+            />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="@dimen/print_width"
+        android:layout_height="wrap_content"
+        >
+
+        <ImageView
+            android:id="@+id/print_coupon_qr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            />
+
+    </RelativeLayout>
+
+    <TextView
+        style="@style/print_text_size_big"
+        android:layout_marginBottom="80.0dip"
+        android:text="----------------------------------"
+        android:textStyle="bold"/>
+</LinearLayout>

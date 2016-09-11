@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="horizontal"
+              android:layout_width="@dimen/print_width"
+              android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/print_statistics_payment_name"
+        style="@style/print_text_size_item"
+        android:layout_width="153.6dip"
+        android:layout_height="wrap_content"
+        android:text="支付类型"
+        />
+
+    <TextView
+        android:id="@+id/print_statistics_payment_total"
+        style="@style/print_text_size_item"
+        android:layout_width="90dip"
+        android:layout_height="wrap_content"
+        android:text="0.00"
+        />
+</LinearLayout>

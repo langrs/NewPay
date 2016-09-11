@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:app="http://schemas.android.com/apk/res-auto"
+             android:id="@+id/fragment_cart_contents_container"
+             android:layout_width="fill_parent"
+             android:layout_height="fill_parent"
+             android:background="@color/WindowBackground">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical">
+
+        <ProgressBar
+            android:id="@+id/fragment_cart_loading"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:indeterminate="true"
+            android:indeterminateDrawable="@drawable/progress_indeterminate_horizontal_holo"
+            android:visibility="gone" />
+
+        <!--<com.bhphoto.general.views.NestedSwipeListView-->
+        <ListView
+            android:id="@+id/fragment_cart_list_view"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:divider="@null"
+            android:dividerHeight="0.0dip"
+            android:fadingEdge="none"
+            android:listSelector="@android:color/transparent"
+            android:overScrollMode="never"
+            android:paddingLeft="@dimen/Single.Pane.Layout.LeftRightMargin"
+            android:paddingRight="@dimen/Single.Pane.Layout.LeftRightMargin"
+            android:scrollbarStyle="outsideOverlay" />
+    </LinearLayout>
+
+    <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/fragment_cart_coordinatorLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        >
+
+        <include
+            android:id="@+id/fragment_cart_checkout_tooltip"
+            layout="@layout/view_floating_action_button_tooltip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom|center"
+            android:layout_marginBottom="@dimen/Cart.Tooltip.MarginBottom"
+            android:layout_marginRight="@dimen/Cart.Tooltip.MarginRight" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fragment_cart_payment_options_button"
+            android:layout_width="@dimen/FloatingActionButton.Diameter.Normal"
+            android:layout_height="@dimen/FloatingActionButton.Diameter.Normal"
+            android:layout_gravity="end|bottom|center"
+            android:layout_margin="@dimen/FloatingActionButton.Margin"
+            android:src="@drawable/ic_checkout_action_card"
+            app:backgroundTint="@color/FloatingActionButton.Background.Blue"
+            app:borderWidth="0.0dip"
+            app:elevation="@dimen/FloatingActionButton.Elevation" />
+    </android.support.design.widget.CoordinatorLayout>
+</FrameLayout>

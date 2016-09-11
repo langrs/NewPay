@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/edittext_material_bg_blue_focused" android:state_enabled="true" android:state_focused="true" />
+    <item android:drawable="@drawable/edittext_material_bg_blue_focused" android:state_activated="true" android:state_enabled="true" />
+    <item android:drawable="@drawable/edittext_material_bg_lightgray_normal" android:state_enabled="true" />
+    <item android:drawable="@drawable/edittext_material_bg_lightgray_normal" />
+</selector>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    android:id="@+id/view_checkout_card_cash"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:foreground="@drawable/bg_transparent_selector"
+    card_view:cardBackgroundColor="@color/White">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="@dimen/Padding.Standard">
+
+        <ImageView
+            android:id="@+id/view_payment_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="64dp"
+            android:minHeight="64dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="16.0dip"
+            android:scaleType="centerCrop"/>
+
+        <TextView
+            android:id="@+id/view_payment_name"
+            style="@style/Text.CheckoutCard.Title.Cash"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:paddingLeft="@dimen/Padding.Material.Standard.Double"
+            android:paddingRight="@dimen/Padding.Material.Standard.Double"
+            android:text="现金支付"/>
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>

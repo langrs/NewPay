@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--<LinearLayout-->
+    <!--android:id="@+id/list_item_order_product_background_container"-->
+    <!--xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--android:layout_width="fill_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:foreground="@drawable/bg_transparent_button_selector"-->
+    <!--android:background="@drawable/card_filled"-->
+    <!--android:orientation="horizontal">-->
+
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/list_item_order_product_desc_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/Padding.Material.Standard"
+        android:layout_marginRight="@dimen/Padding.ListItem.Inner"
+        android:layout_marginTop="@dimen/Padding.ListItem.Inner"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/Padding.Small"
+        android:background="@drawable/card_filled"
+        >
+        <TextView
+            android:id="@+id/list_item_order_product_quantity"
+            style="@style/Text.CartItem.Body"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="0"
+        />
+
+        <TextView
+            android:id="@+id/list_item_order_product_name"
+            style="@style/Text.CartItem.Head"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:text="女鞋"
+            android:visibility="gone"
+            />
+
+        <TextView
+            android:id="@+id/list_item_order_product_number"
+            style="@style/Text.CartItem.Body"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/list_item_order_product_name"
+            android:layout_alignWithParentIfMissing="true"
+            android:text="100100118755"
+            android:textColor="@color/Gray"
+            />
+
+        <TextView
+            android:id="@+id/list_item_order_product_price"
+            style="@style/Text.CartItem.Body"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/list_item_order_product_quantity"
+            android:layout_marginLeft="@dimen/Padding.Material.Standard"
+            android:text="¥ 20.12"
+            android:textColor="@android:color/holo_red_light"
+            android:textSize="@dimen/TextSize.Material.Body"
+            />
+
+
+    </RelativeLayout>
+
+<!--</LinearLayout>-->

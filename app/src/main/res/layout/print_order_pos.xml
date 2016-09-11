@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="@dimen/print_width"
+              android:layout_height="wrap_content"
+              android:background="#ffffffff"
+              android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="@dimen/print_width"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/print_posno_prompt"
+                style="@style/print_text_size"
+                android:text="机号:"/>
+
+            <TextView
+                android:id="@+id/print_posno"
+                style="@style/print_text_size"
+                android:layout_toRightOf="@id/print_posno_prompt"
+                android:text="9001"
+                />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            >
+
+            <TextView
+                android:id="@+id/print_userno_prompt"
+                style="@style/print_text_size"
+                android:text="收银员:"/>
+
+            <TextView
+                android:id="@+id/print_userno"
+                style="@style/print_text_size"
+                android:layout_toRightOf="@id/print_userno_prompt"
+                android:text="0010"
+                />
+        </RelativeLayout>
+
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_width="@dimen/print_width"
+        android:layout_height="wrap_content"
+        >
+
+        <TextView
+            android:id="@+id/print_time_prompt"
+            style="@style/print_text_size"
+            android:text="销售日期:"/>
+
+        <TextView
+            android:id="@+id/print_time"
+            style="@style/print_text_size"
+            android:text="2016-08-18 11:26"
+            android:layout_toRightOf="@id/print_time_prompt"
+            android:paddingRight="10dip"
+            />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="@dimen/print_width"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/line_space_small">
+
+        <TextView
+            android:id="@+id/print_orderid_prompt"
+            style="@style/print_text_size"
+            android:text="小票号:"/>
+
+        <TextView
+            android:id="@+id/print_orderid"
+            style="@style/print_text_size"
+            android:layout_toRightOf="@id/print_orderid_prompt"
+            android:text="0219881099948"
+            />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/print_reprint_tag"
+        style="@style/print_text_size_big"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dip"
+        android:text="-----------------重打印!-------------------"
+        />
+    <TextView
+        android:id="@+id/print_line_tag"
+        style="@style/print_text_size_big"
+        android:layout_marginBottom="5.0dip"
+        android:text="----------------------------------"
+        android:textStyle="bold"/>
+
+</LinearLayout>

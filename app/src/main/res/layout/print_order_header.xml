@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="@dimen/print_width"
+              android:layout_height="wrap_content"
+              android:background="#ffffffff"
+              android:gravity="center"
+              android:orientation="vertical">
+
+        <!--android:scaleY="1.5"-->
+    <TextView
+        android:id="@+id/print_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="合胜百货"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/print_text_size_big_more"/>
+
+</LinearLayout>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        >
+        <TextView
+            style="@style/Text.PlaceOrder.Vip.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="购物车"
+            />
+    </LinearLayout>
+
+    <com.esummer.android.widget.LoadingBananaPeelView
+        android:id="@+id/fragment_cart_banana"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        app:bananaPeelDefaultImageResource="@drawable/ic_bananapeel_cart"
+        app:bananaPeelDefaultMessageStringResource="@string/Cart.Empty.Title"
+        app:bananaPeelViewResource="@layout/cart_banana_peel"
+        app:contentView="@layout/fragment_cart_contents"/>
+
+    <!--<View style="@style/ToolbarShadow"/>-->
+
+</LinearLayout>

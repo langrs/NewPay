@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/cart_empty_container"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/bananaPeel_ImageView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_bananapeel_cart"
+            />
+
+        <TextView
+            android:id="@+id/bananaPeel_TextView"
+            style="@style/Text.Cart.NoItem.Title"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/Padding.Gigantic"
+            android:layout_marginRight="@dimen/Padding.Gigantic"
+            android:layout_marginTop="@dimen/Padding.Gigantic"
+            android:gravity="center"
+            android:text="@string/Cart.Empty.Title"
+            />
+
+        <TextView
+            android:id="@+id/bananaPeel_TextView_Line2"
+            style="@style/Text.Cart.NoItem.Details"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/Padding.Gigantic"
+            android:layout_marginLeft="@dimen/Padding.Gigantic"
+            android:layout_marginRight="@dimen/Padding.Gigantic"
+            android:layout_marginTop="@dimen/Padding.Gigantic"
+            android:gravity="center"
+            android:visibility="gone"
+            android:text="选择商品添加到购物车"/>
+    </LinearLayout>
+</RelativeLayout>

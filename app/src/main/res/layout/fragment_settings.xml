@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@color/BrightOffWhite"
+            android:fillViewport="true"
+            android:scrollbarStyle="outsideOverlay">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@color/White"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    style="@style/Text.Settings.Description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/Padding.Gigantic"
+                    android:text="打印小票联数" />
+
+                <Spinner
+                    android:id="@+id/fragment_settings_print_number"
+                    style="@style/PlaceOrder.SpinnerStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/MinTouchableArea"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center|right" />
+            </RelativeLayout>
+
+            <TextView
+                style="@style/Text.Settings.GroupHead"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/Header.Settings"
+                android:paddingBottom="9.0dip"
+                android:paddingLeft="@dimen/Padding.Gigantic"
+                android:paddingTop="15.0dip"
+                android:text="当提交交易单总是失败时,尝试跳流水号" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/fragment_settings_skip_sn_button"
+                    style="@style/Button.Standard.Alerts.Positive"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:padding="16.0dip"
+                    android:text="跳流水"
+                    android:textSize="15.0sp" />
+
+                <TextView
+                    android:id="@+id/fragment_settings_current_sn"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/Padding.Gigantic"
+                    android:layout_marginRight="20.0dip"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="10.0dip"
+                    android:layout_toLeftOf="@id/fragment_settings_skip_sn_button"
+                    android:background="@drawable/bg_white_button_selector"
+                    android:text="当前流水: 0001"
+                    android:inputType="textEmailAddress"
+                    android:singleLine="true"
+                    android:textColor="@color/TextColor.Normal"
+                    android:textSize="13.0sp" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <View style="@style/ToolbarShadow" />
+    </RelativeLayout>
+</ScrollView>

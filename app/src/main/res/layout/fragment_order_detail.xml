@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/White"
+              android:gravity="center_horizontal"
+              android:orientation="vertical"
+    >
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    >
+
+                    <TextView
+                        style="@style/Text.OrderDetail.Label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:text="交易单号："/>
+
+                    <TextView
+                        android:id="@+id/order_detail_saleNo"
+                        style="@style/Text.OrderDetail.Body"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    >
+
+                    <TextView
+                        style="@style/Text.OrderDetail.Label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:text="应付："/>
+
+                    <TextView
+                        android:id="@+id/order_detail_need_payAmount"
+                        style="@style/Text.OrderDetail.Body"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:singleLine="true"
+                        />
+
+                    <TextView
+                        style="@style/Text.OrderDetail.Label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:text="实付："/>
+
+                    <TextView
+                        android:id="@+id/order_detail_payAmount"
+                        style="@style/Text.OrderDetail.Body"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:singleLine="true"
+                        />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:visibility="gone"
+                    >
+
+                    <TextView
+                        style="@style/Text.OrderDetail.Label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:text="收银员："/>
+
+                    <TextView
+                        android:id="@+id/order_detail_casher"
+                        style="@style/Text.OrderDetail.Body"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:singleLine="true"/>
+
+                    <TextView
+                        style="@style/Text.OrderDetail.Label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:text="终端编号："/>
+
+                    <TextView
+                        android:id="@+id/order_detail_posId"
+                        style="@style/Text.OrderDetail.Body"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:singleLine="true"/>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:visibility="gone"
+                    >
+
+                    <TextView
+                        style="@style/Text.OrderDetail.Label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:text="专柜编号："/>
+
+                    <TextView
+                        android:id="@+id/order_detail_tenantId"
+                        style="@style/Text.OrderDetail.Body"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:singleLine="true"/>
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    >
+
+                    <TextView
+                        style="@style/Text.OrderDetail.Label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:text="上期积分："/>
+
+                    <TextView
+                        android:id="@+id/order_detail_pointsSrc"
+                        style="@style/Text.OrderDetail.Body"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:singleLine="true"
+                        />
+
+                    <TextView
+                        style="@style/Text.OrderDetail.Label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:text="销售积分："/>
+
+                    <TextView
+                        android:id="@+id/order_detail_points"
+                        style="@style/Text.OrderDetail.Body"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:singleLine="true"
+                        />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    >
+
+                    <TextView
+                        style="@style/Text.OrderDetail.Label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:text="单类型："/>
+
+                    <TextView
+                        android:id="@+id/order_detail_saleType"
+                        style="@style/Text.OrderDetail.Body"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:singleLine="true"
+                        />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    >
+
+                    <TextView
+                        style="@style/Text.OrderDetail.Label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:text="交易时间："/>
+
+                    <TextView
+                        android:id="@+id/order_detail_time"
+                        style="@style/Text.OrderDetail.Body"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:singleLine="true"
+                        />
+                </TableRow>
+            </TableLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/Padding.Material.Standard"
+                    android:paddingLeft="@dimen/Padding.Material.Standard.Double"
+                    android:paddingRight="@dimen/Padding.Material.Standard.Double"
+                    android:paddingTop="@dimen/Padding.Material.Standard"
+                    android:text="商品列表"
+                    android:textColor="#ffbcbcbc"
+                    />
+                <LinearLayout
+                    android:id="@+id/fragment_refund_detail_itemList_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/Padding.Material.Standard.Double"
+                    android:paddingRight="@dimen/Padding.Material.Standard.Double"
+                    android:orientation="vertical"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/Padding.Material.Standard"
+                    android:paddingLeft="@dimen/Padding.Material.Standard.Double"
+                    android:paddingRight="@dimen/Padding.Material.Standard.Double"
+                    android:paddingTop="@dimen/Padding.Material.Standard"
+                    android:text="支付方式"
+                    android:textColor="#ffbcbcbc"
+                    />
+                <LinearLayout
+                    android:id="@+id/fragment_refund_detail_paidList_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/Padding.Material.Standard.Double"
+                    android:paddingRight="@dimen/Padding.Material.Standard.Double"
+                    android:orientation="vertical"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+    <Button
+        android:id="@+id/fragment_refund_detail_ok_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/MinTouchableArea"
+        android:paddingTop="@dimen/Padding.Material.Standard"
+        android:paddingBottom="@dimen/Padding.Material.Standard"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:minWidth="300dp"
+        android:text="确认退货"
+        android:visibility="gone"
+        />
+</LinearLayout>
