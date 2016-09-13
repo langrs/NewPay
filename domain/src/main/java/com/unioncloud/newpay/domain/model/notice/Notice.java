@@ -12,7 +12,7 @@ public class Notice implements Serializable {
 
     String title;
     String content;
-    String footer;
+//    String footer;
 
     public String getId() {
         return id;
@@ -46,11 +46,11 @@ public class Notice implements Serializable {
         this.content = content;
     }
 
-    public String getFooter() {
-        return footer;
-    }
-
-    public void setFooter(String footer) {
-        this.footer = footer;
-    }
+//    public String getFooter() {
+//        return footer;
+//    }
+//
+//    public void setFooter(String footer) {
+//        this.footer = footer;
+//    }
 }

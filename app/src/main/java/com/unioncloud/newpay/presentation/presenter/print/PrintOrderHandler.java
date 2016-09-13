@@ -14,9 +14,7 @@ import com.pax.baselib.printer.PrinterThreadData;
 import com.raizlabs.coreutils.view.ViewUtils;
 import com.unioncloud.newpay.R;
 import com.unioncloud.newpay.domain.model.cart.CartItem;
-import com.unioncloud.newpay.domain.model.erp.VipCard;
-import com.unioncloud.newpay.domain.model.order.Coupon;
-import com.unioncloud.newpay.domain.model.order.SaleOrderResult;
+import com.unioncloud.newpay.domain.model.erp.Coupon;
 import com.unioncloud.newpay.domain.model.payment.Payment;
 import com.unioncloud.newpay.domain.model.payment.PaymentUsed;
 import com.unioncloud.newpay.domain.model.pos.PosInfo;
@@ -24,12 +22,10 @@ import com.unioncloud.newpay.domain.model.print.PrintOrderInfo;
 import com.unioncloud.newpay.domain.utils.MoneyUtils;
 import com.unioncloud.newpay.executor.DefaultExecutorProvider;
 import com.unioncloud.newpay.presentation.model.pos.PosDataManager;
-import com.unioncloud.newpay.presentation.presenter.PresenterUtils;
 import com.unioncloud.newpay.presentation.presenter.sharedpreferences.PreferencesUtils;
 import com.unioncloud.newpay.presentation.ui.pay.PaymentSignpost;
 import com.unioncloud.newpay.presentation.utils.QrUtils;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -161,12 +157,21 @@ public class PrintOrderHandler extends UpdateHandler<Boolean, PrintOrderHandler>
         }
 
         List<PaymentUsed> paymentUseds = printOrderInfo.getPaymentUsedList();
+
         if (paymentUseds != null && paymentUseds.size() > 0) {
             for (PaymentUsed used : paymentUseds) {
                 Payment payment = PosDataManager.getInstance().getPaymentById(used.getPaymentId());
                 View itemView = ((Activity)this.context).getLayoutInflater().inflate(R.layout.print_order_pay_item, null);
                 ((TextView)itemView.findViewById(R.id.print_order_pay_name)).setText(payment.getPaymentName());
-                ((TextView)itemView.findViewById(R.id.print_order_pay_amount)).setText(MoneyUtils.fenToString(used.getPayAmount()));
+                StringBuilder sb = new StringBuilder();
+                int changeAmount = used.getChangeAmount();
+                if (changeAmount > 0) {
+                    int allPay = used.getPayAmount() + changeAmount;
+                    sb.append(MoneyUtils.fenToString(allPay)).append("   找零").append(MoneyUtils.fenToString(changeAmount));
+                } else {
+                    sb.append(MoneyUtils.fenToString(used.getPayAmount()));
+                }
+                ((TextView)itemView.findViewById(R.id.print_order_pay_amount)).setText(sb);
 
                 boolean needPrintBillNo = PaymentSignpost.needPrintBillNo(payment);
                 if (needPrintBillNo) {

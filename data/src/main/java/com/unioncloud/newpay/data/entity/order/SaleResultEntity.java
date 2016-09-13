@@ -1,6 +1,7 @@
 package com.unioncloud.newpay.data.entity.order;
 
 import com.google.gson.annotations.SerializedName;
+import com.unioncloud.newpay.data.entity.coupon.CouponEntity;
 
 import java.util.List;
 

@@ -12,7 +12,7 @@ import rx.Subscriber;
 /**
  * Created by cwj on 16/8/14.
  */
-public class QueryVipHandler extends UpdateHandler<Void, QueryVipHandler>
+public class QueryVipHandler extends UpdateHandler<VipCard, QueryVipHandler>
         implements Runnable {
 
     private String cdInfo;
@@ -45,8 +45,7 @@ public class QueryVipHandler extends UpdateHandler<Void, QueryVipHandler>
 
             @Override
             public void onNext(VipCard vipCard) {
-                CheckoutDataManager.getInstance()
-                        .getSelectedVipCard().setSelectedVipCard(vipCard);
+                data = vipCard;
                 onUpdateCompleted();
             }
         });

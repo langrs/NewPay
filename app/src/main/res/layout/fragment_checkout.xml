@@ -62,7 +62,7 @@
         android:layout_height="wrap_content"
         android:text="可选支付方式"
         />
-
+    <View style="@style/ToolbarShadow"/>
     <ListView
         android:id="@+id/fragment_checkout_payment_list"
         android:layout_width="match_parent"

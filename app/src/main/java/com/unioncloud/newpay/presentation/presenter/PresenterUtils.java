@@ -9,10 +9,12 @@ import com.unioncloud.newpay.data.repository.checkout.CheckoutDataRepository;
 import com.unioncloud.newpay.data.repository.coupon.CouponDataRepository;
 import com.unioncloud.newpay.data.repository.gift.GiftDataRepositroy;
 import com.unioncloud.newpay.data.repository.login.LoginDataRepository;
+import com.unioncloud.newpay.data.repository.notice.NoticeDataRepository;
 import com.unioncloud.newpay.data.repository.order.OrderDataRepository;
 import com.unioncloud.newpay.data.repository.pos.PosDataRepository;
 import com.unioncloud.newpay.data.repository.print.PrintDataRepository;
 import com.unioncloud.newpay.data.repository.product.ProductDataRepository;
+import com.unioncloud.newpay.data.repository.right.RightDateRepository;
 import com.unioncloud.newpay.data.repository.thirdparty.ThirdPartyDataRepository;
 import com.unioncloud.newpay.data.repository.vip.VipDataRepository;
 import com.unioncloud.newpay.domain.executor.ExecutorProvider;
@@ -23,9 +25,11 @@ import com.unioncloud.newpay.domain.repository.CheckoutRepository;
 import com.unioncloud.newpay.domain.repository.CouponRepository;
 import com.unioncloud.newpay.domain.repository.GiftRepository;
 import com.unioncloud.newpay.domain.repository.LoginRepository;
+import com.unioncloud.newpay.domain.repository.NoticeRepository;
 import com.unioncloud.newpay.domain.repository.PosRepository;
 import com.unioncloud.newpay.domain.repository.PrintRepository;
 import com.unioncloud.newpay.domain.repository.ProductRepository;
+import com.unioncloud.newpay.domain.repository.RightRepository;
 import com.unioncloud.newpay.domain.repository.SaleOrderRepository;
 import com.unioncloud.newpay.domain.repository.ThirdPartyRepository;
 import com.unioncloud.newpay.domain.repository.VipRepository;
@@ -86,6 +90,14 @@ public class PresenterUtils {
 
     public static CouponRepository getCouponRepository() {
         return new CouponDataRepository();
+    }
+
+    public static NoticeRepository getNoticeRepository(Context context) {
+        return new NoticeDataRepository(context);
+    }
+
+    public static RightRepository getRightRepository() {
+        return new RightDateRepository();
     }
 
     public static PrintRepository getPrintRepository(Context context) {

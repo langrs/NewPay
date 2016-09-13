@@ -91,6 +91,12 @@ public class RefundActivity extends BaseActivity implements OnRefundListener {
     }
 
     @Override
+    protected void onDestroy() {
+        stackManager = null;
+        super.onDestroy();
+    }
+
+    @Override
     public void onRefundSuccess() {
         setResult(Activity.RESULT_OK);
         finish();

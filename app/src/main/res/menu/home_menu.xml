@@ -11,15 +11,25 @@
         <item
             android:id="@+id/navigation_search"
             android:title="交易查询"
+            android:visible="false"
             />
 
         <item
             android:id="@+id/navigation_refund"
-            android:title="交易退货"/>
+            android:title="交易查询"/>
 
         <item
             android:id="@+id/navigation_count"
             android:title="交易日结"/>
+
+        <item
+            android:id="@+id/navigation_create_coupon"
+            android:title="兑券"/>
+
+        <item
+            android:id="@+id/navigation_notices"
+            android:title="消息"
+            />
 
         <item
             android:id="@+id/navigation_setting"

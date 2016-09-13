@@ -34,4 +34,18 @@ public class WebServiceUrlConst {
     public static final String QUERY_COUPON = "couponQuery";
     /** 修改密码 */
     public static final String CHANGE_PASSWORD = "changePasswd";
+
+    /** 查询通知 */
+    public static final String QUERY_NOTICE = "queryNotice";
+
+    /** 查询(会员的)积分返利信息 */
+    public static final String QUERY_POINTS_REBATE = "queryJffl";
+    /** 生成积分返利券 */
+    public static final String CREATE_POINTS_REBATE_COUPON = "makeJffl";
+    /** 生成销售返券 */
+    public static final String CREATE_SALE_COUPON = "makeCoupon";
+    /** 查询退货权限 */
+    public static final String QUERY_REFUND_RIGHT = "getRtnRight";
+
+
 }

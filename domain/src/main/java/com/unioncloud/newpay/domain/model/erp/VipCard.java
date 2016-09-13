@@ -1,9 +1,11 @@
 package com.unioncloud.newpay.domain.model.erp;
 
+import java.io.Serializable;
+
 /**
  * Created by cwj on 16/7/1.
  */
-public class VipCard {
+public class VipCard implements Serializable {
     private String cardNumber;       // 会员卡号
     private String coBrandedNumber; // 联名卡号
     private String phoneNumber;

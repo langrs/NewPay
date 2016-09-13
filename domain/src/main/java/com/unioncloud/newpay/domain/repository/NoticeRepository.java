@@ -11,6 +11,7 @@ import rx.Observable;
  */
 public interface NoticeRepository {
 
-    Observable<List<Notice>> queryNotice(String shopId);
+    Observable<List<Notice>> queryAllNotice(String shopId);
 
+    Observable<List<Notice>> queryNewNotice(String shopId);
 }

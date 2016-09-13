@@ -38,16 +38,6 @@ public enum PaymentSignpost {
         public RefundFragment toRefund() {
             return ThirdPartyRefundFragment.newWechatPay();
         }
-
-        @Override
-        public boolean supportPay() {
-            return true;
-        }
-
-        @Override
-        public boolean supportRefund() {
-            return false;
-        }
     },
     ALI(R.drawable.ic_checkout_alipay,
             R.color.TextColor_Payment_Ali,
@@ -144,12 +134,12 @@ public enum PaymentSignpost {
            "折扣券") {
         @Override
         public StatedFragment toPay() {
-            return QueryCouponFragment.newDiscountCoupon();
+            return QueryCouponFragment.newInstance();
         }
 
         @Override
         public int numberToInt() {
-            return 6;
+            return 7;
         }
 
         @Override
@@ -162,12 +152,12 @@ public enum PaymentSignpost {
             "积分返利券") {
         @Override
         public StatedFragment toPay() {
-            return QueryCouponFragment.newPointReturnCoupon();
+            return QueryCouponFragment.newInstance();
         }
 
         @Override
         public int numberToInt() {
-            return 6;
+            return 8;
         }
 
         @Override
@@ -231,7 +221,10 @@ public enum PaymentSignpost {
             return false;
         }
         int number = Integer.valueOf(payment.getPaymentNumber());
-        return number == 5 || number == 6;
+        return (number == 5) ||
+               (number == 6) ||
+               (number == 7) ||
+               (number == 8);
     }
 
     public static PaymentSignpost getSignpost(String paymentNumber) {

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:background="@color/White"
+              android:divider="@android:drawable/divider_horizontal_bright"
+              android:minWidth="300dp"
+              android:orientation="vertical"
+              android:showDividers="middle">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/Padding.Material.Standard.Double"
+            android:layout_marginBottom="@dimen/Padding.Material.Standard.Double"
+            android:gravity="center_vertical"
+            >
+            <TextView
+                android:id="@+id/fragment_create_sale_coupon_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/Padding.Material.Standard.Quadruple"
+                android:layout_centerVertical="true"
+                android:textColor="@color/TextColor.Black"
+                android:textStyle="bold"
+                android:textSize="@dimen/TextSize.Large"
+                android:text="销售兑券"
+                />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="112dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/Padding.Material.Standard"
+                android:textColor="@color/TextColor.Black.87"
+                android:text="交易单号" />
+            <EditText
+                android:id="@+id/fragment_create_sale_coupon_input"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginLeft="@dimen/Padding.Material.Standard"
+                android:layout_marginRight="@dimen/Padding.Material.Standard"
+                android:inputType="number"
+                android:hint="请输入号码"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="@android:drawable/divider_horizontal_bright"
+        android:orientation="horizontal"
+        android:showDividers="middle" >
+
+        <Button
+            android:id="@+id/fragment_create_sale_coupon_cancel_btn"
+            style="@android:style/Widget.Holo.Light.Button.Borderless.Small"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="取消"
+            android:textColor="@color/TextColor.Grey" />
+
+        <Button
+            android:id="@+id/fragment_create_sale_coupon_ok_btn"
+            style="@android:style/Widget.Holo.Light.Button.Borderless.Small"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="确定"
+            android:textColor="@color/PrimaryBlue" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -10,7 +10,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.unioncloud.newpay.R;
-import com.unioncloud.newpay.domain.model.erp.GiftCoupon;
+import com.unioncloud.newpay.domain.model.erp.Coupon;
 import com.unioncloud.newpay.domain.model.payment.Payment;
 import com.unioncloud.newpay.domain.model.payment.PaymentUsed;
 import com.unioncloud.newpay.domain.utils.MoneyUtils;
@@ -23,7 +23,7 @@ import com.unioncloud.newpay.presentation.model.pos.PosDataManager;
 public class CouponFragment extends PayFragment {
 
     /** 折扣券 */
-    public static CouponFragment newDiscountCoupon(GiftCoupon coupon) {
+    public static CouponFragment newDiscountCoupon(Coupon coupon) {
         CouponFragment fragment = new CouponFragment();
         fragment.setCouponType(TYPE_COUPON_DISCOUNT);
         fragment.setCoupon(coupon);
@@ -31,7 +31,7 @@ public class CouponFragment extends PayFragment {
     }
 
     /** 积分返利券 */
-    public static CouponFragment newPointReturnCoupon(GiftCoupon coupon) {
+    public static CouponFragment newPointReturnCoupon(Coupon coupon) {
         CouponFragment fragment = new CouponFragment();
         fragment.setCouponType(TYPE_COUPON_POINT_RETURN);
         fragment.setCoupon(coupon);
@@ -50,6 +50,7 @@ public class CouponFragment extends PayFragment {
     private static final int TYPE_COUPON_POINT_RETURN = 3;
 
     private EditText couponNoEt;
+    private View willpayContainer;
 
     private void setCouponType(int couponType) {
         getArguments().putInt("couponType", couponType);
@@ -73,12 +74,12 @@ public class CouponFragment extends PayFragment {
         return null;
     }
 
-    private void setCoupon(GiftCoupon coupon) {
+    private void setCoupon(Coupon coupon) {
         getArguments().putSerializable("coupon", coupon);
     }
 
-    private GiftCoupon getUsingCoupon() {
-        return (GiftCoupon) getArguments().getSerializable("coupon");
+    private Coupon getUsingCoupon() {
+        return (Coupon) getArguments().getSerializable("coupon");
     }
 
     private boolean isOutsideCoupon() {
@@ -103,42 +104,49 @@ public class CouponFragment extends PayFragment {
         couponNoEt = (EditText) view.findViewById(R.id.fragment_pay_couponNo);
         View couponValueContainer = view.findViewById(R.id.fragment_pay_coupon_value_container);
         TextView couponValueTv = (TextView) view.findViewById(R.id.fragment_pay_coupon_value);
+
+        willpayContainer = view.findViewById(R.id.fragment_willpay_container);
         if (isOutsideCoupon()) {
             couponNoContainer.setVisibility(View.VISIBLE);
             couponValueContainer.setVisibility(View.GONE);
+            amountInputTv.setText("0");
+            ((EditText)amountInputTv).setSelection(amountInputTv.getText().length());
         } else {
-            GiftCoupon usingCoupon = getUsingCoupon();
+            Coupon usingCoupon = getUsingCoupon();
             couponNoContainer.setVisibility(View.GONE);
             couponValueContainer.setVisibility(View.VISIBLE);
-            couponValueTv.setText(MoneyUtils.fenToString(MoneyUtils.getFen(usingCoupon.getPrice())));
+            String couponValueStr = usingCoupon.getCouponValue();
+            couponValueTv.setText(MoneyUtils.fenToString(MoneyUtils.getFen(couponValueStr)));
+            amountInputTv.setText(couponValueStr);
+            willpayContainer.setVisibility(View.GONE);
         }
-        ((EditText)amountInputTv).setSelection(amountInputTv.getText().length());
     }
 
     @Override
     protected void pay(int unpay, int willPay) {
-        if (willPay > unpay) {
-            showToast("支付金额已超出未付款项");
-            return;
-        }
         boolean isOutside = isOutsideCoupon();
         String couponNo;
         int excessAmount = 0;
         if (isOutside) {
+            if (willPay > unpay) {
+                showToast("支付金额已超出未付款项");
+                return;
+            }
             couponNo = couponNoEt.getText().toString();
             if (TextUtils.isEmpty(couponNo)) {
                 showToast("无效的券号");
                 return;
             }
         } else {
-            GiftCoupon usingCoupon = getUsingCoupon();
-            int couponValue = MoneyUtils.getFen(usingCoupon.getPrice());
-            if (willPay > couponValue) {
-                showToast("券金额不足,请重新输入");
-                return;
+            Coupon usingCoupon = getUsingCoupon();
+            couponNo = usingCoupon.getCouponNo();
+            int couponValue = MoneyUtils.getFen(usingCoupon.getCouponValue());
+            if (couponValue > unpay) {
+                excessAmount = couponValue - willPay;
+                willPay = unpay;
+            } else {
+                willPay = couponValue;
             }
-            couponNo = usingCoupon.getCouponNumber();
-            excessAmount = couponValue - willPay;
         }
 
         PaymentSignpost signpost = getPaymentSignpost();

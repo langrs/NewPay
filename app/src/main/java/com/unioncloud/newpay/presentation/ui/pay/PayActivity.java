@@ -68,9 +68,9 @@ public class PayActivity extends BaseActivity implements OnPaidListener {
 
     @Override
     public void onBackPressed() {
-        if (!stackManager.pop()) {
+//        if (!stackManager.pop()) {
             super.onBackPressed();
-        }
+//        }
     }
 
     @Override
@@ -97,7 +97,6 @@ public class PayActivity extends BaseActivity implements OnPaidListener {
 
     @Override
     protected void onDestroy() {
-//        stackManager.clear();
         stackManager = null;
         super.onDestroy();
     }

@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.esummer.android.dialog.DefaultDialogBuilder;
@@ -22,7 +21,6 @@ import com.esummer.android.stateupdatehandler.StateUpdateHandlerListener;
 import com.esummer.android.updatehandler.UpdateCompleteCallback;
 import com.unioncloud.newpay.R;
 import com.unioncloud.newpay.domain.model.cart.CartItem;
-import com.unioncloud.newpay.domain.model.erp.VipCard;
 import com.unioncloud.newpay.domain.model.order.SaleOrder;
 import com.unioncloud.newpay.domain.model.order.SaleOrderHeader;
 import com.unioncloud.newpay.domain.model.order.SaleOrderResult;
@@ -31,7 +29,6 @@ import com.unioncloud.newpay.domain.model.payment.PaymentUsed;
 import com.unioncloud.newpay.domain.model.print.PrintOrderInfo;
 import com.unioncloud.newpay.domain.model.product.Product;
 import com.unioncloud.newpay.domain.utils.MoneyUtils;
-import com.unioncloud.newpay.presentation.model.cart.CartDataManager;
 import com.unioncloud.newpay.presentation.model.checkout.CheckoutDataManager;
 import com.unioncloud.newpay.presentation.model.pos.PosDataManager;
 import com.unioncloud.newpay.presentation.model.refund.OriginalRefundInfo;
@@ -40,7 +37,7 @@ import com.unioncloud.newpay.presentation.presenter.print.PrintOrderHandler;
 import com.unioncloud.newpay.presentation.presenter.refund.RefundOrderHandler;
 import com.unioncloud.newpay.presentation.ui.pay.PaymentSignpost;
 import com.unioncloud.newpay.presentation.ui.refund.RefundActivity;
-import com.unioncloud.newpay.presentation.ui.refund.RefundFragment;
+import com.unioncloud.newpay.presentation.ui.right.QueryRightActivity;
 
 import java.util.List;
 
@@ -88,6 +85,8 @@ public class OrderDetailFragment extends StatedFragment {
         }
     };
 
+    private static final int REQUEST_REFUND_RIGHT = 1001;
+
     private TextView orderNoTv;
     private TextView totalTv;
     private TextView paidTotalTv;
@@ -96,8 +95,6 @@ public class OrderDetailFragment extends StatedFragment {
     private TextView orderTypeTv;
     private TextView dateTimeTv;
 
-//    private ListView productListView;
-//    private ListView paidListView;
     private LinearLayout productLayout;
     private LinearLayout paidLayout;
 
@@ -170,7 +167,7 @@ public class OrderDetailFragment extends StatedFragment {
                 orderType = "销售";
             } else if ("02".equals(orderTypeFlag)){
                 orderType = "退货";
-                dissmissRefundAction();
+                dismissRefundAction();
             }
             orderTypeTv.setText(orderType);
 
@@ -212,12 +209,10 @@ public class OrderDetailFragment extends StatedFragment {
                     paidLayout.addView(paidView);
                 }
             }
-//            productListView.setAdapter(new OrderProductAdapter(getActivity(), order.getItemList()));
-//            paidListView.setAdapter(new OrderPaidAdapter(getActivity(), order.getPaymentUsedList()));
         }
     }
 
-    private void toShowRefundPaid(PaymentUsed paymentUsed) {
+    private void requestRefundPaid(PaymentUsed paymentUsed) {
         PaymentSignpost signpost = PaymentSignpost.getSignpost(paymentUsed.getPaymentId());
         if (signpost != null) {
             boolean supportRefund = signpost.supportRefund();
@@ -382,7 +377,7 @@ public class OrderDetailFragment extends StatedFragment {
 
         List<PaymentUsed> paidList = saleOrder.getPaymentUsedList();
         if (currentRefundPaidIndex < paidList.size()) {
-            toShowRefundPaid(paidList.get(currentRefundPaidIndex));
+            requestRefundPaid(paidList.get(currentRefundPaidIndex));
         } else {
             refundOrder();
         }
@@ -393,12 +388,19 @@ public class OrderDetailFragment extends StatedFragment {
         if (requestCode == getRefundPaidRequestCode()) {
             switch (resultCode) {
                 case Activity.RESULT_OK:
-//                    currentRefundPaidIndex++;
-//                    checkRefundPaid();
                     setRefundChanged();
                     break;
                 case Activity.RESULT_CANCELED:
                     showToast("退款失败");
+                    break;
+            }
+        } else if (requestCode == REQUEST_REFUND_RIGHT){
+            switch (resultCode) {
+                case Activity.RESULT_OK:
+                    checkRefundPaid();
+                    break;
+                case Activity.RESULT_CANCELED:
+                    showToast("没有查询到权限!");
                     break;
             }
         } else {
@@ -436,7 +438,7 @@ public class OrderDetailFragment extends StatedFragment {
         }
     }
 
-    private void dissmissRefundAction() {
+    private void dismissRefundAction() {
         getActivity().supportInvalidateOptionsMenu();
     }
 
@@ -464,7 +466,7 @@ public class OrderDetailFragment extends StatedFragment {
                 getActivity().finish();
                 return true;
             case R.id.action_refund:
-                checkRefundPaid();
+                requestRefundRight();
                 return true;
             case R.id.action_reprint:
                 reprint();
@@ -473,6 +475,10 @@ public class OrderDetailFragment extends StatedFragment {
         return super.onOptionsItemSelected(item);
     }
 
+    private void requestRefundRight() {
+        Intent intent = QueryRightActivity.getStartIntent(getActivity());
+        startActivityForResult(intent, REQUEST_REFUND_RIGHT);
+    }
 
     private boolean isRefunding() {
         if (currentRefundPaidIndex != 0 && RefundDataManager.getInstance().getPaidPayments().size()> 1) {

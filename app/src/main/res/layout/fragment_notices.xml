@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/fragment_notices_title_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/fragment_notices_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:paddingBottom="@dimen/Padding.Gigantic"
+            android:paddingTop="@dimen/Padding.Gigantic"
+            android:text="消息"
+            android:textColor="@color/TextColor.Black"
+            android:textSize="@dimen/TextSize.Material.Headline"
+            />
+
+        <View
+            style="@style/Divider.Horizontal.Light"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/Divider.Light"
+            android:layout_marginBottom="@dimen/Padding.Large"
+            android:layout_marginTop="@dimen/Padding.Large"
+            android:layout_marginLeft="@dimen/PlaceOrder.Divider.Margin"
+            android:layout_marginRight="@dimen/PlaceOrder.Divider.Margin"
+            />
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/fragment_notices_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="@dimen/Padding.Material.Standard"
+        android:layout_marginRight="@dimen/Padding.Material.Standard"
+        android:dividerHeight="3dp"
+        android:divider="@android:color/transparent"
+        />
+
+</LinearLayout>

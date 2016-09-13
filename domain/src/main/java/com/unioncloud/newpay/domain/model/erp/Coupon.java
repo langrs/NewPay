@@ -1,13 +1,16 @@
-package com.unioncloud.newpay.domain.model.order;
+package com.unioncloud.newpay.domain.model.erp;
+
+import java.io.Serializable;
 
 /**
  * 销售返券
  */
-public class Coupon {
+public class Coupon implements Serializable {
     private String couponNo;
     private String state;
     private String endDate;
     private String couponValue;
+    private String flag;        // "1"－积分返利券, "2"-折扣券
 
     public String getCouponNo() {
         return couponNo;
@@ -39,5 +42,13 @@ public class Coupon {
 
     public void setCouponValue(String couponValue) {
         this.couponValue = couponValue;
+    }
+
+    public String getFlag() {
+        return flag;
+    }
+
+    public void setFlag(String flag) {
+        this.flag = flag;
     }
 }

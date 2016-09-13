@@ -1,7 +1,7 @@
 package com.unioncloud.newpay.domain.model.print;
 
 import com.unioncloud.newpay.domain.model.cart.CartItem;
-import com.unioncloud.newpay.domain.model.order.Coupon;
+import com.unioncloud.newpay.domain.model.erp.Coupon;
 import com.unioncloud.newpay.domain.model.payment.PaymentUsed;
 import com.unioncloud.newpay.domain.model.pos.PosInfo;
 

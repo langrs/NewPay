@@ -21,6 +21,8 @@ import com.unioncloud.newpay.R;
 import com.unioncloud.newpay.domain.model.order.OrderType;
 import com.unioncloud.newpay.presentation.model.cart.CartDataManager;
 import com.unioncloud.newpay.presentation.model.checkout.CheckoutDataManager;
+import com.unioncloud.newpay.presentation.ui.coupon.CreateCouponSelectorActivity;
+import com.unioncloud.newpay.presentation.ui.notice.NoticeActivity;
 import com.unioncloud.newpay.presentation.ui.order.OrderHistoryActivity;
 import com.unioncloud.newpay.presentation.ui.order.OrderTodayCountActivity;
 import com.unioncloud.newpay.presentation.ui.refund.RefundMainActivity;
@@ -89,8 +91,10 @@ public class PlaceOrderActivity extends SingleFragmentActivity {
                 switch (itemId){
                     case R.id.navigation_search:
                     case R.id.navigation_refund:
-                    case R.id.navigation_setting:
                     case R.id.navigation_count:
+                    case R.id.navigation_setting:
+                    case R.id.navigation_notices:
+                    case R.id.navigation_create_coupon:
                         selectedNavigationId = itemId;
                         emptyCartOrNavigation();
                         break;
@@ -146,6 +150,14 @@ public class PlaceOrderActivity extends SingleFragmentActivity {
                 selectedNavigationId = 0;
                 toTodayCount();
                 return;
+            case R.id.navigation_notices:
+                selectedNavigationId = 0;
+                toNotice();
+                return;
+            case R.id.navigation_create_coupon:
+                selectedNavigationId = 0;
+                toCreateCoupon();
+                return;
         }
     }
 
@@ -166,6 +178,16 @@ public class PlaceOrderActivity extends SingleFragmentActivity {
 
     private void toTodayCount() {
         Intent intent = OrderTodayCountActivity.getStartIntent(this);
+        startActivity(intent);
+    }
+
+    private void toNotice() {
+        Intent intent = NoticeActivity.getStartIntent(this);
+        startActivity(intent);
+    }
+
+    private void toCreateCoupon() {
+        Intent intent = CreateCouponSelectorActivity.getStartIntent(this);
         startActivity(intent);
     }
 

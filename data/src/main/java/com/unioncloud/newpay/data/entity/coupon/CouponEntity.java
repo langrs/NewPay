@@ -1,4 +1,6 @@
-package com.unioncloud.newpay.data.entity.order;
+package com.unioncloud.newpay.data.entity.coupon;
+
+import com.google.gson.annotations.SerializedName;
 
 /**
  * Created by cwj on 16/8/17.
@@ -8,6 +10,8 @@ public class CouponEntity {
     private String couponValue;
     private String state;
     private String endDate;
+    @SerializedName("gifttype")
+    private String flag;
 
     public String getCouponNo() {
         return couponNo;
@@ -39,5 +43,13 @@ public class CouponEntity {
 
     public void setEndDate(String endDate) {
         this.endDate = endDate;
+    }
+
+    public String getFlag() {
+        return flag;
+    }
+
+    public void setFlag(String flag) {
+        this.flag = flag;
     }
 }

@@ -75,8 +75,10 @@ public abstract class PayFragment extends StatedFragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         titleTv = (TextView) view.findViewById(R.id.fragment_pay_title);
-        String title = getPaymentSignpost().getName();
-        int titleColor = getPaymentSignpost().getTextColor();
+        PaymentSignpost signpost = getPaymentSignpost();
+        String title = signpost.getName();
+
+        int titleColor = signpost.getTextColor();
         titleTv.setText(title);
         titleTv.setTextColor(titleColor);
 

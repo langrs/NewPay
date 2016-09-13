@@ -7,7 +7,7 @@
     >
 
     <TextView
-        android:id="@+id/print_thirdparty_title"
+        android:id="@+id/print_coupon_title"
         style="@style/print_text_size_title"
         android:layout_width="@dimen/print_width"
         android:gravity="center"

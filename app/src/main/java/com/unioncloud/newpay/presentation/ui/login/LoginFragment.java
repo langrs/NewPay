@@ -52,16 +52,16 @@ public class LoginFragment extends StatedFragment {
         }
     };
 
-    private StateUpdateHandlerListener<LoginFragment, QueryProductHandler> productsHandlerListener =
+    private static StateUpdateHandlerListener<LoginFragment, QueryProductHandler> productsHandlerListener =
             new StateUpdateHandlerListener<LoginFragment, QueryProductHandler>() {
                 @Override
                 public void onUpdate(String key, LoginFragment handler, QueryProductHandler response) {
-                    dealQueryProductHandler(response);
+                    handler.dealQueryProductHandler(response);
                 }
 
                 @Override
                 public void onCleanup(String key, LoginFragment handler, QueryProductHandler response) {
-                    response.removeCompletionListener(queryProductsListener);
+                    response.removeCompletionListener(handler.queryProductsListener);
                 }
             };
     private UpdateCompleteCallback<QueryProductHandler> queryProductsListener =

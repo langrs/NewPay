@@ -15,6 +15,25 @@ public class PreferencesUtils {
 
     private static final String PREFERENCES_NAME = "NEW_PAY";
 
+    public static String getLastSerialNumber(Context context) {
+        SharedPreferences sp = context.getSharedPreferences(PREFERENCES_NAME, Context.MODE_PRIVATE);
+        String lastOrderId = sp.getString("LastOrderTag", null);
+        if (lastOrderId != null) {
+            String serialNumberDate = DateFormatUtils.yyyyMMdd(new Date());
+            if (lastOrderId.startsWith(serialNumberDate)) {
+                int lastSerialNumber = Integer.valueOf(
+                        lastOrderId.substring(serialNumberDate.length()));
+//                if (lastSerialNumber == 9999) {     // 序列号最大不超过4位
+//                    return "0001";
+//                }
+//                lastSerialNumber += 1;
+                String lastSerialNumberStr = String.format(Locale.getDefault(), "%04d", lastSerialNumber);
+                return lastSerialNumberStr;
+            }
+        }
+        return "0001";
+    }
+
     public static String getOrderSerialNumber(Context context) {
         SharedPreferences sp = context.getSharedPreferences(PREFERENCES_NAME, Context.MODE_PRIVATE);
         String lastOrderId = sp.getString("LastOrderTag", null);

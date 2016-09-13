@@ -62,6 +62,19 @@
         <activity android:name=".presentation.ui.refund.RefundActivity"
                   android:theme="@style/Activity.Dialog"
             />
+        <activity android:name=".presentation.ui.vip.QueryVipActivity"
+                  android:theme="@style/Activity.Dialog"
+            />
+        <activity android:name=".presentation.ui.coupon.CreateCouponSelectorActivity"/>
+        <activity android:name=".presentation.ui.coupon.CreatePointRebateCouponActivity"
+                  android:theme="@style/Activity.Dialog"
+            />
+
+        <activity android:name=".presentation.ui.right.QueryRightActivity"
+                  android:theme="@style/Activity.Dialog"
+            />
+
+        <activity android:name=".presentation.ui.notice.NoticeActivity" />
 
         <activity android:name="com.zbar.scan.ScanCaptureActivity" />
 

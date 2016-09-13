@@ -63,8 +63,6 @@
             android:textColor="@android:color/holo_red_light"
             android:textSize="@dimen/TextSize.Material.Body"
             />
-
-
     </RelativeLayout>
 
 <!--</LinearLayout>-->

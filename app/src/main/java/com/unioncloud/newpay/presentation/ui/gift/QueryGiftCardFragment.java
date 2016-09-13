@@ -88,7 +88,7 @@ public class QueryGiftCardFragment extends QueryCardFragment {
 
     @Override
     protected void queryCardByBillNo(String billNo) {
-        // do nothing.
+        // strict mode, do nothing.
     }
 
     @Override

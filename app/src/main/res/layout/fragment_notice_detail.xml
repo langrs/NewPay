@@ -2,7 +2,6 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/BrightOffWhite"
             android:fillViewport="false"
     >
 
@@ -12,6 +11,7 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/fragment_notice_detail_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
@@ -19,27 +19,32 @@
             android:paddingTop="@dimen/Padding.Gigantic"
             android:text="合胜百货周年庆"
             android:textColor="@color/TextColor.Black"
-            android:textSize="@dimen/TextSize.Material.Subhead"
+            android:textSize="@dimen/TextSize.Material.Title"
             />
 
         <TextView
+            android:id="@+id/fragment_notice_detail_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="@dimen/Padding.Material.Standard.Double"
             android:paddingRight="@dimen/Padding.Material.Standard.Double"
             android:text="限时抢购:\n限时超低折扣,26～28日每天均有不同品牌不同优惠"
+
+            android:textSize="@dimen/TextSize.Material.Subhead"
             android:textColor="@color/TextColor.Black"
             />
 
         <TextView
+            android:id="@+id/fragment_notice_detail_footer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingBottom="@dimen/Padding.Gigantic"
             android:paddingTop="@dimen/Padding.Gigantic"
             android:gravity="center_horizontal"
             android:text="具体活动详情请以专柜为准"
-            android:textSize="@dimen/TextSize.Material.Body"
+            android:textSize="@dimen/TextSize.Material.Subhead"
             android:textColor="@color/TextColor.Black.54"
+            android:visibility="gone"
             />
     </LinearLayout>
 </ScrollView>

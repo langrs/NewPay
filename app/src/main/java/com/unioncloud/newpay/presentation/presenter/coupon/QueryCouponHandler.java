@@ -2,7 +2,7 @@ package com.unioncloud.newpay.presentation.presenter.coupon;
 
 import com.esummer.android.updatehandler.UpdateHandler;
 import com.unioncloud.newpay.domain.interactor.coupon.QueryCouponInteractor;
-import com.unioncloud.newpay.domain.model.erp.GiftCoupon;
+import com.unioncloud.newpay.domain.model.erp.Coupon;
 import com.unioncloud.newpay.presentation.presenter.PresenterUtils;
 
 import rx.Subscriber;
@@ -10,7 +10,7 @@ import rx.Subscriber;
 /**
  * Created by cwj on 16/9/6.
  */
-public class QueryCouponHandler extends UpdateHandler<GiftCoupon, QueryCouponHandler>
+public class QueryCouponHandler extends UpdateHandler<Coupon, QueryCouponHandler>
     implements Runnable {
 
     private String shopId;
@@ -28,7 +28,7 @@ public class QueryCouponHandler extends UpdateHandler<GiftCoupon, QueryCouponHan
                 PresenterUtils.getExecutorProvider(),
                 shopId, couponNo,
                 PresenterUtils.getCouponRepository());
-        interactor.execute(new Subscriber<GiftCoupon>() {
+        interactor.execute(new Subscriber<Coupon>() {
             @Override
             public void onCompleted() {
                 unsubscribe();
@@ -40,7 +40,7 @@ public class QueryCouponHandler extends UpdateHandler<GiftCoupon, QueryCouponHan
             }
 
             @Override
-            public void onNext(GiftCoupon giftCoupon) {
+            public void onNext(Coupon giftCoupon) {
                 data = giftCoupon;
                 onUpdateCompleted();
             }

@@ -30,7 +30,7 @@ public class ProductChooseViewBinder implements AdapterView.OnItemClickListener 
     private Context context;
     ProductAdapter adapter;
     ListPopupWindow popupWindow;
-    private int selectedProductIndex;
+    private int selectedProductIndex = -1;
 
     public void bindView(View view) {
         context = view.getContext();

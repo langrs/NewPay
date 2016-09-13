@@ -1,11 +1,11 @@
 package com.unioncloud.newpay.presentation.ui.placeorder;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.ListPopupWindow;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -13,7 +13,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.AdapterView;
 
 import com.esummer.android.dialog.DefaultDialogBuilder;
 import com.esummer.android.fragment.StatedFragment;
@@ -21,10 +20,10 @@ import com.esummer.android.stateupdatehandler.StateUpdateHandlerListener;
 import com.esummer.android.updatehandler.UpdateCompleteCallback;
 import com.raizlabs.coreutils.functions.Delegate;
 import com.raizlabs.coreutils.threading.ThreadingUtils;
-import com.raizlabs.coreutils.view.ViewUtils;
 import com.unioncloud.newpay.R;
 import com.unioncloud.newpay.domain.model.cart.AddProductEntry;
 import com.unioncloud.newpay.domain.model.erp.VipCard;
+import com.unioncloud.newpay.domain.model.notice.Notice;
 import com.unioncloud.newpay.domain.model.order.OrderType;
 import com.unioncloud.newpay.domain.model.product.Product;
 import com.unioncloud.newpay.presentation.model.cart.CartDataManager;
@@ -32,11 +31,14 @@ import com.unioncloud.newpay.presentation.model.checkout.CheckoutDataManager;
 import com.unioncloud.newpay.presentation.model.checkout.SelectedVipCard;
 import com.unioncloud.newpay.presentation.model.pos.PosDataManager;
 import com.unioncloud.newpay.presentation.presenter.cart.AddCartItemsHandler;
+import com.unioncloud.newpay.presentation.presenter.notice.QueryNewNoticeHandler;
 import com.unioncloud.newpay.presentation.ui.cart.CartFragment2;
 import com.unioncloud.newpay.presentation.ui.cart.views.QuantityAdapter;
 import com.unioncloud.newpay.presentation.ui.checkout.CheckoutActivity;
-import com.unioncloud.newpay.presentation.ui.vip.AddVipFragment;
-import com.unioncloud.newpay.presentation.utils.UIUtils;
+import com.unioncloud.newpay.presentation.ui.notice.NoticeDetailFragment;
+import com.unioncloud.newpay.presentation.ui.notice.NoticesFragment;
+import com.unioncloud.newpay.presentation.ui.vip.QueryVipActivity;
+import com.unioncloud.newpay.presentation.ui.vip.QueryVipFragment;
 
 import java.util.List;
 
@@ -78,6 +80,26 @@ public class PlaceOrderFragment extends StatedFragment {
                 }
             };
 
+    private static StateUpdateHandlerListener<PlaceOrderFragment, QueryNewNoticeHandler> noticeHandlerListener =
+            new StateUpdateHandlerListener<PlaceOrderFragment, QueryNewNoticeHandler>() {
+                @Override
+                public void onUpdate(String key, PlaceOrderFragment handler, QueryNewNoticeHandler response) {
+                    handler.dealNotice(response);
+                }
+
+                @Override
+                public void onCleanup(String key, PlaceOrderFragment handler, QueryNewNoticeHandler response) {
+                    response.removeCompletionListener(handler.noticeListener);
+                }
+            };
+    private UpdateCompleteCallback<QueryNewNoticeHandler> noticeListener =
+            new UpdateCompleteCallback<QueryNewNoticeHandler>() {
+                @Override
+                public void onCompleted(QueryNewNoticeHandler response, boolean isSuccess) {
+                    dealNotice(response);
+                }
+            };
+
     private ProductChooseViewBinder productChooseViewBinder;
     private VipCardViewBinder vipCardViewBinder;
     private ProductAdapter adapter;
@@ -106,17 +128,17 @@ public class PlaceOrderFragment extends StatedFragment {
         return view;
     }
 
-    private AddVipFragment getAddVipFragment() {
-        Fragment fragment = getChildFragmentManager().findFragmentByTag("PlaceOrder:AddVipFragment");
-        if ((fragment != null) && ((fragment instanceof AddVipFragment))) {
-            return (AddVipFragment)fragment;
+    private QueryVipFragment getAddVipFragment() {
+        Fragment fragment = getChildFragmentManager().findFragmentByTag("PlaceOrder:QueryVipFragment");
+        if ((fragment != null) && ((fragment instanceof QueryVipFragment))) {
+            return (QueryVipFragment)fragment;
         }
         return null;
     }
 
-    private void showAddVipFragment() {
-        AddVipFragment fragment = AddVipFragment.newInstance();
-        fragment.show(getChildFragmentManager(), "PlaceOrder:AddVipFragment");
+    private void showAddVip() {
+        Intent intent = QueryVipActivity.getStartIntent(getActivity());
+        startActivityForResult(intent, REQUEST_QUERY_VIP_CODE);
     }
 
     private void initCartFragment() {
@@ -148,19 +170,7 @@ public class PlaceOrderFragment extends StatedFragment {
             }
         });
         adapter = new ProductAdapter();
-//        productChooseViewBinder.productNoSpinner.setAdapter(adapter);
         productChooseViewBinder.setAdapter(adapter);
-//        productChooseViewBinder.productNoSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                productChooseViewBinder.selectedProduct((Product) adapter.getItem(position));
-//            }
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {
-//
-//            }
-//        });
-//        UIUtils.setSpinnerHeight(productChooseViewBinder.productNoSpinner, 30);
         productChooseViewBinder.quantitySpinner.setAdapter(new QuantityAdapter());
         vipCardViewBinder = new VipCardViewBinder(view);
         vipCardViewBinder.container.setOnClickListener(new View.OnClickListener() {
@@ -193,6 +203,7 @@ public class PlaceOrderFragment extends StatedFragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         initData();
+        loadNewNotice();
     }
 
     private void initData() {
@@ -284,18 +295,35 @@ public class PlaceOrderFragment extends StatedFragment {
         }
     }
 
-    private void updateVipCardView(final SelectedVipCard selectedVipCard) {
-        ThreadingUtils.runOnUIThread(new Runnable() {
-            @Override
-            public void run() {
-                VipCard vipCard = selectedVipCard.getVipCard();
-                if (vipCardViewBinder != null) {
-                    vipCardViewBinder.selectedVipCard(vipCard);
-                }
+    private void updateVipCardView(SelectedVipCard selectedVipCard) {
+        if (isVisible()) {
+            final VipCard vipCard = selectedVipCard.getVipCard();
+            if (vipCardViewBinder != null) {
+                ThreadingUtils.runOnUIThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (vipCardViewBinder != null) {
+                            vipCardViewBinder.selectedVipCard(vipCard);
+                        }
+                    }
+                });
             }
-        });
+        } else {
+            getArguments().putBoolean("needUpdateVipView", true);
+        }
     }
 
+
+    private boolean needUpdateVipView() {
+        if (getArguments().containsKey("needUpdateVipView")) {
+            return getArguments().getBoolean("needUpdateVipView");
+        }
+        return false;
+    }
+
+    private void removeUpdateVipViewFlag() {
+        getArguments().remove("needUpdateVipView");
+    }
 
     @Override
     public void onResume() {
@@ -304,14 +332,16 @@ public class PlaceOrderFragment extends StatedFragment {
         initOrderType();
         CheckoutDataManager.getInstance().getSelectedVipCard()
                 .addDataChangedListener(selectedVipListener);
-        updateVipCardView(CheckoutDataManager.getInstance().getSelectedVipCard());
+        if (needUpdateVipView()) {
+            updateVipCardView(CheckoutDataManager.getInstance().getSelectedVipCard());
+            removeUpdateVipViewFlag();
+        }
     }
 
     @Override
     public boolean onBackPressed() {
         showExit();
         return true;
-//        return super.onBackPressed();
     }
 
     private void showExit() {
@@ -360,7 +390,7 @@ public class PlaceOrderFragment extends StatedFragment {
         vipCardViewBinder = null;
         CheckoutDataManager.getInstance().getSelectedVipCard()
                 .removeDataChangedListener(selectedVipListener);
-        AddVipFragment fragment = getAddVipFragment();
+        QueryVipFragment fragment = getAddVipFragment();
         if (fragment != null) {
             fragment.dismiss();
         }
@@ -377,7 +407,7 @@ public class PlaceOrderFragment extends StatedFragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_add_vip:
-                showAddVipFragment();
+                showAddVip();
                 return true;
             case R.id.action_clear_cart:
                 CheckoutDataManager.getInstance().clear();
@@ -396,6 +426,54 @@ public class PlaceOrderFragment extends StatedFragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_QUERY_VIP_CODE) {
+            if (resultCode == Activity.RESULT_OK) {
+                VipCard vipCard = (VipCard) data.getSerializableExtra("vip");
+                if (vipCard != null) {
+                    CheckoutDataManager.getInstance()
+                            .getSelectedVipCard().setSelectedVipCard(vipCard);
+                }
+            }
+            return;
+        }
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    private void loadNewNotice() {
+        QueryNewNoticeHandler handler = new QueryNewNoticeHandler(null);
+        updateForResponse("KEY_LOAD_NEW_NOTICES", handler, noticeHandlerListener);
+        handler.run();
+    }
+
+    private void dealNotice(QueryNewNoticeHandler handler) {
+        if (handler == null) {
+            return;
+        }
+        synchronized (handler.getStatusLock()) {
+            if (handler.isUpdating()) {
+                handler.addCompletionListener(noticeListener);
+            } else {
+                dismissProgressDialog();
+                cleanupResponse("KEY_LOAD_NEW_NOTICES");
+                if (handler.isSuccess()) {
+                    showNewNotice(handler.getData());
+                }
+            }
+        }
+    }
+
+    private void showNewNotice(List<Notice> list) {
+        if (list == null){
+            return;
+        }
+        if (list.size() == 0) {
+            NoticeDetailFragment fragment = NoticeDetailFragment.newInstance(list.get(0));
+            fragment.show(getChildFragmentManager(), "notice_detail");
+        } else {
+            NoticesFragment fragment = NoticesFragment.newInstance();
+            fragment.setDialogMode(true);
+            fragment.setNotices(list);
+            fragment.show(getChildFragmentManager(), "notices");
+        }
     }
 }

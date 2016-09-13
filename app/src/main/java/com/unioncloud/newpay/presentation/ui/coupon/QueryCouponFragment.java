@@ -17,11 +17,10 @@ import com.esummer.android.fragment.StatedFragment;
 import com.esummer.android.stateupdatehandler.StateUpdateHandlerListener;
 import com.esummer.android.updatehandler.UpdateCompleteCallback;
 import com.unioncloud.newpay.R;
-import com.unioncloud.newpay.domain.model.erp.GiftCoupon;
+import com.unioncloud.newpay.domain.model.erp.Coupon;
 import com.unioncloud.newpay.presentation.model.pos.PosDataManager;
 import com.unioncloud.newpay.presentation.presenter.coupon.QueryCouponHandler;
 import com.unioncloud.newpay.presentation.ui.pay.CouponFragment;
-import com.unioncloud.newpay.presentation.ui.pay.PaymentSignpost;
 import com.zbar.scan.ScanCaptureActivity;
 
 /**
@@ -29,20 +28,10 @@ import com.zbar.scan.ScanCaptureActivity;
  */
 public class QueryCouponFragment extends StatedFragment {
 
-    public static QueryCouponFragment newDiscountCoupon() {
+    public static QueryCouponFragment newInstance() {
         QueryCouponFragment fragment = new QueryCouponFragment();
-        fragment.getArguments().putInt("couponType", TYPE_COUPON_DISCOUNT);
         return fragment;
     }
-
-    public static QueryCouponFragment newPointReturnCoupon() {
-        QueryCouponFragment fragment = new QueryCouponFragment();
-        fragment.getArguments().putInt("couponType", TYPE_COUPON_POINT_RETURN);
-        return fragment;
-    }
-
-    private static final int TYPE_COUPON_DISCOUNT = 1;
-    private static final int TYPE_COUPON_POINT_RETURN = 2;
 
     private static StateUpdateHandlerListener<QueryCouponFragment, QueryCouponHandler> queryHandlerListener
             = new StateUpdateHandlerListener<QueryCouponFragment, QueryCouponHandler>() {
@@ -75,12 +64,6 @@ public class QueryCouponFragment extends StatedFragment {
     protected TextView scanTv;
 
     private FragmentStackDelegate stackDelegate;
-
-    private int getCouponType() {
-        return getArguments().getInt("couponType");
-    }
-
-
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -174,16 +157,13 @@ public class QueryCouponFragment extends StatedFragment {
         }
     }
 
-    private void toCouponPay(GiftCoupon coupon) {
-        int couponType = getCouponType();
+    private void toCouponPay(Coupon coupon) {
+        String flag = coupon.getFlag();
         CouponFragment fragment = null;
-        switch (couponType) {
-            case TYPE_COUPON_DISCOUNT:
-                fragment = CouponFragment.newDiscountCoupon(coupon);
-                break;
-            case TYPE_COUPON_POINT_RETURN:
-                fragment = CouponFragment.newPointReturnCoupon(coupon);
-                break;
+        if ("2".equals(flag)) {
+            fragment = CouponFragment.newDiscountCoupon(coupon);
+        } else if ("1".equals(flag)) {
+            fragment = CouponFragment.newPointReturnCoupon(coupon);
         }
         if (fragment != null && stackDelegate != null) {
             stackDelegate.push(this, fragment);
@@ -200,8 +180,8 @@ public class QueryCouponFragment extends StatedFragment {
                 } else {
                     getArguments().putString("scan_code", code);
                 }
+                return;
             }
-            return;
         }
         super.onActivityResult(requestCode, resultCode, data);
     }

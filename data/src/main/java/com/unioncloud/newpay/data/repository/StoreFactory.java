@@ -26,6 +26,8 @@ import com.unioncloud.newpay.data.repository.print.datasource.PaxPrintStore;
 import com.unioncloud.newpay.data.repository.print.datasource.PrintStore;
 import com.unioncloud.newpay.data.repository.product.datasource.CloudProductStore;
 import com.unioncloud.newpay.data.repository.product.datasource.ProductStore;
+import com.unioncloud.newpay.data.repository.right.datasource.CloudRightStore;
+import com.unioncloud.newpay.data.repository.right.datasource.RightStore;
 import com.unioncloud.newpay.data.repository.thirdparty.datasource.SwiftPassPayStore;
 import com.unioncloud.newpay.data.repository.thirdparty.datasource.ThirdPartyStore;
 import com.unioncloud.newpay.data.repository.vip.datasource.VipDataStore;
@@ -88,7 +90,11 @@ public class StoreFactory {
         return new CloudCouponStore();
     }
 
-    public static NoticeStore getNoticeStore() {
-        return new CloudNoticeStore();
+    public static NoticeStore getNoticeStore(Context context) {
+        return new CloudNoticeStore(context);
+    }
+
+    public static RightStore getRightStore() {
+        return new CloudRightStore();
     }
 }

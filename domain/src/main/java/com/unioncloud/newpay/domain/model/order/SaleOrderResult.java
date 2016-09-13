@@ -1,5 +1,7 @@
 package com.unioncloud.newpay.domain.model.order;
 
+import com.unioncloud.newpay.domain.model.erp.Coupon;
+
 import java.util.List;
 
 /**

@@ -2,7 +2,7 @@ package com.unioncloud.newpay.data.repository.order;
 
 import android.text.TextUtils;
 
-import com.unioncloud.newpay.data.entity.order.CouponEntity;
+import com.unioncloud.newpay.data.entity.coupon.CouponEntity;
 import com.unioncloud.newpay.data.entity.order.SaleHeadEntity;
 import com.unioncloud.newpay.data.entity.order.SaleItemEntity;
 import com.unioncloud.newpay.data.entity.order.SaleOrderEntity;
@@ -10,7 +10,7 @@ import com.unioncloud.newpay.data.entity.order.SalePayEntity;
 import com.unioncloud.newpay.data.entity.order.SaleResultEntity;
 import com.unioncloud.newpay.data.repository.StoreFactory;
 import com.unioncloud.newpay.domain.model.cart.CartItem;
-import com.unioncloud.newpay.domain.model.order.Coupon;
+import com.unioncloud.newpay.domain.model.erp.Coupon;
 import com.unioncloud.newpay.domain.model.order.QuerySaleOrderCommand;
 import com.unioncloud.newpay.domain.model.order.SaleOrder;
 import com.unioncloud.newpay.domain.model.order.SaleOrderHeader;

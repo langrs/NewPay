@@ -1,5 +1,7 @@
 package com.unioncloud.newpay.data.repository.notice;
 
+import android.content.Context;
+
 import com.unioncloud.newpay.data.entity.notice.NoticeEntity;
 import com.unioncloud.newpay.data.repository.StoreFactory;
 import com.unioncloud.newpay.domain.model.notice.Notice;
@@ -15,27 +17,57 @@ import rx.functions.Func1;
  */
 public class NoticeDataRepository implements NoticeRepository {
 
-    @Override
-    public Observable<List<Notice>> queryNotice(String shopId) {
-        return StoreFactory.getNoticeStore().queryNotice(shopId)
-                .map(new Func1<List<NoticeEntity>, List<Notice>>() {
-                    @Override
-                    public List<Notice> call(List<NoticeEntity> entityList) {
-                        return null;
-                    }
-                });
+    Context context;
+
+    public NoticeDataRepository(Context context) {
+        this.context = context;
     }
 
-    private static Notice mapper(NoticeEntity entity) {
-        if (entity == null) {
-            return null;
-        }
-        Notice notice = new Notice();
-        notice.setId(notice.getId());
-        notice.setValidityDate(notice.getValidityDate());
-        notice.setTitle(notice.getTitle());
-        notice.setContent(notice.getContent());
-        notice.setFooter(notice.getFooter());
-        return notice;
+    @Override
+    public Observable<List<Notice>> queryAllNotice(String shopId) {
+        return StoreFactory.getNoticeStore(context).queryAllNotice(shopId)
+                .flatMap(new Func1<List<NoticeEntity>, Observable<NoticeEntity>>() {
+                    @Override
+                    public Observable<NoticeEntity> call(List<NoticeEntity> entityList) {
+                        return Observable.from(entityList);
+                    }
+                }).map(new Func1<NoticeEntity, Notice>() {
+                    @Override
+                    public Notice call(NoticeEntity entity) {
+                        if (entity == null) {
+                            return null;
+                        }
+                        Notice notice = new Notice();
+                        notice.setId(entity.getId());
+                        notice.setValidityDate(entity.getValidDate());
+                        notice.setTitle(entity.getTitle());
+                        notice.setContent(entity.getContent());
+                        return notice;
+                    }
+                }).toList();
+    }
+
+    @Override
+    public Observable<List<Notice>> queryNewNotice(String shopId) {
+        return StoreFactory.getNoticeStore(context).queryNewNotice(shopId)
+                .flatMap(new Func1<List<NoticeEntity>, Observable<NoticeEntity>>() {
+                    @Override
+                    public Observable<NoticeEntity> call(List<NoticeEntity> entityList) {
+                        return Observable.from(entityList);
+                    }
+                }).map(new Func1<NoticeEntity, Notice>() {
+                    @Override
+                    public Notice call(NoticeEntity entity) {
+                        if (entity == null) {
+                            return null;
+                        }
+                        Notice notice = new Notice();
+                        notice.setId(entity.getId());
+                        notice.setValidityDate(entity.getValidDate());
+                        notice.setTitle(entity.getTitle());
+                        notice.setContent(entity.getContent());
+                        return notice;
+                    }
+                }).toList();
     }
 }

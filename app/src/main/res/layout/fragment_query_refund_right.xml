@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:background="@color/White"
+              android:divider="@android:drawable/divider_horizontal_bright"
+              android:minWidth="@dimen/Dialog.Fragment.Width.Min"
+              android:orientation="vertical"
+              android:showDividers="middle" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/Padding.Material.Standard.Double"
+            android:layout_marginBottom="@dimen/Padding.Material.Standard.Double"
+            android:gravity="center_vertical"
+            >
+            <TextView
+                android:id="@+id/fragment_query_right_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/Padding.Material.Standard.Quadruple"
+                android:layout_centerVertical="true"
+                android:textColor="@color/TextColor.Black"
+                android:textStyle="bold"
+                android:textSize="@dimen/TextSize.Large"
+                android:text="退货权限查询"
+                />
+
+            <TextView
+                android:id="@+id/fragment_query_right_scan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/Padding.Material.Standard.Quadruple"
+                android:drawableLeft="@drawable/ic_scan_blue"
+                android:background="@drawable/bg_white_button_selector"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:layout_alignParentRight="true"
+                android:textSize="@dimen/TextSize.Material.Title"
+                android:textColor="@color/PrimaryBlue"
+                android:text="扫码"
+                android:visibility="gone"
+                />
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="112dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:id="@+id/fragment_query_right_no_label"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/Padding.Material.Standard.Quadruple"
+                android:textColor="@color/TextColor.Black"
+                android:text="权限号" />
+            <EditText
+                android:id="@+id/fragment_query_right_no"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_toRightOf="@id/fragment_query_right_no_label"
+                android:layout_marginLeft="@dimen/Padding.Material.Standard.Quadruple"
+                android:layout_marginRight="@dimen/Padding.Material.Standard.Quadruple"
+                android:inputType="number"
+                android:imeOptions="flagNoExtractUi|actionNext"
+                android:hint="请输入权限号码"
+                />
+            <TextView
+                android:id="@+id/fragment_query_right_password_label"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:gravity="center_vertical"
+                android:layout_marginTop="@dimen/Padding.Material.Standard"
+                android:layout_below="@id/fragment_query_right_no_label"
+                android:paddingLeft="@dimen/Padding.Material.Standard.Quadruple"
+                android:textColor="@color/TextColor.Black"
+                android:text="密码" />
+            <EditText
+                android:id="@+id/fragment_query_right_password"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="@dimen/Padding.Material.Standard"
+                android:layout_toRightOf="@id/fragment_query_right_no_label"
+                android:layout_below="@id/fragment_query_right_no_label"
+                android:layout_marginLeft="@dimen/Padding.Material.Standard.Quadruple"
+                android:layout_marginRight="@dimen/Padding.Material.Standard.Quadruple"
+                android:inputType="numberPassword"
+                android:imeOptions="flagNoExtractUi|actionDone"
+                android:hint="请输入权限密码"
+                />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="@android:drawable/divider_horizontal_bright"
+        android:layout_marginTop="@dimen/Padding.Material.Standard"
+        android:orientation="horizontal"
+        android:showDividers="middle" >
+
+        <Button
+            android:id="@+id/fragment_query_right_cancel_btn"
+            style="@android:style/Widget.Holo.Light.Button.Borderless.Small"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="取消"
+            android:textColor="@color/TextColor.Grey" />
+
+        <Button
+            android:id="@+id/fragment_query_right_ok_btn"
+            style="@android:style/Widget.Holo.Light.Button.Borderless.Small"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="确定"
+            android:textColor="@color/PrimaryBlue" />
+    </LinearLayout>
+
+</LinearLayout>

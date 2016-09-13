@@ -5,7 +5,7 @@
               xmlns:app="http://schemas.android.com/apk/res-auto"
               android:background="@color/White"
               android:divider="@android:drawable/divider_horizontal_bright"
-              android:minWidth="400dp"
+              android:minWidth="300dp"
               android:orientation="vertical"
               android:showDividers="middle">
 
@@ -46,7 +46,7 @@
         android:layout_marginTop="@dimen/Margin.VeryLarge"
         android:layout_margin="@dimen/Padding.Material.Standard"
         android:gravity="center"
-        android:text="@string/login_in"
+        android:text="查询"
         app:cardBackgroundColor="@color/PrimaryBlue"
         >
         <Button
