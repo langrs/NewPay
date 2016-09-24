@@ -68,6 +68,11 @@ public class QueryPointsRebateFragment extends QueryCardFragment {
     }
 
     @Override
+    protected boolean supportQr() {
+        return true;
+    }
+
+    @Override
     protected void queryCardByBillNo(String billNo) {
         if (!isQuerying()) {
             putLoadingItem("QueryPointsRebateFragment:querying");

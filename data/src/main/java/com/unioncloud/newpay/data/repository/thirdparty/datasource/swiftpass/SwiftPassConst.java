@@ -23,9 +23,11 @@ public class SwiftPassConst {
     public static final String REFUND_QUERY_SERVICE = "unified.trade.refundquery";
 
     /** 商户ID */
-    public static final String MCH_ID = "7551000001";
+    public static final String MCH_ID_DEBUD = "7551000001";
+    public static final String MCH_ID = "7541100001";
     /** MD5签名的KEY */
-    public static final String KEY = "9d101c97133837e13dde2d32a5054abb";
+    public static final String KEY_DEBUD = "9d101c97133837e13dde2d32a5054abb";
+    public static final String KEY = "3fb765b25fd9e7191993c245740042b9";
 
     public static final int LOOP_WAITING_TIME = 5000;
 

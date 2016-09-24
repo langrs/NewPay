@@ -207,10 +207,19 @@ public enum PaymentSignpost {
         if (paymentList == null) {
             return list;
         }
+        boolean hasInsideCoupon = false;
         for (Payment payment : paymentList) {
             PaymentSignpost signpost = getSignpost(payment.getPaymentNumber());
             if (signpost != null) {
-                list.add(signpost);
+                // 蛋疼,折扣券和积分返利券展示的时候只显示折扣券
+                if (signpost == COUPON2 || signpost == COUPON3) {
+                    if (!hasInsideCoupon) {
+                        hasInsideCoupon = true;
+                        list.add(COUPON2);
+                    }
+                } else {
+                    list.add(signpost);
+                }
             }
         }
         return list;
