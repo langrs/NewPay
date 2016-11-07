@@ -13,6 +13,7 @@ import com.unioncloud.newpay.domain.model.payment.Payment;
 import com.unioncloud.newpay.domain.model.payment.PaymentUsed;
 import com.unioncloud.newpay.presentation.model.checkout.CheckoutDataManager;
 import com.unioncloud.newpay.presentation.model.pos.PosDataManager;
+import com.unioncloud.newpay.presentation.model.refund.OriginalRefundInfo;
 import com.unioncloud.newpay.presentation.presenter.gift.QueryGiftCardHandler;
 import com.unioncloud.newpay.presentation.ui.QueryCardFragment;
 import com.unioncloud.newpay.presentation.ui.pay.GiftCardFragment;
@@ -63,6 +64,10 @@ public class QueryGiftCardFragment extends QueryCardFragment {
             };
 
     private FragmentStackDelegate stackDelegate;
+
+    public OriginalRefundInfo getOriginalRefundInfo() {
+        return getArguments().getParcelable("originalRefundInfo");
+    }
 
     @Override
     protected String getTitle() {
@@ -133,13 +138,10 @@ public class QueryGiftCardFragment extends QueryCardFragment {
 
     private void toGiftCardRefund(GiftCard giftCard) {
         GiftCardRefundFragment fragment = GiftCardRefundFragment.newInstance(giftCard);
-        if (getTargetFragment() != null) {
-            fragment.setTargetFragment(getTargetFragment(), getTargetRequestCode());
+        fragment.getArguments().putParcelable("originalRefundInfo", getOriginalRefundInfo());
+        if (stackDelegate != null) {
+            stackDelegate.push(this, fragment);
         }
-        stackDelegate.push(this, fragment);
-//        fragment.show(getParentFragment().getChildFragmentManager(), "giftCardRefund");
-//        dismiss();
-
     }
 
     private void toGiftCardPay(GiftCard giftCard) {
@@ -148,11 +150,6 @@ public class QueryGiftCardFragment extends QueryCardFragment {
             return;
         }
         GiftCardFragment fragment = GiftCardFragment.newInstance(giftCard);
-//        if (getTargetFragment() != null) {
-//            fragment.setTargetFragment(getTargetFragment(), getTargetRequestCode());
-//        }
-//        fragment.show(getParentFragment().getChildFragmentManager(), "giftCardPay");
-//        dismiss();
         if (stackDelegate != null) {
             stackDelegate.push(this, fragment);
         }

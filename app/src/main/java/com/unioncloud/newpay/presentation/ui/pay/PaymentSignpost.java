@@ -35,7 +35,7 @@ public enum PaymentSignpost {
         }
 
         @Override
-        public RefundFragment toRefund() {
+        public StatedFragment toRefund() {
             return ThirdPartyRefundFragment.newWechatPay();
         }
     },
@@ -53,7 +53,7 @@ public enum PaymentSignpost {
         }
 
         @Override
-        public RefundFragment toRefund() {
+        public StatedFragment toRefund() {
             return ThirdPartyRefundFragment.newAliPay();
         }
     },
@@ -89,7 +89,7 @@ public enum PaymentSignpost {
         }
 
         @Override
-        public RefundFragment toRefund() {
+        public StatedFragment toRefund() {
             return CashRefundFragment.newInstance();
         }
     },
@@ -107,8 +107,8 @@ public enum PaymentSignpost {
         }
 
         @Override
-        public RefundFragment toRefund() {
-            return GiftCardRefundFragment.newInstance();
+        public StatedFragment toRefund() {
+            return QueryGiftCardFragment.newRefund();
         }
     },
     COUPON(R.drawable.ic_checkout_coupon,
@@ -125,7 +125,7 @@ public enum PaymentSignpost {
         }
 
         @Override
-        public RefundFragment toRefund() {
+        public StatedFragment toRefund() {
             return CouponRefundFragment.newCoupon();
         }
     },
@@ -143,7 +143,7 @@ public enum PaymentSignpost {
         }
 
         @Override
-        public RefundFragment toRefund() {
+        public StatedFragment toRefund() {
             return CouponRefundFragment.newDiscountCoupon();
         }
     },
@@ -161,7 +161,7 @@ public enum PaymentSignpost {
         }
 
         @Override
-        public RefundFragment toRefund() {
+        public StatedFragment toRefund() {
             return CouponRefundFragment.newPointReturnCoupon();
         }
     };
@@ -192,7 +192,7 @@ public enum PaymentSignpost {
 
     public abstract StatedFragment toPay();
 
-    public abstract RefundFragment toRefund();
+    public abstract StatedFragment toRefund();
 
     public boolean supportPay() {
         return true;

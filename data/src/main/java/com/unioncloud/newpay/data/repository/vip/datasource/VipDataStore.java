@@ -29,17 +29,20 @@ public class VipDataStore implements VipStore {
     public Observable<VipEntity> queryByCd(String cdInfo, PosInfo posInfo) {
         QueryVipEntity entity = new QueryVipEntity();
         entity.setCdInfo(cdInfo);
-        return queryVip(entity);
+//        return queryVip(entity);
+        return queryVipNew(entity);
     }
 
     @Override
     public Observable<VipEntity> queryByBillNo(String billNo, PosInfo posInfo) {
         QueryVipEntity entity = new QueryVipEntity();
         entity.setBillno(billNo);
-        return queryVip(entity);
+//        return queryVip(entity);
+        return queryVipNew(entity);
     }
 
     private Observable<VipEntity> queryVip(final QueryVipEntity entity) {
+
         return Observable.create(new Observable.OnSubscribe<NetResponse>() {
             @Override
             public void call(Subscriber<? super NetResponse> subscriber) {
@@ -78,5 +81,74 @@ public class VipDataStore implements VipStore {
         });
     }
 
+    private Observable<VipEntity> queryVipNew(final QueryVipEntity entity) {
+        Observable<VipEntity> wechat = Observable.create(new Observable.OnSubscribe<VipEntity>() {
+            @Override
+            public void call(Subscriber<? super VipEntity> subscriber) {
+                if (isWechatVip(entity.getBillno())) {
+                    subscriber.onNext(createWechatVip(entity.getBillno()));
+                } else {
+                    subscriber.onCompleted();
+                }
+            }
+        });
+
+        Observable<VipEntity> remote = Observable.create(new Observable.OnSubscribe<String>() {
+            @Override
+            public void call(Subscriber<? super String> subscriber) {
+                subscriber.onNext(queryVipJson(entity));
+            }
+        }).map(new Func1<String, VipEntity>() {
+            @Override
+            public VipEntity call(String json) {
+                return parseVipJson(json);
+            }
+        });
+        return Observable.concat(wechat, remote)
+                .first();
+    }
+
+    private boolean isWechatVip(String vipCode) {
+        return vipCode != null && vipCode.startsWith("48000");
+    }
+
+    private VipEntity createWechatVip(String vipCode) {
+        VipEntity result = new VipEntity();
+        result.setCkcode(vipCode);
+        result.setCardtype("01");
+        return result;
+    }
+
+    private String queryVipJson(QueryVipEntity entity) {
+        NetRequest request = new NetRequest(WebServiceUrlConst.URL,
+                WebServiceUrlConst.NAMESPACE, WebServiceUrlConst.QUERY_VIP);
+        request.addParam("cdInfo", entity.getCdInfo());
+        request.addParam("billno", entity.getBillno());
+        request.addParam("shopId", entity.getShopId());
+        try {
+            NetResponse response = WebServiceEngine.getInstance().executeRequest(request);
+            if (response.getResponseCode() == 200) {
+                return response.getStringData();
+            } else {
+                throw Exceptions.propagate(new RemoteDataException("访问接口异常"));
+            }
+        } catch (IOException e) {
+            throw Exceptions.propagate(new RemoteDataException("无法连接服务器"));
+        }
+    }
+
+    private VipEntity parseVipJson(String json) {
+        try {
+            ResultEntity<VipEntity> entity = JsonUtils.fromJson(json,
+                    new TypeToken<ResultEntity<VipEntity>>(){}.getType());
+            if (entity.isSuccess()) {
+                return entity.getData();
+            } else {
+                throw Exceptions.propagate(new RemoteDataException(entity.getErrorMsg()));
+            }
+        } catch (JsonSyntaxException e) {
+            throw Exceptions.propagate(new RemoteDataException("解析服务接口数据失败"));
+        }
+    }
 
 }

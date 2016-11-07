@@ -5,11 +5,14 @@ package com.unioncloud.newpay.data.repository;
  */
 public class WebServiceUrlConst {
 
-    public static final String URL = "http://183.239.195.196:8288/mpos_web/service/saleWebService?wsdl";
+//    private static final String HOST = "http://183.239.195.196:8288";
+    private static final String HOST = "http://1565s67w79.iok.la:14371";
+
+    public static final String URL = HOST + "/mpos_web/service/saleWebService?wsdl";
     public static final String NAMESPACE = "http://webService.site.com/";
 
     /** 应用升级 */
-    public static final String APPUPGRADE = "http://183.239.195.196:8288/update/appInfo.txt";
+    public static final String APPUPGRADE = HOST + "/update/appInfo.txt";
 
     /** 注册POS机 */
     public static final String POS_REGISTER_ACTION = "posRegister";

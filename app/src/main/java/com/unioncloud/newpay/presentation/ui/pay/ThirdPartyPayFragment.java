@@ -108,7 +108,7 @@ public class ThirdPartyPayFragment extends PayFragment {
 
     private void startScan(int willPay) {
         if (!isPaying()) {
-            getArguments().putInt("willPay", willPay);
+            setWillPay(willPay);
 
             String amount = MoneyUtils.fenToString(willPay);
             Intent intent = ScanCaptureActivity.getStartIntent(getActivity(), "支付金额:" + amount);
@@ -124,6 +124,7 @@ public class ThirdPartyPayFragment extends PayFragment {
                 getArguments().putString("scan_code", code);
             } else {
                 getArguments().remove("willPay");
+                getArguments().remove("scan_code");
                 showToast("取消扫描");
             }
             return;

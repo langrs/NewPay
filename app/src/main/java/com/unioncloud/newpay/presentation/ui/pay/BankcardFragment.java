@@ -77,12 +77,26 @@ public class BankcardFragment extends PayFragment {
                         showToastLong(handler.getData().getErrorMessage());
                     }
                 }
+//                else {
+//                    setPayComplete();
+//                }
             }
         }
     }
 
+    private void setPayComplete() {
+        getArguments().putBoolean("bankPayComplete", true);
+    }
+
+    private boolean isPayComplete() {
+        return getArguments().getBoolean("bankPayComplete");
+    }
+
+    private void removePayComplete() {
+        getArguments().remove("bankPayComplete");
+    }
+
     private void paySuccess(BankcardSaleResult result) {
-//        dismiss();
         onPaidSuccess();
     }
 
@@ -90,6 +104,10 @@ public class BankcardFragment extends PayFragment {
     public void onResume() {
         super.onResume();
         updateForResponse("BankcardFragment:pay");
+//        if (isPayComplete()) {
+//            removePayComplete();
+//            updateForResponse("BankcardFragment:pay");
+//        }
     }
 
 }

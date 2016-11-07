@@ -146,5 +146,16 @@
         </android.support.v7.widget.CardView>
 
     </LinearLayout>
-
+    <!--
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="@dimen/MinTouchableArea"
+        android:minHeight="@dimen/MinTouchableArea"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="@dimen/Padding.Material.Standard"
+        android:layout_marginRight="@dimen/Padding.Material.Standard"
+        />
+        -->
 </RelativeLayout>

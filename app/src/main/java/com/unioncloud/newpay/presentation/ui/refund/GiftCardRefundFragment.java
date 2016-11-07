@@ -48,18 +48,19 @@ public class GiftCardRefundFragment extends RefundFragment {
 
     @Override
     protected void refund() {
-        Payment cash = PosDataManager.getInstance().getPaymentByNumberInt(
+        Payment payment = PosDataManager.getInstance().getPaymentByNumberInt(
                 PaymentSignpost.GIFT.numberToInt());
 
         PaymentUsed used = new PaymentUsed();
-        used.setPaymentId(cash.getPaymentId());
-        used.setPaymentName(cash.getPaymentName());
-        used.setPaymentQy(cash.getPaymentQy());
+        used.setPaymentId(payment.getPaymentId());
+        used.setPaymentName(payment.getPaymentName());
+        used.setPaymentQy(payment.getPaymentQy());
         used.setPayAmount(-getRefundAmount());
         used.setExcessAmount(0);
-        used.setCurrencyId(cash.getCurrencyId());
-        used.setExchangeRate(cash.getExchangeRate());
-        used.setRelationNumber(getOriginalBillNo());
+        used.setCurrencyId(payment.getCurrencyId());
+        used.setExchangeRate(payment.getExchangeRate());
+//        used.setRelationNumber(getOriginalBillNo());
+        used.setRelationNumber(getUsingGiftCard().getCardNumber());  // 使用查询到的储值卡而不是原来的储值卡
         RefundDataManager.getInstance().usePayment(used);
         onRefundSuccess();
     }
