@@ -38,7 +38,7 @@
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dip"
+            android:layout_marginLeft="10px"
             >
 
             <TextView
@@ -68,7 +68,7 @@
             android:id="@+id/print_store_name"
             style="@style/print_text_size"
             android:layout_toRightOf="@id/print_store_name_prompt"
-            android:paddingRight="10dip"
+            android:paddingRight="10px"
             />
     </RelativeLayout>
     <RelativeLayout
@@ -86,13 +86,13 @@
             style="@style/print_text_size"
             android:text="2016-08-18 11:26"
             android:layout_toRightOf="@id/print_time_prompt"
-            android:paddingRight="10dip"
+            android:paddingRight="10px"
             />
     </RelativeLayout>
     <TextView
         android:id="@+id/print_line_tag"
         style="@style/print_text_size_big"
-        android:layout_marginBottom="5.0dip"
+        android:layout_marginBottom="5.0px"
         android:text="----------------------------------"
         android:textStyle="bold"/>
 </LinearLayout>

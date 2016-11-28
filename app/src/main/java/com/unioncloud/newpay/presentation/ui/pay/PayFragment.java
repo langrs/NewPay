@@ -1,14 +1,13 @@
 package com.unioncloud.newpay.presentation.ui.pay;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.TextView;
 
@@ -48,6 +47,8 @@ public abstract class PayFragment extends StatedFragment {
     protected TextView amountInputTv;
     protected GridView keyboard;
     protected Button okBtn;
+    protected View fillInContainer;
+    protected EditText fillInRelationNoEt;
 
     private OnPaidListener onPaidListener;
 
@@ -67,7 +68,6 @@ public abstract class PayFragment extends StatedFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable
     Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_pay, container, false);
-
         return view;
     }
 
@@ -109,6 +109,20 @@ public abstract class PayFragment extends StatedFragment {
                 CheckoutDataManager.getInstance().getUnpayTotal());
         unpayTv.setText(pay);
         amountInputTv.setText(pay);
+    }
+
+    protected boolean isFillIn() {
+        return getArguments().getBoolean("isFillIn");
+    }
+
+    protected void initFillInView(View rootView) {
+        fillInContainer = rootView.findViewById(R.id.fragment_pay_fillin_container);
+        fillInRelationNoEt = (EditText) rootView.findViewById(R.id.fragment_pay_fillin_relationNo);
+        if (isFillIn()) {
+            fillInContainer.setVisibility(View.VISIBLE);
+        } else {
+            fillInContainer.setVisibility(View.GONE);
+        }
     }
 
     private void toPay() {

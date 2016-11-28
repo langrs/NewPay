@@ -59,7 +59,7 @@
             style="@style/print_text_size"
             android:text="2016-08-18 11:26"
             android:layout_toRightOf="@id/print_time_prompt"
-            android:paddingRight="10dip"
+            android:paddingRight="10px"
             />
     </RelativeLayout>
 
@@ -85,13 +85,13 @@
         android:id="@+id/print_reprint_tag"
         style="@style/print_text_size_big"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="10dip"
+        android:layout_marginRight="10px"
         android:text="-----------------重打印!-------------------"
         />
     <TextView
         android:id="@+id/print_line_tag"
         style="@style/print_text_size_big"
-        android:layout_marginBottom="5.0dip"
+        android:layout_marginBottom="5.0px"
         android:text="----------------------------------"
         android:textStyle="bold"/>
 

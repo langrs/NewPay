@@ -2,6 +2,7 @@ package com.unioncloud.newpay.presentation.ui.pay;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +27,12 @@ public class GiftCardFragment extends PayFragment {
         return fragment;
     }
 
+    public static GiftCardFragment newFillIn() {
+        GiftCardFragment fragment = new GiftCardFragment();
+        fragment.getArguments().putBoolean("isFillIn", true);
+        return fragment;
+    }
+
     @Override
     protected PaymentSignpost getPaymentSignpost() {
         return PaymentSignpost.GIFT;
@@ -40,6 +47,7 @@ public class GiftCardFragment extends PayFragment {
     }
 
     protected TextView giftValueTv;
+    private View giftValueContainer;
 
     @Nullable
     @Override
@@ -50,12 +58,18 @@ public class GiftCardFragment extends PayFragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        giftValueTv = (TextView) view.findViewById(R.id.fragment_pay_giftCard_value);
-        int giftValue = getUsingGiftCardValue();
-        if (giftValue == 0) {
-            showToast("储值卡余额为0!");
+        giftValueContainer = view.findViewById(R.id.fragment_pay_giftCard_value_container);
+        if (isFillIn()) {
+            initFillInView(view);
+            giftValueContainer.setVisibility(View.GONE);
         } else {
-            giftValueTv.setText(MoneyUtils.fenToString(giftValue));
+            giftValueTv = (TextView) view.findViewById(R.id.fragment_pay_giftCard_value);
+            int giftValue = getUsingGiftCardValue();
+            if (giftValue == 0) {
+                showToast("储值卡余额为0!");
+            } else {
+                giftValueTv.setText(MoneyUtils.fenToString(giftValue));
+            }
         }
     }
 
@@ -64,6 +78,7 @@ public class GiftCardFragment extends PayFragment {
         int giftValue = MoneyUtils.getFen(giftCard.getAmountValue());
         return giftValue;
     }
+
     @Override
     protected void pay(int unpay, int willPay) {
         if (willPay > unpay) {
@@ -75,6 +90,9 @@ public class GiftCardFragment extends PayFragment {
             showToast("储值卡余额不足!");
             return;
         }
+        if (isFillIn() && TextUtils.isEmpty(fillInRelationNoEt.getText())) {
+            showToast("补录必须录入原券号");
+        }
         Payment cash = PosDataManager.getInstance().getPaymentByNumberInt(
                 PaymentSignpost.GIFT.numberToInt());
 
@@ -85,10 +103,18 @@ public class GiftCardFragment extends PayFragment {
         used.setPayAmount(willPay);
         used.setCurrencyId(cash.getCurrencyId());
         used.setExchangeRate(cash.getExchangeRate());
-        used.setRelationNumber(getUsingGiftCard().getCardNumber());
+        used.setRelationNumber(getGiftCardNumber());
 
         CheckoutDataManager.getInstance().usePayment(used);
         onPaidSuccess();
+    }
+
+    private String getGiftCardNumber() {
+        if (isFillIn()) {
+            return fillInRelationNoEt.getText().toString();
+        } else {
+            return getUsingGiftCard().getCardNumber();
+        }
     }
 
     @Override

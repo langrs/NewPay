@@ -23,6 +23,8 @@ import com.unioncloud.newpay.presentation.presenter.coupon.QueryCouponHandler;
 import com.unioncloud.newpay.presentation.ui.pay.CouponFragment;
 import com.zbar.scan.ScanCaptureActivity;
 
+import static android.R.attr.data;
+
 /**
  * Created by cwj on 16/9/6.
  */
@@ -175,11 +177,11 @@ public class QueryCouponFragment extends StatedFragment {
         if (requestCode == REQUEST_SCAN_CODE) {
             if (resultCode == Activity.RESULT_OK) {
                 String code = data.getStringExtra("SCAN_RESULT");
-                if (isVisible()) {
-                    queryCoupon(code);
-                } else {
+//                if (isVisible()) {
+//                    queryCoupon(code);
+//                } else {
                     getArguments().putString("scan_code", code);
-                }
+//                }
                 return;
             }
         }

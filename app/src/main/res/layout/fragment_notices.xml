@@ -38,6 +38,7 @@
         android:id="@+id/fragment_notices_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/Margin.Material.Standard"
         android:layout_marginTop="5dp"
         android:layout_marginLeft="@dimen/Padding.Material.Standard"
         android:layout_marginRight="@dimen/Padding.Material.Standard"

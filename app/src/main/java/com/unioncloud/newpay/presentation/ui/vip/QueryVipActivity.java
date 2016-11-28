@@ -57,15 +57,15 @@ public class QueryVipActivity extends BaseActivity implements QueryVipCallback {
         hideActionBar();
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Fragment fragment = stackManager.getTop();
-        if (fragment != null) {
-            fragment.onActivityResult(requestCode, resultCode, data);
-        } else {
-            super.onActivityResult(requestCode, resultCode, data);
-        }
-    }
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        Fragment fragment = stackManager.getTop();
+//        if (fragment != null) {
+//            fragment.onActivityResult(requestCode, resultCode, data);
+//        } else {
+//            super.onActivityResult(requestCode, resultCode, data);
+//        }
+//    }
 
     @Override
     protected void onDestroy() {

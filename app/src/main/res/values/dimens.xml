@@ -42,12 +42,11 @@
 
 
     <!-- print -->
-    <dimen name="print_width">384.0dip</dimen>
-    <dimen name="print_half_width">192.0dip</dimen>
-    <dimen name="print_text_size_small">20.0dip</dimen>
-    <dimen name="print_text_size_normal">25.0dip</dimen>
-    <dimen name="print_text_size_big_more">28.0dip</dimen>
-    <dimen name="line_space">-9.0dip</dimen>
-    <!--<dimen name="line_space_small">-7.0dip</dimen>-->
-    <dimen name="line_space_small">-5.0dip</dimen>
+    <dimen name="print_width">384.0px</dimen>
+    <dimen name="print_half_width">192.0px</dimen>
+    <dimen name="print_text_size_small">20.0px</dimen>
+    <dimen name="print_text_size_normal">25.0px</dimen>
+    <dimen name="print_text_size_big_more">28.0px</dimen>
+    <dimen name="line_space">-9.0px</dimen>
+    <dimen name="line_space_small">-5.0px</dimen>
 </resources>

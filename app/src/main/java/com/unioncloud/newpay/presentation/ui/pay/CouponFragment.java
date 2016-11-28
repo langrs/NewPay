@@ -30,7 +30,21 @@ public class CouponFragment extends PayFragment {
         return fragment;
     }
 
+    public static CouponFragment fillInDiscountCoupon() {
+        CouponFragment fragment = new CouponFragment();
+        fragment.setCouponType(TYPE_COUPON_DISCOUNT);
+        fragment.getArguments().putBoolean("isFillIn", true);
+        return fragment;
+    }
+
     /** 积分返利券 */
+    public static CouponFragment fillInPointReturnCoupon() {
+        CouponFragment fragment = new CouponFragment();
+        fragment.setCouponType(TYPE_COUPON_POINT_RETURN);
+        fragment.getArguments().putBoolean("isFillIn", true);
+        return fragment;
+    }
+
     public static CouponFragment newPointReturnCoupon(Coupon coupon) {
         CouponFragment fragment = new CouponFragment();
         fragment.setCouponType(TYPE_COUPON_POINT_RETURN);
@@ -39,7 +53,7 @@ public class CouponFragment extends PayFragment {
     }
 
     /** 购物券(服务器没有该券的数据) */
-    public static CouponFragment newCoupon() {
+    public static CouponFragment newShoppingCoupon() {
         CouponFragment fragment = new CouponFragment();
         fragment.setCouponType(TYPE_COUPON_OUTSIDE);
         return fragment;
@@ -127,7 +141,7 @@ public class CouponFragment extends PayFragment {
         boolean isOutside = isOutsideCoupon();
         String couponNo;
         int excessAmount = 0;
-        if (isOutside) {
+        if (isOutside || isFillIn()) {
             if (willPay > unpay) {
                 showToast("支付金额已超出未付款项");
                 return;

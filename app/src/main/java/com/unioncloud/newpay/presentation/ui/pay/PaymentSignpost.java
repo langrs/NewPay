@@ -9,7 +9,6 @@ import com.unioncloud.newpay.presentation.ui.gift.QueryGiftCardFragment;
 import com.unioncloud.newpay.presentation.ui.refund.BankcardRefundFragment;
 import com.unioncloud.newpay.presentation.ui.refund.CashRefundFragment;
 import com.unioncloud.newpay.presentation.ui.refund.CouponRefundFragment;
-import com.unioncloud.newpay.presentation.ui.refund.GiftCardRefundFragment;
 import com.unioncloud.newpay.presentation.ui.refund.RefundFragment;
 import com.unioncloud.newpay.presentation.ui.refund.ThirdPartyRefundFragment;
 
@@ -25,8 +24,8 @@ public enum PaymentSignpost {
             R.color.TextColor_Payment_Wechat,
             "微信") {
         @Override
-        public StatedFragment toPay() {
-            return ThirdPartyPayFragment.newWechatPay();
+        public StatedFragment toPay(boolean isFillIn) {
+            return ThirdPartyPayFragment.newWechatPay(isFillIn);
         }
 
         @Override
@@ -43,8 +42,8 @@ public enum PaymentSignpost {
             R.color.TextColor_Payment_Ali,
             "支付宝") {
         @Override
-        public StatedFragment toPay() {
-            return ThirdPartyPayFragment.newAliPay();
+        public StatedFragment toPay(boolean isFillIn) {
+            return ThirdPartyPayFragment.newAliPay(isFillIn);
         }
 
         @Override
@@ -61,8 +60,8 @@ public enum PaymentSignpost {
             R.color.TextColor_Payment_Bankcard,
             "银行卡") {
         @Override
-        public StatedFragment toPay() {
-            return BankcardFragment.newInstance();
+        public StatedFragment toPay(boolean isFillIn) {
+            return BankcardFragment.newInstance(isFillIn);
         }
 
         @Override
@@ -79,7 +78,7 @@ public enum PaymentSignpost {
             R.color.TextColor_Payment_Cash,
             "现金") {
         @Override
-        public StatedFragment toPay() {
+        public StatedFragment toPay(boolean isFillIn) {
             return CashFragment.newInstance();
         }
 
@@ -97,7 +96,10 @@ public enum PaymentSignpost {
             R.color.TextColor_Payment_Gift,
             "储值卡") {
         @Override
-        public StatedFragment toPay() {
+        public StatedFragment toPay(boolean isFillIn) {
+            if (isFillIn) {
+                return GiftCardFragment.newFillIn();
+            }
             return QueryGiftCardFragment.newPay();
         }
 
@@ -115,8 +117,8 @@ public enum PaymentSignpost {
             R.color.TextColor_Payment_Coupon,
             "购物券") {
         @Override
-        public StatedFragment toPay() {
-            return CouponFragment.newCoupon();
+        public StatedFragment toPay(boolean isFillIn) {
+            return CouponFragment.newShoppingCoupon();
         }
 
         @Override
@@ -133,7 +135,10 @@ public enum PaymentSignpost {
            R.color.TextColor_Payment_Coupon,
            "折扣券") {
         @Override
-        public StatedFragment toPay() {
+        public StatedFragment toPay(boolean isFillIn) {
+            if (isFillIn) {
+                return CouponFragment.fillInDiscountCoupon();
+            }
             return QueryCouponFragment.newInstance();
         }
 
@@ -151,7 +156,10 @@ public enum PaymentSignpost {
             R.color.TextColor_Payment_Coupon,
             "积分返利券") {
         @Override
-        public StatedFragment toPay() {
+        public StatedFragment toPay(boolean isFillIn) {
+            if (isFillIn) {
+                return CouponFragment.fillInPointReturnCoupon();
+            }
             return QueryCouponFragment.newInstance();
         }
 
@@ -190,7 +198,7 @@ public enum PaymentSignpost {
 
     public abstract int numberToInt();
 
-    public abstract StatedFragment toPay();
+    public abstract StatedFragment toPay(boolean isFillIn);
 
     public abstract StatedFragment toRefund();
 

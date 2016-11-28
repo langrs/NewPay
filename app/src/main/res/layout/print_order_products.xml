@@ -8,25 +8,25 @@
         android:layout_height="wrap_content">
         <TextView
             style="@style/print_text_size_item"
-            android:layout_width="120dip"
+            android:layout_width="120px"
             android:layout_height="wrap_content"
             android:text="商品名称"
             />
         <TextView
             style="@style/print_text_size_item"
-            android:layout_width="70dip"
+            android:layout_width="70px"
             android:layout_height="wrap_content"
             android:text="数量"
             />
         <TextView
             style="@style/print_text_size_item"
-            android:layout_width="100dip"
+            android:layout_width="100px"
             android:layout_height="wrap_content"
             android:text="单价"
             />
         <TextView
             style="@style/print_text_size_item"
-            android:layout_width="100dip"
+            android:layout_width="100px"
             android:layout_height="wrap_content"
             android:text="小计"
             />

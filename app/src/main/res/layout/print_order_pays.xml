@@ -18,7 +18,7 @@
             <TextView
                 android:id="@+id/print_pay_total"
                 style="@style/print_text_size"
-                android:layout_marginLeft="5dip"
+                android:layout_marginLeft="5px"
                 android:layout_toRightOf="@id/print_pay_total_prompt"
                 android:text="9001.00"
                 />
@@ -27,7 +27,7 @@
         <RelativeLayout
             android:layout_width="@dimen/print_half_width"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dip"
+            android:layout_marginLeft="10px"
             >
 
             <TextView
@@ -38,7 +38,7 @@
             <TextView
                 android:id="@+id/print_paid_total"
                 style="@style/print_text_size"
-                android:layout_marginLeft="5dip"
+                android:layout_marginLeft="5px"
                 android:layout_toRightOf="@id/print_paid_total_prompt"
                 android:text="0010.00"
                 />
@@ -58,7 +58,7 @@
         <TextView
             android:id="@+id/print_discount_total"
             style="@style/print_text_size"
-            android:layout_marginLeft="5dip"
+            android:layout_marginLeft="5px"
             android:layout_toRightOf="@id/print_discount_total_prompt"
             android:text="0010.00"
             />

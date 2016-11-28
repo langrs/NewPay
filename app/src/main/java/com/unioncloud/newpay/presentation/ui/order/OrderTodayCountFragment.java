@@ -95,6 +95,7 @@ public class OrderTodayCountFragment extends StatedFragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         statisticsViewBinder = new OrderStatisticsBinder(view);
+        setTitle("交易日结");
     }
 
     @Override

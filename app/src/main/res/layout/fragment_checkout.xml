@@ -55,13 +55,27 @@
         </LinearLayout>
 
     </android.support.v7.widget.CardView>
-
-    <TextView
-        style="@style/Text.Checkout.PaymentList.Title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="可选支付方式"
-        />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            style="@style/Text.Checkout.PaymentList.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="可选支付方式"
+            />
+        <Switch
+            android:id="@+id/fragment_checkout_fillin_control"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textOff="补录关"
+            android:textOn="补录开"
+            android:layout_marginRight="@dimen/Margin.Material.Standard"
+            android:layout_marginTop="@dimen/Margin.Material.Standard"
+            android:layout_marginBottom="@dimen/Margin.Material.Standard"
+            android:layout_alignParentRight="true"
+            />
+    </RelativeLayout>
     <View style="@style/ToolbarShadow"/>
     <ListView
         android:id="@+id/fragment_checkout_payment_list"

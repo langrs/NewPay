@@ -19,8 +19,13 @@ import com.unioncloud.newpay.R;
 public class PayActivity extends BaseActivity implements OnPaidListener {
 
     public static Intent getStartIntent(Context context, PaymentSignpost signpost) {
+        return getStartIntent(context, signpost, false);
+    }
+
+    public static Intent getStartIntent(Context context, PaymentSignpost signpost, boolean isFillIn) {
         Intent intent = new Intent(context, PayActivity.class);
         intent.putExtra("paymentSignpost", signpost);
+        intent.putExtra("isFillIn", isFillIn);
         return intent;
     }
 
@@ -47,13 +52,16 @@ public class PayActivity extends BaseActivity implements OnPaidListener {
         getWindow().setBackgroundDrawable(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
         stackManager = stateManager.getFragmentStackManager(R.id.activity_pay_frame);
 
+        final boolean isFillIn = getIntent().getBooleanExtra("isFillIn", false);
+
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 if (stackManager.isEmpty()) {
                     PaymentSignpost signpost = getPaymentSignPost();
                     if (signpost != null) {
-                        stackManager.push(signpost.toPay());
+                        Fragment fragment = signpost.toPay(isFillIn);
+                        stackManager.push(fragment);
                     }
                 }
             }
@@ -85,15 +93,15 @@ public class PayActivity extends BaseActivity implements OnPaidListener {
         finish();
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Fragment fragment = stackManager.getTop();
-        if (fragment != null) {
-            fragment.onActivityResult(requestCode, resultCode, data);
-        } else {
-            super.onActivityResult(requestCode, resultCode, data);
-        }
-    }
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        Fragment fragment = stackManager.getTop();
+//        if (fragment != null) {
+//            fragment.onActivityResult(requestCode, resultCode, data);
+//        } else {
+//            super.onActivityResult(requestCode, resultCode, data);
+//        }
+//    }
 
     @Override
     protected void onDestroy() {

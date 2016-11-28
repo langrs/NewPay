@@ -14,6 +14,8 @@ public class SaleItemEntity {
     private String salePoints;      // (单项)销售积分
     private String vipDisc;         // 会员打折率
     private String vipDiscAmt;      // 会员打折金额
+    private String promDisc;        // 促销打折率
+    private String promDiscAmt;     // 促销折扣金额
 
     public String getItemId() {
         return itemId;
@@ -93,5 +95,21 @@ public class SaleItemEntity {
 
     public void setVipDiscAmt(String vipDiscAmt) {
         this.vipDiscAmt = vipDiscAmt;
+    }
+
+    public String getPromDisc() {
+        return promDisc;
+    }
+
+    public void setPromDisc(String promDisc) {
+        this.promDisc = promDisc;
+    }
+
+    public String getPromDiscAmt() {
+        return promDiscAmt;
+    }
+
+    public void setPromDiscAmt(String promDiscAmt) {
+        this.promDiscAmt = promDiscAmt;
     }
 }

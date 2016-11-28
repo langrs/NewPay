@@ -565,7 +565,8 @@ public class StatedFragment extends BaseFragment implements FragmentStack {
             parent.startActivityForResult(intent, requestCode);
             return;
         }
-        getActivity().startActivityForResult(intent, requestCode);
+//        getActivity().startActivityForResult(intent, requestCode);
+        super.startActivityForResult(intent, requestCode);
     }
 
     public static void setPermissionDeniedPermanently(Context context, String permissionKey, boolean isDenied) {

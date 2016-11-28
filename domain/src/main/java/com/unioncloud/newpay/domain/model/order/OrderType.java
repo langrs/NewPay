@@ -5,7 +5,8 @@ package com.unioncloud.newpay.domain.model.order;
  */
 public enum  OrderType {
     SALE("销售单", "01"),
-    REFUND("退货单", "02");
+    REFUND("退货单", "02"),
+    FILL_IN("补录单", "03");
 
     String name;
     String value;

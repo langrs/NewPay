@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.util.Map;
 
 /**
+ * utils for parse xml data
  * Created by cwj on 16/8/18.
  */
 public class Util {

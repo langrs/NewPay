@@ -157,4 +157,12 @@ public class PrintOrderInfo {
     public void setCoupons(List<Coupon> coupons) {
         this.coupons = coupons;
     }
+
+    public int getProductSize() {
+        return cartItemList.size();
+    }
+
+    public CartItem getCartItem(int index) {
+        return cartItemList.get(index);
+    }
 }

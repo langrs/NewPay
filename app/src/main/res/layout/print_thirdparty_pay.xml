@@ -28,12 +28,12 @@
             style="@style/print_text_size"
             android:text="请妥善保管"
             android:layout_alignParentRight="true"
-            android:paddingRight="10dip"
+            android:paddingRight="10px"
             />
     </RelativeLayout>
     <TextView
         style="@style/print_text_size_big"
-        android:layout_marginBottom="5.0dip"
+        android:layout_marginBottom="5.0px"
         android:text="----------------------------------"
         android:textStyle="bold"/>
 
@@ -52,7 +52,7 @@
             style="@style/print_text_size"
             android:text=""
             android:layout_alignParentRight="true"
-            android:paddingRight="10dip"
+            android:paddingRight="10px"
             />
     </RelativeLayout>
     <RelativeLayout
@@ -70,7 +70,7 @@
             style="@style/print_text_size"
             android:text=""
             android:layout_alignParentRight="true"
-            android:paddingRight="10dip"
+            android:paddingRight="10px"
             />
     </RelativeLayout>
     <RelativeLayout
@@ -88,7 +88,7 @@
             style="@style/print_text_size"
             android:text=""
             android:layout_alignParentRight="true"
-            android:paddingRight="10dip"
+            android:paddingRight="10px"
             />
     </RelativeLayout>
     <RelativeLayout
@@ -106,7 +106,7 @@
             style="@style/print_text_size"
             android:text=""
             android:layout_alignParentRight="true"
-            android:paddingRight="10dip"
+            android:paddingRight="10px"
             />
     </RelativeLayout>
     <RelativeLayout
@@ -124,7 +124,7 @@
             style="@style/print_text_size"
             android:text=""
             android:layout_alignParentRight="true"
-            android:paddingRight="10dip"
+            android:paddingRight="10px"
             />
     </RelativeLayout>
     <RelativeLayout
@@ -159,7 +159,7 @@
             android:id="@+id/print_datetime"
             style="@style/print_text_size"
             android:layout_alignParentRight="true"
-            android:paddingRight="10dip"
+            android:paddingRight="10px"
             android:text=""
             />
     </RelativeLayout>
@@ -177,7 +177,7 @@
         android:id="@+id/print_thirdparty_no"
         style="@style/print_text_size"
         android:layout_width="@dimen/print_width"
-        android:paddingRight="10dip"
+        android:paddingRight="10px"
         android:text=""
         />
     <RelativeLayout
@@ -194,13 +194,13 @@
             android:id="@+id/print_amount"
             style="@style/print_text_size"
             android:layout_alignParentRight="true"
-            android:paddingRight="10dip"
+            android:paddingRight="10px"
             android:text=""
             />
     </RelativeLayout>
     <TextView
         style="@style/print_text_size_big"
-        android:layout_marginBottom="80.0dip"
+        android:layout_marginBottom="80.0px"
         android:text="----------------------------------"
         android:textStyle="bold"/>
 </LinearLayout>

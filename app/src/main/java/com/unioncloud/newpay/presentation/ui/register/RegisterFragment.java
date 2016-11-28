@@ -141,7 +141,7 @@ public class RegisterFragment extends StatedFragment {
 //        }
         String posNo = viewBinder.posNoEt.getText().toString();
         if (TextUtils.isEmpty(posNo)) {
-            viewBinder.posNoEt.setError("操作人员不能为空");
+            viewBinder.posNoEt.setError("POS编号不能为空");
             return null;
         }
         int selectPosition = viewBinder.posTypeSpinner.getSelectedItemPosition();

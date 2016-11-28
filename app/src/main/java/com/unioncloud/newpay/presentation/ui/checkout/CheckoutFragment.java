@@ -1,5 +1,6 @@
 package com.unioncloud.newpay.presentation.ui.checkout;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -8,7 +9,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.CompoundButton;
 import android.widget.ListView;
+import android.widget.Switch;
 
 import com.esummer.android.dialog.DefaultDialogBuilder;
 import com.esummer.android.fragment.StatedFragment;
@@ -31,10 +34,13 @@ import com.unioncloud.newpay.presentation.presenter.print.PrintOrderHandler;
 import com.unioncloud.newpay.presentation.ui.cart.OrderTotalViewBinder;
 import com.unioncloud.newpay.presentation.ui.pay.PayActivity;
 import com.unioncloud.newpay.presentation.ui.pay.PaymentSignpost;
+import com.unioncloud.newpay.presentation.ui.right.QueryRightActivity;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import static android.R.attr.data;
 
 /**
  * Created by cwj on 16/8/15.
@@ -46,10 +52,8 @@ public class CheckoutFragment extends StatedFragment {
         return fragment;
     }
 
-    private static final int REQUEST_RETRY_CALCULATE_AMOUNT = 0x111;
-    private static final int REQUEST_RETRY_SUBMIT = 0x222;
-
-    private static StateUpdateHandlerListener<CheckoutFragment, CalculateAmountsHandler> calculateAmountResponseListener =
+    private static StateUpdateHandlerListener<CheckoutFragment, CalculateAmountsHandler>
+            calculateAmountResponseListener =
             new StateUpdateHandlerListener<CheckoutFragment, CalculateAmountsHandler>() {
                 @Override
                 public void onUpdate(String key, CheckoutFragment handler, CalculateAmountsHandler response) {
@@ -61,7 +65,8 @@ public class CheckoutFragment extends StatedFragment {
                     response.removeCompletionListener(handler.calculateAmountUpdateListener);
                 }
             };
-    private UpdateCompleteCallback<CalculateAmountsHandler> calculateAmountUpdateListener =
+    private        UpdateCompleteCallback<CalculateAmountsHandler>
+            calculateAmountUpdateListener   =
             new UpdateCompleteCallback<CalculateAmountsHandler>() {
                 @Override
                 public void onCompleted(CalculateAmountsHandler response, boolean isSuccess) {
@@ -82,7 +87,7 @@ public class CheckoutFragment extends StatedFragment {
                     response.removeCompletionListener(handler.submitListener);
                 }
             };
-    private UpdateCompleteCallback<SubmitOrderHandler> submitListener =
+    private        UpdateCompleteCallback<SubmitOrderHandler>                       submitListener        =
             new UpdateCompleteCallback<SubmitOrderHandler>() {
                 @Override
                 public void onCompleted(SubmitOrderHandler response, boolean isSuccess) {
@@ -90,10 +95,16 @@ public class CheckoutFragment extends StatedFragment {
                 }
             };
 
-    private PaidTotalViewBinder paidTotalViewBinder;
-    private OrderTotalViewBinder orderTotalViewBinder;
+    private static final int REQUEST_RETRY_CALCULATE_AMOUNT = 0x111;
+    private static final int REQUEST_RETRY_SUBMIT           = 0x222;
+    private static final int REQUEST_TO_PAY                 = 0x3333;
+    private static final int REQUEST_FILLIN_RIGHT           = 0x0004;
 
-    private ListView paymentsListView;
+    private PaidTotalViewBinder  paidTotalViewBinder;
+    private OrderTotalViewBinder orderTotalViewBinder;
+    private Switch               fillInSwitch;
+
+    private ListView       paymentsListView;
     private PaymentAdapter adapter;
 
     @Override
@@ -104,7 +115,8 @@ public class CheckoutFragment extends StatedFragment {
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle
+            savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_checkout, container, false);
         return view;
     }
@@ -127,14 +139,31 @@ public class CheckoutFragment extends StatedFragment {
                 showPayment(signpost);
             }
         });
+        fillInSwitch = (Switch) view.findViewById(R.id.fragment_checkout_fillin_control);
+        fillInSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    requestRefundRight();
+                }
+            }
+        });
     }
 
-    private static final int REQUEST_TO_PAY = 0x3333;
+    private boolean isFillInOpen() {
+        return fillInSwitch.isChecked();
+    }
+
+    private void requestRefundRight() {
+        Intent intent = QueryRightActivity.getStartIntent(getActivity());
+        startActivityForResult(intent, REQUEST_FILLIN_RIGHT);
+    }
+
     private void showPayment(PaymentSignpost signpost) {
         OrderType orderType = CheckoutDataManager.getInstance().getSelectedOrderType().getOrderType();
         if (orderType == OrderType.SALE) {
             if (signpost.supportPay()) {
-                Intent intent = PayActivity.getStartIntent(getActivity(), signpost);
+                Intent intent = PayActivity.getStartIntent(getActivity(), signpost, isFillInOpen());
                 startActivityForResult(intent, REQUEST_TO_PAY);
             } else {
                 showToast("暂不支持该支付方式");
@@ -153,7 +182,7 @@ public class CheckoutFragment extends StatedFragment {
     }
 
     private void filterPayment() {
-        List<Payment> payments = PosDataManager.getInstance().getPaymentList();
+        List<Payment>         payments     = PosDataManager.getInstance().getPaymentList();
         List<PaymentSignpost> signpostList = PaymentSignpost.filter(payments);
         if (adapter != null) {
             adapter.setDataList(signpostList);
@@ -176,7 +205,6 @@ public class CheckoutFragment extends StatedFragment {
         synchronized (handler.getStatusLock()) {
             if (handler.isUpdating()) {
                 showProgressDialog("正在生成订单...");
-//                showProgressDialog();
                 handler.addCompletionListener(calculateAmountUpdateListener);
             } else {
                 dismissProgressDialog();
@@ -199,7 +227,7 @@ public class CheckoutFragment extends StatedFragment {
             submitOrder();
         }
         if (paidTotalViewBinder != null) {
-                paidTotalViewBinder.setUsedPayments(CheckoutDataManager.getInstance().getUsedPayments());
+            paidTotalViewBinder.setUsedPayments(CheckoutDataManager.getInstance().getUsedPayments());
         }
     }
 
@@ -279,8 +307,6 @@ public class CheckoutFragment extends StatedFragment {
         }
     }
 
-
-
     private void showRetrySubmit() {
         DefaultDialogBuilder builder = createAndSaveDialogBuilder(REQUEST_RETRY_SUBMIT);
         builder.setTitle("提交销售单失败");
@@ -301,16 +327,16 @@ public class CheckoutFragment extends StatedFragment {
                     response.removeCompletionListener(handler.printListener);
                 }
             };
-    private UpdateCompleteCallback<PrintOrderHandler> printListener = new UpdateCompleteCallback<PrintOrderHandler>() {
-        @Override
-        public void onCompleted(PrintOrderHandler response, boolean isSuccess) {
-            dealPrint(response);
-        }
-    };
+    private        UpdateCompleteCallback<PrintOrderHandler>                       printListener        = new
+            UpdateCompleteCallback<PrintOrderHandler>() {
+                @Override
+                public void onCompleted(PrintOrderHandler response, boolean isSuccess) {
+                    dealPrint(response);
+                }
+            };
 
 
     private void toPrintOrder(SaleOrderResult saleOrderResult) {
-//        CheckoutDataManager.getInstance().removePaidListener(paidListener);
 
         PrintOrderInfo info = new PrintOrderInfo();
         info.setPosInfo(PosDataManager.getInstance().getPosInfo());
@@ -361,7 +387,9 @@ public class CheckoutFragment extends StatedFragment {
         }
     }
 
-    /** 将正在加载的过程状态移除保存 */
+    /**
+     * 将正在加载的过程状态移除保存
+     */
     private void putLoadingItem(String loadingKey) {
         String[] loadingKeys = getArguments().getStringArray("CheckoutFragment:loadingItemsArray");
         if (loadingKeys == null) {
@@ -375,7 +403,9 @@ public class CheckoutFragment extends StatedFragment {
                 loadingKeyList.toArray(new String[loadingKeyList.size()]));
     }
 
-    /** 将正在加载的过程状态移除 */
+    /**
+     * 将正在加载的过程状态移除
+     */
     private void removeLoadingItem(String loadingKey) {
         String[] loadingKeys = getArguments().getStringArray("CheckoutFragment:loadingItemsArray");
         if (loadingKeys != null) {
@@ -389,22 +419,30 @@ public class CheckoutFragment extends StatedFragment {
     @Override
     public void onResume() {
         super.onResume();
-//        showToast("onResume");
         if (isPaymentChanged()) {
             removePaymentChanged();
             checkOrderPay();
         }
-//        CheckoutDataManager.getInstance().addPaidListener(paidListener);
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == REQUEST_TO_PAY || requestCode == 0) {
-            setPaymentChanged();
-//            showToast("onActivityResult");
-//            checkOrderPay();
-        } else {
-            super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case REQUEST_TO_PAY:
+                if (isResumed()) {
+                    checkOrderPay();
+                } else {
+                    setPaymentChanged();
+                }
+                break;
+            case REQUEST_FILLIN_RIGHT:
+                if (resultCode != Activity.RESULT_OK) {
+                    showToast("没有查询到权限!");
+                    fillInSwitch.setChecked(false);
+                }
+                break;
+            default:
+                super.onActivityResult(requestCode, resultCode, data);
         }
     }
 
@@ -432,7 +470,6 @@ public class CheckoutFragment extends StatedFragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-//        CheckoutDataManager.getInstance().removePaidListener(paidListener);
         paidTotalViewBinder = null;
         orderTotalViewBinder = null;
         paymentsListView = null;

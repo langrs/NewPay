@@ -54,10 +54,22 @@ public class PlaceOrderFragment extends StatedFragment {
     public static PlaceOrderFragment getInstance(OrderType orderType) {
         PlaceOrderFragment fragment = new PlaceOrderFragment();
         if (orderType == null) {
-            orderType = OrderType.SALE;
+            orderType = fragment.getDefaultType();
         }
         fragment.getArguments().putSerializable("orderType", orderType);
         return fragment;
+    }
+
+    private OrderType getDefaultType() {
+        return OrderType.SALE;
+    }
+
+    private boolean isSale() {
+        return OrderType.SALE == getArguments().getSerializable("orderType");
+    }
+
+    private boolean isFillIn() {
+        return OrderType.FILL_IN == getArguments().getSerializable("orderType");
     }
 
     private StateUpdateHandlerListener<PlaceOrderFragment, AddCartItemsHandler> addItemHandlerListenr =

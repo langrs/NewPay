@@ -63,6 +63,28 @@
                 android:background="?attr/editTextBackground"
                 />
         </LinearLayout>
+        <LinearLayout
+            android:id="@+id/fragment_pay_fillin_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            >
+            <TextView
+                android:id="@+id/fragment_pay_fillin_relationNo_label"
+                style="@style/Text.Checkout.CardBody"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="关联单号:"
+                />
+            <EditText
+                android:id="@+id/fragment_pay_fillin_relationNo"
+                style="@style/Text.Checkout.CardBody"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?attr/editTextBackground"
+                android:hint="银行卡号/微信(支付宝)单号/券号"
+                />
+        </LinearLayout>
     </LinearLayout>
 
     <GridView

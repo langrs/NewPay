@@ -72,11 +72,11 @@ public abstract class SingleFragmentActivity extends BaseActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Fragment contentFragment = findContentFragment();
-        if(contentFragment != null) {
-            contentFragment.onActivityResult(requestCode, resultCode, data);
-        } else {
+//        Fragment contentFragment = findContentFragment();
+//        if(contentFragment != null) {
+//            contentFragment.onActivityResult(requestCode, resultCode, data);
+//        } else {
             super.onActivityResult(requestCode, resultCode, data);
-        }
+//        }
     }
 }

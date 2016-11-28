@@ -52,7 +52,7 @@ public class DrawerHelper {
         }
     }
 
-    protected Fragment createDrawerFragment() {
+    protected static Fragment createDrawerFragment() {
         return null;
     }
 

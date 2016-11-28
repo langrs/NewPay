@@ -28,7 +28,7 @@
             android:id="@+id/print_coupon_no"
             style="@style/print_text_size"
             android:layout_alignParentRight="true"
-            android:paddingRight="10dip"
+            android:paddingRight="10px"
             />
     </RelativeLayout>
 
@@ -46,7 +46,7 @@
             android:id="@+id/print_coupon_value"
             style="@style/print_text_size"
             android:layout_alignParentRight="true"
-            android:paddingRight="10dip"
+            android:paddingRight="10px"
             />
     </RelativeLayout>
     <RelativeLayout
@@ -64,7 +64,7 @@
             style="@style/print_text_size"
             android:text=""
             android:layout_alignParentRight="true"
-            android:paddingRight="10dip"
+            android:paddingRight="10px"
             />
     </RelativeLayout>
 
@@ -84,7 +84,7 @@
 
     <TextView
         style="@style/print_text_size_big"
-        android:layout_marginBottom="80.0dip"
+        android:layout_marginBottom="80.0px"
         android:text="----------------------------------"
         android:textStyle="bold"/>
 </LinearLayout>

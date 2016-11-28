@@ -2,11 +2,19 @@ package com.unioncloud.newpay.presentation.ui.pay;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.text.TextUtils;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.esummer.android.stateupdatehandler.StateUpdateHandlerListener;
 import com.esummer.android.updatehandler.UpdateCompleteCallback;
 import com.esummer.android.utils.DeviceUtils;
+import com.unioncloud.newpay.domain.model.payment.Payment;
+import com.unioncloud.newpay.domain.model.payment.PaymentUsed;
 import com.unioncloud.newpay.domain.model.pos.PosInfo;
 import com.unioncloud.newpay.domain.model.print.PrintThirdPartyOrder;
 import com.unioncloud.newpay.domain.model.thirdparty.ThirdPartyOrder;
@@ -17,22 +25,35 @@ import com.unioncloud.newpay.presentation.presenter.payment.ThirdPartyPayHandler
 import com.unioncloud.newpay.presentation.presenter.print.PrintThirdPartyHandler;
 import com.zbar.scan.ScanCaptureActivity;
 
+import static android.R.attr.data;
+
 /**
  * Created by cwj on 16/8/15.
  */
 public class ThirdPartyPayFragment extends PayFragment {
 
     public static ThirdPartyPayFragment newWechatPay() {
-        ThirdPartyPayFragment fragment = new ThirdPartyPayFragment();
-        fragment.setPayType(PAY_WECHAT);
-        return fragment;
+        return newWechatPay(false);
     }
 
     public static ThirdPartyPayFragment newAliPay() {
+        return newAliPay(false);
+    }
+
+    public static ThirdPartyPayFragment newWechatPay(boolean isFillIn) {
         ThirdPartyPayFragment fragment = new ThirdPartyPayFragment();
-        fragment.setPayType(PAY_ALI);
+        fragment.setPayType(PAY_WECHAT);
+        fragment.getArguments().putBoolean("isFillIn", isFillIn);
         return fragment;
     }
+
+    public static ThirdPartyPayFragment newAliPay(boolean isFillIn) {
+        ThirdPartyPayFragment fragment = new ThirdPartyPayFragment();
+        fragment.setPayType(PAY_ALI);
+        fragment.getArguments().putBoolean("isFillIn", isFillIn);
+        return fragment;
+    }
+
 
     private static StateUpdateHandlerListener<ThirdPartyPayFragment, ThirdPartyPayHandler> payHandlerListener =
             new StateUpdateHandlerListener<ThirdPartyPayFragment, ThirdPartyPayHandler>() {
@@ -76,6 +97,7 @@ public class ThirdPartyPayFragment extends PayFragment {
     private static final int PAY_WECHAT = 1;
     private static final int PAY_ALI = 2;
     private static final int REQUEST_SCAN_CODE = 1000;
+    ThirdPartyPayHandler handler;
 
     private void setPayType(int payType) {
         getArguments().putInt("thirdPartyPayType", payType);
@@ -83,6 +105,20 @@ public class ThirdPartyPayFragment extends PayFragment {
 
     private int getPayType() {
         return getArguments().getInt("thirdPartyPayType");
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        handler = getSaveHandler();
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = super.onCreateView(inflater, container, savedInstanceState);
+        initFillInView(view);
+        return view;
     }
 
     @Override
@@ -103,12 +139,37 @@ public class ThirdPartyPayFragment extends PayFragment {
             showToast("支付金额超出未付款项");
             return;
         }
-        startScan(willPay);
+        if (isFillIn()) {
+            if (TextUtils.isEmpty(fillInRelationNoEt.getText())) {
+                showToast("补录必须输入原微信/支付宝支付单号");
+                return;
+            }
+            fillInPay(willPay);
+        } else {
+            startScan(willPay);
+        }
+    }
+
+    private void fillInPay(int payAmount) {
+        Payment payment = PosDataManager.getInstance().getPaymentByNumberInt(
+                getPaymentSignpost().numberToInt());
+        PaymentUsed used = new PaymentUsed();
+        used.setPaymentId(payment.getPaymentId());
+        used.setPaymentName(payment.getPaymentName());
+        used.setPaymentQy(payment.getPaymentQy());
+        used.setPayAmount(payAmount);
+        used.setExcessAmount(0);
+        used.setCurrencyId(payment.getCurrencyId());
+        used.setExchangeRate(payment.getExchangeRate());
+        used.setRelationNumber(fillInRelationNoEt.getText().toString()); // 第三方的单号,太长了.不存
+        CheckoutDataManager.getInstance().usePayment(used);
+
+        onPaidSuccess();
     }
 
     private void startScan(int willPay) {
-        if (!isPaying()) {
-            setWillPay(willPay);
+        if (!hasWillPayAmount()) {
+            setWillPayAmount(willPay);
 
             String amount = MoneyUtils.fenToString(willPay);
             Intent intent = ScanCaptureActivity.getStartIntent(getActivity(), "支付金额:" + amount);
@@ -119,9 +180,16 @@ public class ThirdPartyPayFragment extends PayFragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_SCAN_CODE) {
+            Log.e("ThirdPartyPayFragment", "onActivityResult");
             if (resultCode == Activity.RESULT_OK) {
                 String code = data.getStringExtra("SCAN_RESULT");
-                getArguments().putString("scan_code", code);
+                if (isMatchQrCode(code)) {
+                    getArguments().putString("scan_code", code);
+                } else {
+                    getArguments().remove("willPay");
+                    getArguments().remove("scan_code");
+                    showToast("请确认扫描的二维码是" + getPaymentSignpost().getName() + "!");
+                }
             } else {
                 getArguments().remove("willPay");
                 getArguments().remove("scan_code");
@@ -132,15 +200,37 @@ public class ThirdPartyPayFragment extends PayFragment {
         super.onActivityResult(requestCode, resultCode, data);
     }
 
+    private boolean isMatchQrCode(String code) {
+        if (getPaymentSignpost() == PaymentSignpost.ALI) {
+            return isAliQrCode(code);
+        }
+        if (getPaymentSignpost() == PaymentSignpost.WECHAT) {
+            return isWchatQrCode(code);
+        }
+        return false;
+    }
+
+    private boolean isAliQrCode(String code) {
+        return code.startsWith("28");
+    }
+
+    private boolean isWchatQrCode(String code) {
+        return code.startsWith("13");
+    }
+
     @Override
     public void onResume() {
         super.onResume();
+        Log.e("ThirdPartyPayFragment", "onResume");
         if (getArguments().containsKey("scan_code")) {
             String code = getArguments().getString("scan_code");
             getArguments().remove("scan_code");
             if (!TextUtils.isEmpty(code)) {
                 thirdPartyPay(code);
             }
+        }
+        if (isPaying()) {
+            updateForResponse("ThirdPartyPayFragment:pay", handler, payHandlerListener);
         }
     }
 
@@ -149,12 +239,15 @@ public class ThirdPartyPayFragment extends PayFragment {
 
         ThirdPartyOrder order = new ThirdPartyOrder();
         order.setOrderId(CheckoutDataManager.getInstance().createOrderId());
-        order.setTotalFee(getWillPay());
+        order.setTotalFee(getWillPayAmount());
+        removeWillPay();
         order.setAttach(getPaymentSignpost().getName());
         order.setBody(posInfo.getShopName() + posInfo.getStoreName());
-        ThirdPartyPayHandler handler = new ThirdPartyPayHandler(order,
-                getPaymentSignpost().numberToInt(), code,
+        if (handler == null) {
+            handler = new ThirdPartyPayHandler(order,
+                    getPaymentSignpost().numberToInt(), code,
                     DeviceUtils.getLocalIpAddress());
+        }
         updateForResponse("ThirdPartyPayFragment:pay", handler, payHandlerListener);
         handler.run();
     }
@@ -166,8 +259,10 @@ public class ThirdPartyPayFragment extends PayFragment {
         synchronized (handler.getStatusLock()) {
             if (handler.isUpdating()) {
                 showProgressDialog();
+                setPaying();
                 handler.addCompletionListener(payListener);
             } else {
+                removePaying();
                 if (handler.isSuccess() && handler.getData().isSuccess()) {
                     print(handler.getData().getData());
                 } else {
@@ -175,7 +270,7 @@ public class ThirdPartyPayFragment extends PayFragment {
                     showToast(handler.getData().getErrorMessage());
                 }
                 cleanupResponse("ThirdPartyPayFragment:pay");
-                removeWillPay();
+
             }
         }
     }
@@ -223,11 +318,35 @@ public class ThirdPartyPayFragment extends PayFragment {
         }
     }
 
+
+    private ThirdPartyPayHandler getSaveHandler() {
+        return (ThirdPartyPayHandler) getSavedState().remove("ThirdPartyPayFragment:handler");
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        getSavedState().saveState("ThirdPartyPayFragment:handler", handler);
+        super.onSaveInstanceState(outState);
+    }
+
+
+    private void setPaying() {
+        getArguments().putBoolean("ThirdPartyPayFragment:paying", true);
+    }
+
     private boolean isPaying() {
+        return getArguments().getBoolean("ThirdPartyPayFragment:paying");
+    }
+
+    private void removePaying() {
+        getArguments().remove("ThirdPartyPayFragment:paying");
+    }
+
+    private boolean hasWillPayAmount() {
         return getArguments().containsKey("willPay");
     }
 
-    private void setWillPay(int willPay) {
+    private void setWillPayAmount(int willPay) {
         getArguments().putInt("willPay", willPay);
     }
 
@@ -235,7 +354,7 @@ public class ThirdPartyPayFragment extends PayFragment {
         getArguments().remove("willPay");
     }
 
-    private int getWillPay() {
+    private int getWillPayAmount() {
         return getArguments().getInt("willPay");
     }
 }

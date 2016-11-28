@@ -51,4 +51,12 @@ public class Coupon implements Serializable {
     public void setFlag(String flag) {
         this.flag = flag;
     }
+
+    public boolean isDiscountCoupon() {
+        return "2".equals(flag);
+    }
+
+    public boolean isPointReturnCoupon() {
+        return "1".equals(flag);
+    }
 }

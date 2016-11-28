@@ -8,6 +8,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:minWidth="@dimen/Dialog.Fragment.Width.Min"
+        android:paddingBottom="@dimen/Margin.Material.Standard"
         android:orientation="vertical">
 
         <TextView

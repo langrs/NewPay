@@ -10,7 +10,11 @@ import android.widget.TextView;
 
 import com.unioncloud.newpay.data.R;
 import com.unioncloud.newpay.domain.model.cart.CartItem;
+import com.unioncloud.newpay.domain.model.erp.Coupon;
+import com.unioncloud.newpay.domain.model.order.OrderStatistics;
+import com.unioncloud.newpay.domain.model.pos.PosInfo;
 import com.unioncloud.newpay.domain.model.print.PrintOrderInfo;
+import com.unioncloud.newpay.domain.model.print.PrintThirdPartyOrder;
 import com.unioncloud.newpay.domain.utils.MoneyUtils;
 
 import java.util.List;
@@ -65,58 +69,18 @@ public class PaxPrintStore implements PrintStore {
         return false;
     }
 
-//    private static class CartItemAdapter extends BaseAdapter {
-//
-//        List<CartItem> list;
-//        Context context;
-//
-//        public CartItemAdapter(Context context, List<CartItem> list) {
-//            this.list = list;
-//            this.context = context;
-//        }
-//
-//        @Override
-//        public int getCount() {
-//            return list.size();
-//        }
-//
-//        @Override
-//        public Object getItem(int position) {
-//            return list.get(position);
-//        }
-//
-//        @Override
-//        public long getItemId(int position) {
-//            return position;
-//        }
-//
-//        @Override
-//        public View getView(int position, View convertView, ViewGroup parent) {
-//            CartItemHolder holder;
-//            if (convertView == null) {
-//                holder = new CartItemHolder();
-//                convertView = LayoutInflater.from(context).inflate(R.layout.print_order_product_item, parent, false);
-//                holder.name = (TextView) convertView.findViewById(R.id.print_order_product_item_name);
-//                holder.quantity = (TextView) convertView.findViewById(R.id.print_order_product_item_quantity);
-//                holder.unitPrice = (TextView) convertView.findViewById(R.id.print_order_product_item_unitprice);
-//                holder.total = (TextView) convertView.findViewById(R.id.print_order_product_item_subtotal);
-//                convertView.setTag(holder);
-//            } else {
-//                holder = (CartItemHolder) convertView.getTag();
-//            }
-//            CartItem item = list.get(position);
-//            holder.name.setText(item.getProductName() + "\n" + item.getProductNumber());
-//            holder.quantity.setText(String.format("%.2f", item.getQuantity()));
-//            holder.unitPrice.setText(MoneyUtils.fenToString(item.getSellUnitPrice()));
-//            holder.total.setText(MoneyUtils.fenToString(item.getSellUnitPrice() * item.getQuantity()));
-//            return convertView;
-//        }
-//    }
-//
-//    static class CartItemHolder {
-//        public TextView name;
-//        public TextView quantity;
-//        public TextView unitPrice;
-//        public TextView total;
-//    }
+    @Override
+    public Observable<Boolean> printCoupon(Coupon coupon) {
+        return null;
+    }
+
+    @Override
+    public Observable<Boolean> printOrderStatistics(OrderStatistics statistics, PosInfo posInfo) {
+        return null;
+    }
+
+    @Override
+    public Observable<Boolean> printThirdPay(PrintThirdPartyOrder order) {
+        return null;
+    }
 }

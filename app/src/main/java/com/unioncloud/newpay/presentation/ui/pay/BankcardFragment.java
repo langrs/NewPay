@@ -1,11 +1,20 @@
 package com.unioncloud.newpay.presentation.ui.pay;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.text.TextUtils;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.esummer.android.stateupdatehandler.StateUpdateHandlerListener;
 import com.esummer.android.updatehandler.UpdateCompleteCallback;
 import com.unioncloud.newpay.domain.model.backcardpay.sale.BankcardSaleRequest;
 import com.unioncloud.newpay.domain.model.backcardpay.sale.BankcardSaleResult;
+import com.unioncloud.newpay.domain.model.payment.Payment;
+import com.unioncloud.newpay.domain.model.payment.PaymentUsed;
+import com.unioncloud.newpay.presentation.model.checkout.CheckoutDataManager;
+import com.unioncloud.newpay.presentation.model.pos.PosDataManager;
 import com.unioncloud.newpay.presentation.presenter.payment.BankcardPayHandler;
 
 /**
@@ -36,13 +45,38 @@ public class BankcardFragment extends PayFragment {
 
 
     public static BankcardFragment newInstance() {
+        return newInstance(false);
+    }
+
+    public static BankcardFragment newInstance(boolean isFillIn) {
         BankcardFragment fragment = new BankcardFragment();
+        fragment.getArguments().putBoolean("isFillIn", isFillIn);
         return fragment;
     }
+
+    public static final String TAG_PAYING = "BankcardFragment:bankPaying";
+    public static final String TAG_CALL_PAY = "BankcardFragment:pay";
+
+    BankcardPayHandler handler;
 
     @Override
     protected PaymentSignpost getPaymentSignpost() {
         return PaymentSignpost.BANKCARD;
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        handler = getSaveHandler();
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle
+            savedInstanceState) {
+        View view =  super.onCreateView(inflater, container, savedInstanceState);
+        initFillInView(view);
+        return view;
     }
 
     @Override
@@ -51,11 +85,38 @@ public class BankcardFragment extends PayFragment {
             showToast("支付金额已超出未付款项");
             return;
         }
-        BankcardSaleRequest request = new BankcardSaleRequest();
-        request.setTransAmount(willPay);
-        BankcardPayHandler handler = new BankcardPayHandler(request);
-        updateForResponse("BankcardFragment:pay", handler, payHandlerListener);
-        handler.run();
+        if (isFillIn()) {
+            if (TextUtils.isEmpty(fillInRelationNoEt.getText())) {
+                showToast("补录必须录入原银行卡号");
+                return;
+            }
+            fillInPay(willPay);
+        } else {
+            BankcardSaleRequest request = new BankcardSaleRequest();
+            request.setTransAmount(willPay);
+            if (handler == null) {
+                handler = new BankcardPayHandler(request);
+            }
+            updateForResponse(TAG_CALL_PAY, handler, payHandlerListener);
+            handler.run();
+        }
+    }
+
+    private void fillInPay(int willPay) {
+        Payment payment = PosDataManager.getInstance().getPaymentByNumberInt(
+                PaymentSignpost.BANKCARD.numberToInt());
+        PaymentUsed used = new PaymentUsed();
+        used.setPaymentId(payment.getPaymentId());
+        used.setPaymentName(payment.getPaymentName());
+        used.setPaymentQy(payment.getPaymentQy());
+        used.setPayAmount(willPay);
+        used.setExcessAmount(0);
+        used.setCurrencyId(payment.getCurrencyId());
+        used.setExchangeRate(payment.getExchangeRate());
+        used.setRelationNumber(fillInRelationNoEt.getText().toString());  // 关联号码(银行)
+        CheckoutDataManager.getInstance().usePayment(used);
+
+        onPaidSuccess();
     }
 
     private void dealPay(BankcardPayHandler handler) {
@@ -63,51 +124,56 @@ public class BankcardFragment extends PayFragment {
             return;
         }
         synchronized (handler.getStatusLock()) {
-            if(handler.isUpdating()) {
+            if (handler.isUpdating()) {
                 showProgressDialog();
+                setPaying();
                 handler.addCompletionListener(payListener);
             } else {
-                if (isVisible()) {
-                    dismissProgressDialog();
-                    cleanupResponse("BankcardFragment:pay");
-                    if (handler.isSuccess() && handler.getData().isSuccess()) {
-                        showToastLong("银行卡刷新返回成功");
-                        paySuccess(handler.getData().getData());
-                    } else {
-                        showToastLong(handler.getData().getErrorMessage());
-                    }
+                dismissProgressDialog();
+                cleanupResponse(TAG_CALL_PAY);
+                removePaying();
+                if (handler.isSuccess() && handler.getData().isSuccess()) {
+                    showToastLong("银行卡刷新返回成功");
+                    paySuccess(handler.getData().getData());
+                } else {
+                    showToastLong(handler.getData().getErrorMessage());
                 }
-//                else {
-//                    setPayComplete();
-//                }
             }
         }
     }
 
-    private void setPayComplete() {
-        getArguments().putBoolean("bankPayComplete", true);
+    private void setPaying() {
+        getArguments().putBoolean(TAG_PAYING, true);
     }
 
-    private boolean isPayComplete() {
-        return getArguments().getBoolean("bankPayComplete");
+    private boolean isPaying() {
+        return getArguments().getBoolean(TAG_PAYING);
     }
 
-    private void removePayComplete() {
-        getArguments().remove("bankPayComplete");
+    private void removePaying() {
+        getArguments().remove(TAG_PAYING);
     }
 
     private void paySuccess(BankcardSaleResult result) {
         onPaidSuccess();
     }
 
+    private BankcardPayHandler getSaveHandler() {
+        return (BankcardPayHandler) getSavedState().remove("BankcardFragment:payHandler");
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        getSavedState().saveState("BankcardFragment:payHandler", handler);
+        super.onSaveInstanceState(outState);
+    }
+
     @Override
     public void onResume() {
         super.onResume();
-        updateForResponse("BankcardFragment:pay");
-//        if (isPayComplete()) {
-//            removePayComplete();
-//            updateForResponse("BankcardFragment:pay");
-//        }
+        if (isPaying()) {
+            updateForResponse(TAG_CALL_PAY, handler, payHandlerListener);
+        }
     }
 
 }

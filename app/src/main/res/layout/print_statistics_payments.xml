@@ -35,7 +35,7 @@
             style="@style/print_text_size"
             android:text="0.00"
             android:layout_toRightOf="@id/print_statistics_sale_total_prompt"
-            android:paddingLeft="10dip"
+            android:paddingLeft="10px"
             />
     </RelativeLayout>
 
@@ -53,7 +53,7 @@
             style="@style/print_text_size"
             android:text="0单"
             android:layout_toRightOf="@id/print_statistics_refund_count_prompt"
-            android:paddingLeft="10dip"
+            android:paddingLeft="10px"
             />
     </RelativeLayout>
 
@@ -71,14 +71,14 @@
             style="@style/print_text_size"
             android:text="0.00"
             android:layout_toRightOf="@id/print_statistics_refund_total_prompt"
-            android:paddingLeft="10dip"
+            android:paddingLeft="10px"
             />
     </RelativeLayout>
 
     <TextView
         android:id="@+id/print_line_tag"
         style="@style/print_text_size_big"
-        android:layout_marginBottom="5.0dip"
+        android:layout_marginBottom="5.0px"
         android:text="----------------------------------"
         android:textStyle="bold"/>
 
@@ -96,7 +96,7 @@
             style="@style/print_text_size"
             android:text="0.00"
             android:layout_toRightOf="@id/print_statistics_total_prompt"
-            android:paddingLeft="10dip"
+            android:paddingLeft="10px"
             />
     </RelativeLayout>
 
@@ -106,13 +106,13 @@
         <TextView
             android:id="@+id/print_payment_name_label"
             style="@style/print_text_size_item"
-            android:layout_width="153.6dip"
+            android:layout_width="153.6px"
             android:layout_height="wrap_content"
             android:text="类型"
             />
         <TextView
             style="@style/print_text_size_item"
-            android:layout_width="90dip"
+            android:layout_width="90px"
             android:layout_height="wrap_content"
             android:text="金额"
             />

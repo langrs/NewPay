@@ -5,7 +5,7 @@
               android:layout_height="wrap_content">
     <TextView
         style="@style/print_text_size_big"
-        android:layout_marginBottom="5.0dip"
+        android:layout_marginBottom="5.0px"
         android:text="----------------------------------"
         android:textStyle="bold"/>
 
