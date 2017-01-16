@@ -3,21 +3,17 @@ package com.unioncloud.newpay.data.repository.appupgrade.datasource;
 import android.os.Environment;
 
 import com.google.gson.JsonSyntaxException;
-import com.raizlabs.coreutils.listeners.ProgressListener;
 import com.unioncloud.newpay.data.exception.RemoteDataException;
 import com.unioncloud.newpay.data.repository.WebServiceUrlConst;
-import com.unioncloud.newpay.data.repository.thirdparty.datasource.swiftpass.SwiftPassConst;
 import com.unioncloud.newpay.data.utils.JsonUtils;
 import com.unioncloud.newpay.domain.model.appupgrade.AppUpgrade;
 import com.unioncloud.newpay.domain.model.appupgrade.DownloadInfo;
 
 import org.xutils.common.Callback;
-import org.xutils.http.HttpMethod;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
 
 import java.io.File;
-import java.lang.reflect.Type;
 
 import rx.Observable;
 import rx.Subscriber;
@@ -34,7 +30,7 @@ public class CloudAppStore implements AppStore {
         return Observable.create(new Observable.OnSubscribe<String>() {
             @Override
             public void call(Subscriber<? super String> subscriber) {
-                RequestParams params = new RequestParams(WebServiceUrlConst.APPUPGRADE);
+                RequestParams params = new RequestParams(WebServiceUrlConst.getAppUpgrade());
 //              params.setSslSocketFactory(sslContext.getSocketFactory());
 //                params.setConnectTimeout(SwiftPassConst.TIMEOUT);
                 params.setMaxRetryCount(0);

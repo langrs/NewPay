@@ -139,6 +139,10 @@ public class CartItem extends Product implements Serializable {
         this.couponDiscountAmount = couponDiscountAmount;
     }
 
+    public int subtotal() {
+        return getSellUnitPrice() * getQuantity();
+    }
+
     /** 根据预结算后返回的对象更新销售策略 */
     public void updateSaleStrategy(CartItem other) {
         if (other != null && getProductId().equals(other.getProductId())) {

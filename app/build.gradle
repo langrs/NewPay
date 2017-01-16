@@ -9,7 +9,7 @@ android {
         minSdkVersion 17
         targetSdkVersion 23
         versionCode 1
-        versionName "1.8"
+        versionName "1.9.1"
         multiDexEnabled true
     }
     signingConfigs {
@@ -64,7 +64,8 @@ dependencies {
     compile project(':domain')
     compile project(':esummer')
     compile 'io.reactivex:rxandroid:1.2.1'
-    compile project(':data')
+    releaseCompile project(path: ':data', configuration: 'release')
+    debugCompile project(path: ':data', configuration: 'debug')
     compile files('libs/zbardecoder.jar')
     compile 'com.google.zxing:core:3.2.1'
 }

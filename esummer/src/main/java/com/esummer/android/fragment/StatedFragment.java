@@ -523,10 +523,16 @@ public class StatedFragment extends BaseFragment implements FragmentStack {
         super.onDestroy();
     }
 
+    /** 是否持久化 */
+    protected boolean retainUpdateHandler() {
+        return false;
+    }
 
     @Override
     public void onDestroyView() {
-        updateHandler.clearState(this);
+        if (!retainUpdateHandler()) {
+            updateHandler.clearState(this);
+        }
         unbindDialogListener(progressDialogBuilder);
         for (int i = 0, size = dialogBuilderArray.size(); i < size; i++) {
             unbindDialogListener(dialogBuilderArray.valueAt(i));

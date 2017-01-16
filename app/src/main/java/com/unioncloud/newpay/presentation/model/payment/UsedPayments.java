@@ -1,6 +1,7 @@
 package com.unioncloud.newpay.presentation.model.payment;
 
 import com.raizlabs.coreutils.events.Event;
+import com.unioncloud.newpay.domain.model.payment.Payment;
 import com.unioncloud.newpay.domain.model.payment.PaymentUsed;
 
 import java.util.ArrayList;
@@ -40,6 +41,15 @@ public class UsedPayments {
             }
             return total;
         }
+    }
+
+    public boolean hasUsed(Payment payment) {
+        for (PaymentUsed used : usedList) {
+            if (used.getPaymentId().equals(payment.getPaymentId())) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public void clear() {

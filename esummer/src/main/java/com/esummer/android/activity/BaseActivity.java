@@ -192,6 +192,11 @@ public abstract class BaseActivity extends AppCompatActivity
         }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
     protected void showAppUpgradeDialog(AppUpgrade appUpgrade) {
         appUpgradeDialog = AppUpgradeDialog.newInstance(appUpgrade);
         appUpgradeDialog.show(getSupportFragmentManager(), "AppUpgradeFragment");

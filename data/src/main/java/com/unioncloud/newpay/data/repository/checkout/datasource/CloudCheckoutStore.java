@@ -40,7 +40,7 @@ public class CloudCheckoutStore implements CheckoutStore {
         return Observable.create(new Observable.OnSubscribe<NetResponse>() {
             @Override
             public void call(Subscriber<? super NetResponse> subscriber) {
-                NetRequest request = new NetRequest(WebServiceUrlConst.URL,
+                NetRequest request = new NetRequest(WebServiceUrlConst.getUrl(),
                         WebServiceUrlConst.NAMESPACE, WebServiceUrlConst.CHECKOUT_ACTION);
                 CheckoutOrderEntity entity = createCheckoutOrder(orderId, posInfo, vipCard, orderType, itemList);
                 request.addParam("preSaleInfo", JsonUtils.toJson(entity));

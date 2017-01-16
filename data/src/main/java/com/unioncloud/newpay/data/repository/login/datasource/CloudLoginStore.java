@@ -28,7 +28,7 @@ public class CloudLoginStore implements LoginStore {
         return Observable.create(new Observable.OnSubscribe<NetResponse>() {
             @Override
             public void call(Subscriber<? super NetResponse> subscriber) {
-                NetRequest request = new NetRequest(WebServiceUrlConst.URL,
+                NetRequest request = new NetRequest(WebServiceUrlConst.getUrl(),
                         WebServiceUrlConst.NAMESPACE, WebServiceUrlConst.LOGIN_ACTION);
                 request.addParam("userNo", userNo);
                 request.addParam("passwd", password);
@@ -70,7 +70,7 @@ public class CloudLoginStore implements LoginStore {
         return Observable.create(new Observable.OnSubscribe<NetResponse>() {
             @Override
             public void call(Subscriber<? super NetResponse> subscriber) {
-                NetRequest request = new NetRequest(WebServiceUrlConst.URL,
+                NetRequest request = new NetRequest(WebServiceUrlConst.getUrl(),
                         WebServiceUrlConst.NAMESPACE, WebServiceUrlConst.CHANGE_PASSWORD);
                 request.addParam("userId", userId);
                 request.addParam("shopId", shopId);

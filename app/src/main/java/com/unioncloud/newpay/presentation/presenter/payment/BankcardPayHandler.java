@@ -28,6 +28,10 @@ public class BankcardPayHandler extends UpdateHandler<ResultData<BankcardSaleRes
         this.request = request;
     }
 
+    public void reset() {
+        setIsUpdating(true);
+    }
+
     @Override
     public void run() {
         BankcardSaleInteractor interactor = new BankcardSaleInteractor(

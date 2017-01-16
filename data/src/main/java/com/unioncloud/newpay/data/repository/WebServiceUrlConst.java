@@ -1,18 +1,16 @@
 package com.unioncloud.newpay.data.repository;
 
+import com.unioncloud.newpay.data.BuildConfig;
+
 /**
  * Created by cwj on 16/8/12.
  */
 public class WebServiceUrlConst {
 
-//    private static final String HOST = "http://183.239.195.196:8288";
-    private static final String HOST = "http://1565s67w79.iok.la:14371";
+    private static final String HOST_RELEASE = "http://183.239.195.196:8288";
+    private static final String HOST_DEBUG = "http://1565s67w79.iok.la:14371";
 
-    public static final String URL = HOST + "/mpos_web/service/saleWebService?wsdl";
-    public static final String NAMESPACE = "http://webService.site.com/";
-
-    /** 应用升级 */
-    public static final String APPUPGRADE = HOST + "/update/appInfo.txt";
+    public static final  String NAMESPACE = "http://webService.site.com/";
 
     /** 注册POS机 */
     public static final String POS_REGISTER_ACTION = "posRegister";
@@ -50,5 +48,31 @@ public class WebServiceUrlConst {
     /** 查询退货权限 */
     public static final String QUERY_REFUND_RIGHT = "getRtnRight";
 
+    public static String getHost() {
+        if (BuildConfig.DEBUG) {
+            return HOST_DEBUG;
+        }
+        return HOST_RELEASE;
+    }
 
+    public static String getUrl() {
+        String host;
+        if (!BuildConfig.DEBUG) {
+            host = HOST_RELEASE;
+        } else {
+            host = HOST_DEBUG;
+        }
+        return host + "/mpos_web/service/saleWebService?wsdl";
+    }
+
+    /** 应用升级 */
+    public static String getAppUpgrade() {
+        String host;
+        if (!BuildConfig.DEBUG) {
+            host = HOST_RELEASE;
+        } else {
+            host = HOST_DEBUG;
+        }
+        return host + "/update/appInfo.txt";
+    }
 }

@@ -3,6 +3,7 @@ package com.unioncloud.newpay.presentation.ui.pay;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,6 +59,7 @@ public class BankcardFragment extends PayFragment {
     public static final String TAG_CALL_PAY = "BankcardFragment:pay";
 
     BankcardPayHandler handler;
+    boolean isSavedPayHandler = false;
 
     @Override
     protected PaymentSignpost getPaymentSignpost() {
@@ -67,7 +69,6 @@ public class BankcardFragment extends PayFragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        handler = getSaveHandler();
     }
 
     @Nullable
@@ -94,9 +95,7 @@ public class BankcardFragment extends PayFragment {
         } else {
             BankcardSaleRequest request = new BankcardSaleRequest();
             request.setTransAmount(willPay);
-            if (handler == null) {
-                handler = new BankcardPayHandler(request);
-            }
+            handler = new BankcardPayHandler(request);
             updateForResponse(TAG_CALL_PAY, handler, payHandlerListener);
             handler.run();
         }
@@ -133,7 +132,7 @@ public class BankcardFragment extends PayFragment {
                 cleanupResponse(TAG_CALL_PAY);
                 removePaying();
                 if (handler.isSuccess() && handler.getData().isSuccess()) {
-                    showToastLong("银行卡刷新返回成功");
+                    showToastLong("银行卡支付成功");
                     paySuccess(handler.getData().getData());
                 } else {
                     showToastLong(handler.getData().getErrorMessage());
@@ -169,11 +168,58 @@ public class BankcardFragment extends PayFragment {
     }
 
     @Override
+    protected boolean retainUpdateHandler() {
+//        return isPaying();
+        return super.retainUpdateHandler();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        handler = null;
+    }
+
+    @Override
     public void onResume() {
         super.onResume();
+        performPayWhenRestored();
+    }
+
+    private void performPayWhenRestoredOld() {
         if (isPaying()) {
-            updateForResponse(TAG_CALL_PAY, handler, payHandlerListener);
+            if (isSavedPayHandler) {
+                updateForResponse(TAG_CALL_PAY, handler, payHandlerListener);
+                handler = null;
+            } else {
+                updateForResponse(TAG_CALL_PAY);
+            }
         }
     }
 
+    @Override
+    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
+//        showToast("onViewStateRestored");
+        restoreHandler();
+    }
+
+    private void restoreHandler() {
+        handler = getSaveHandler();
+        isSavedPayHandler = (handler != null);
+//        if (isSavedPayHandler) {
+//            showToast("savedInstanceState");
+//        }
+    }
+
+    private void performPayWhenRestored() {
+        if (!isPaying()) {
+            return;
+        }
+        if (isSavedPayHandler) {
+            updateForResponse(TAG_CALL_PAY);
+        } else {
+            updateForResponse(TAG_CALL_PAY, handler, payHandlerListener);
+        }
+        handler = null;
+    }
 }

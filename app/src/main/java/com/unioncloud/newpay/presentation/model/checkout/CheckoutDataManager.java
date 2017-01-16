@@ -10,6 +10,7 @@ import com.unioncloud.newpay.domain.model.cart.CartItem;
 import com.unioncloud.newpay.domain.model.order.OrderType;
 import com.unioncloud.newpay.domain.model.order.SaleOrder;
 import com.unioncloud.newpay.domain.model.order.SaleOrderHeader;
+import com.unioncloud.newpay.domain.model.payment.Payment;
 import com.unioncloud.newpay.domain.model.payment.PaymentUsed;
 import com.unioncloud.newpay.domain.model.pos.PosInfo;
 import com.unioncloud.newpay.domain.utils.DateFormatUtils;
@@ -130,6 +131,10 @@ public class CheckoutDataManager {
             }
             usedPayments.usedPayment(used);
         }
+    }
+
+    public boolean hasUsedPayment(Payment payment) {
+        return usedPayments.hasUsed(payment);
     }
 
     public void addPaidListener(Delegate<UsedPayments> listener) {

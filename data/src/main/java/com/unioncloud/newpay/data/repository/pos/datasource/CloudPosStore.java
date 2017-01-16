@@ -39,7 +39,7 @@ public class CloudPosStore implements PosStore {
         return Observable.create(new Observable.OnSubscribe<NetResponse>() {
             @Override
             public void call(Subscriber<? super NetResponse> subscriber) {
-                NetRequest request = new NetRequest(WebServiceUrlConst.URL,
+                NetRequest request = new NetRequest(WebServiceUrlConst.getUrl(),
                         WebServiceUrlConst.NAMESPACE, WebServiceUrlConst.POS_REGISTER_ACTION);
                 request.addParam("shopNo", info.getShopNo());
                 request.addParam("storeNo", info.getStoreNo());

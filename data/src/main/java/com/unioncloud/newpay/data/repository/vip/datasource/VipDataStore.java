@@ -46,7 +46,7 @@ public class VipDataStore implements VipStore {
         return Observable.create(new Observable.OnSubscribe<NetResponse>() {
             @Override
             public void call(Subscriber<? super NetResponse> subscriber) {
-                NetRequest request = new NetRequest(WebServiceUrlConst.URL,
+                NetRequest request = new NetRequest(WebServiceUrlConst.getUrl(),
                         WebServiceUrlConst.NAMESPACE, WebServiceUrlConst.QUERY_VIP);
                 request.addParam("cdInfo", entity.getCdInfo());
                 request.addParam("billno", entity.getBillno());
@@ -120,7 +120,7 @@ public class VipDataStore implements VipStore {
     }
 
     private String queryVipJson(QueryVipEntity entity) {
-        NetRequest request = new NetRequest(WebServiceUrlConst.URL,
+        NetRequest request = new NetRequest(WebServiceUrlConst.getUrl(),
                 WebServiceUrlConst.NAMESPACE, WebServiceUrlConst.QUERY_VIP);
         request.addParam("cdInfo", entity.getCdInfo());
         request.addParam("billno", entity.getBillno());

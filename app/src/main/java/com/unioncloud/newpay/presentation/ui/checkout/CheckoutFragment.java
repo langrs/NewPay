@@ -31,6 +31,7 @@ import com.unioncloud.newpay.presentation.model.pos.PosDataManager;
 import com.unioncloud.newpay.presentation.presenter.checkout.CalculateAmountsHandler;
 import com.unioncloud.newpay.presentation.presenter.checkout.SubmitOrderHandler;
 import com.unioncloud.newpay.presentation.presenter.print.PrintOrderHandler;
+import com.unioncloud.newpay.presentation.presenter.print.PrintOrderHandlerNew;
 import com.unioncloud.newpay.presentation.ui.cart.OrderTotalViewBinder;
 import com.unioncloud.newpay.presentation.ui.pay.PayActivity;
 import com.unioncloud.newpay.presentation.ui.pay.PaymentSignpost;
@@ -100,6 +101,8 @@ public class CheckoutFragment extends StatedFragment {
     private static final int REQUEST_TO_PAY                 = 0x3333;
     private static final int REQUEST_FILLIN_RIGHT           = 0x0004;
 
+    private static final String KEY_LOADING_ARRAY = "CheckoutFragment:loadingItemsArray";
+
     private PaidTotalViewBinder  paidTotalViewBinder;
     private OrderTotalViewBinder orderTotalViewBinder;
     private Switch               fillInSwitch;
@@ -162,6 +165,10 @@ public class CheckoutFragment extends StatedFragment {
     private void showPayment(PaymentSignpost signpost) {
         OrderType orderType = CheckoutDataManager.getInstance().getSelectedOrderType().getOrderType();
         if (orderType == OrderType.SALE) {
+            if (hasSameThridPartyPayment(signpost)) {
+                showToast("第三方在线支付只能使用一个");
+                return;
+            }
             if (signpost.supportPay()) {
                 Intent intent = PayActivity.getStartIntent(getActivity(), signpost, isFillInOpen());
                 startActivityForResult(intent, REQUEST_TO_PAY);
@@ -172,6 +179,18 @@ public class CheckoutFragment extends StatedFragment {
             // TODO 录单退货
 //            fragment = signpost.toRefund();
         }
+    }
+
+    // 威富通的第三方支付, 一个订单只能支付一次
+    private boolean hasSameThridPartyPayment(PaymentSignpost signpost) {
+        if (signpost == PaymentSignpost.ALI ||
+                signpost == PaymentSignpost.WECHAT) {
+            Payment aliPay = PosDataManager.getInstance().getPaymentByNumberInt(signpost.numberToInt());
+            Payment wechatPay = PosDataManager.getInstance().getPaymentByNumberInt(signpost.numberToInt());
+            return CheckoutDataManager.getInstance().hasUsedPayment(aliPay)
+                    || CheckoutDataManager.getInstance().hasUsedPayment(wechatPay);
+        }
+        return false;
     }
 
     @Override
@@ -268,11 +287,6 @@ public class CheckoutFragment extends StatedFragment {
         }
     }
 
-    private boolean isLoading() {
-        String[] loadingKeys = getArguments().getStringArray("CartFragment:loadingItemsArray");
-        return ((loadingKeys != null) && loadingKeys.length != 0);
-    }
-
     private void submitOrder() {
         if (!isLoading()) {
             putLoadingItem("CheckoutFragment:submitOrder");
@@ -357,7 +371,7 @@ public class CheckoutFragment extends StatedFragment {
         info.setOriginalPoints(saleOrderResult.getOriginalPoints());
         info.setCoupons(saleOrderResult.getCouponList());
 
-        PrintOrderHandler handler = new PrintOrderHandler(getActivity(), info);
+        PrintOrderHandler handler = new PrintOrderHandlerNew(getActivity(), info);
 
         putLoadingItem("CheckoutFragment:PrintOrder");
         updateForResponse("CheckoutFragment:PrintOrder", handler, printHandlerListener);
@@ -387,11 +401,16 @@ public class CheckoutFragment extends StatedFragment {
         }
     }
 
+    private boolean isLoading() {
+        String[] loadingKeys = getArguments().getStringArray(KEY_LOADING_ARRAY);
+        return ((loadingKeys != null) && loadingKeys.length != 0);
+    }
+
     /**
      * 将正在加载的过程状态移除保存
      */
     private void putLoadingItem(String loadingKey) {
-        String[] loadingKeys = getArguments().getStringArray("CheckoutFragment:loadingItemsArray");
+        String[] loadingKeys = getArguments().getStringArray(KEY_LOADING_ARRAY);
         if (loadingKeys == null) {
             loadingKeys = new String[0];
         }
@@ -399,7 +418,7 @@ public class CheckoutFragment extends StatedFragment {
         if (!loadingKeyList.contains(loadingKey)) {
             loadingKeyList.add(loadingKey);
         }
-        getArguments().putStringArray("CheckoutFragment:loadingItemsArray",
+        getArguments().putStringArray(KEY_LOADING_ARRAY,
                 loadingKeyList.toArray(new String[loadingKeyList.size()]));
     }
 
@@ -407,11 +426,11 @@ public class CheckoutFragment extends StatedFragment {
      * 将正在加载的过程状态移除
      */
     private void removeLoadingItem(String loadingKey) {
-        String[] loadingKeys = getArguments().getStringArray("CheckoutFragment:loadingItemsArray");
+        String[] loadingKeys = getArguments().getStringArray(KEY_LOADING_ARRAY);
         if (loadingKeys != null) {
             ArrayList<String> loadingKeyList = new ArrayList<>(Arrays.asList(loadingKeys));
             loadingKeyList.remove(loadingKey);
-            getArguments().putStringArray("CheckoutFragment:loadingItemsArray",
+            getArguments().putStringArray(KEY_LOADING_ARRAY,
                     loadingKeyList.toArray(new String[loadingKeyList.size()]));
         }
     }

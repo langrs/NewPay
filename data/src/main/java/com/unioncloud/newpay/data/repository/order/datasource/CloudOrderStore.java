@@ -46,7 +46,7 @@ public class CloudOrderStore implements OrderStore {
         return Observable.create(new Observable.OnSubscribe<NetResponse>() {
             @Override
             public void call(Subscriber<? super NetResponse> subscriber) {
-                NetRequest request = new NetRequest(WebServiceUrlConst.URL,
+                NetRequest request = new NetRequest(WebServiceUrlConst.getUrl(),
                         WebServiceUrlConst.NAMESPACE, WebServiceUrlConst.SUBMIT_SALE);
                 request.addParam("saleInfo", JsonUtils.toJson(mapper(saleOrder)));
                 try {
@@ -169,7 +169,7 @@ public class CloudOrderStore implements OrderStore {
         return Observable.create(new Observable.OnSubscribe<NetResponse>() {
             @Override
             public void call(Subscriber<? super NetResponse> subscriber) {
-                NetRequest request = new NetRequest(WebServiceUrlConst.URL,
+                NetRequest request = new NetRequest(WebServiceUrlConst.getUrl(),
                         WebServiceUrlConst.NAMESPACE, WebServiceUrlConst.QUERY_SALE);
 //                request.addParam("saleInfo", JsonUtils.toJson(command));
                 request.addParam("shopId", command.getShopId());

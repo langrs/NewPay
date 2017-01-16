@@ -30,7 +30,7 @@ public class CloudProductStore implements ProductStore {
         return Observable.create(new Observable.OnSubscribe<NetResponse>() {
             @Override
             public void call(Subscriber<? super NetResponse> subscriber) {
-                NetRequest request = new NetRequest(WebServiceUrlConst.URL,
+                NetRequest request = new NetRequest(WebServiceUrlConst.getUrl(),
                         WebServiceUrlConst.NAMESPACE, WebServiceUrlConst.QUERY_PRODUCT_ACTION);
                 request.addParam("posNo", info.getPosNumber());
                 request.addParam("itemNo", productNumber);
@@ -69,7 +69,7 @@ public class CloudProductStore implements ProductStore {
         return Observable.create(new Observable.OnSubscribe<NetResponse>() {
             @Override
             public void call(Subscriber<? super NetResponse> subscriber) {
-                NetRequest request = new NetRequest(WebServiceUrlConst.URL,
+                NetRequest request = new NetRequest(WebServiceUrlConst.getUrl(),
                         WebServiceUrlConst.NAMESPACE, WebServiceUrlConst.QUERY_PRODUCT_ACTION);
                 request.addParam("posNo", posInfo.getPosNumber());
                 request.addParam("shopId", posInfo.getShopId());

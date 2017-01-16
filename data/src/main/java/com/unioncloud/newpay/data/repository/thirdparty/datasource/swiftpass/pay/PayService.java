@@ -44,7 +44,6 @@ public class PayService {
         if ("0".equals(payResult.getResult_code())) {   // 支付成功
             return payResult;
         }
-
 //        return doSafeMethod(request, payResult);
         return doNewSafeMethod(request, payResult);
     }
@@ -74,9 +73,10 @@ public class PayService {
                 payResult.setTime_end(queryResult.getTime_end());
                 payResult.setAttach(queryResult.getAttach());
                 return payResult;
+            } else {
+                doReverseLoop(outTradeNo);
             }
         }
-        doReverseLoop(outTradeNo);
         throw new SwiftPassException("支付失败:"+err_message);
     }
 

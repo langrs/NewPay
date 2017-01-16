@@ -55,7 +55,7 @@ public class CloudNoticeStore implements NoticeStore {
         return Observable.create(new Observable.OnSubscribe<NetResponse>() {
             @Override
             public void call(Subscriber<? super NetResponse> subscriber) {
-                NetRequest request = new NetRequest(WebServiceUrlConst.URL,
+                NetRequest request = new NetRequest(WebServiceUrlConst.getUrl(),
                         WebServiceUrlConst.NAMESPACE, WebServiceUrlConst.QUERY_NOTICE);
                 try {
                     NetResponse response = WebServiceEngine.getInstance().executeRequest(request);

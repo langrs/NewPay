@@ -27,7 +27,7 @@ public class CloudRightStore implements RightStore {
         return Observable.create(new Observable.OnSubscribe<NetResponse>() {
             @Override
             public void call(Subscriber<? super NetResponse> subscriber) {
-                NetRequest request = new NetRequest(WebServiceUrlConst.URL,
+                NetRequest request = new NetRequest(WebServiceUrlConst.getUrl(),
                         WebServiceUrlConst.NAMESPACE, WebServiceUrlConst.QUERY_REFUND_RIGHT);
                 request.addParam("userNo", userNo);
                 request.addParam("passwd", password);

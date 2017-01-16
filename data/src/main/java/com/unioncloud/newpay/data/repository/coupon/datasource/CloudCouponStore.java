@@ -31,7 +31,7 @@ public class CloudCouponStore implements CouponStore {
         return Observable.create(new Observable.OnSubscribe<NetResponse>() {
             @Override
             public void call(Subscriber<? super NetResponse> subscriber) {
-                NetRequest request = new NetRequest(WebServiceUrlConst.URL,
+                NetRequest request = new NetRequest(WebServiceUrlConst.getUrl(),
                         WebServiceUrlConst.NAMESPACE, WebServiceUrlConst.QUERY_COUPON);
                 request.addParam("shopId", shopId);
                 request.addParam("giftCouponNo", couponNo);
@@ -70,7 +70,7 @@ public class CloudCouponStore implements CouponStore {
         return Observable.create(new Observable.OnSubscribe<NetResponse>() {
             @Override
             public void call(Subscriber<? super NetResponse> subscriber) {
-                NetRequest request = new NetRequest(WebServiceUrlConst.URL,
+                NetRequest request = new NetRequest(WebServiceUrlConst.getUrl(),
                         WebServiceUrlConst.NAMESPACE, WebServiceUrlConst.CREATE_SALE_COUPON);
                 request.addParam("saleNo", orderId);
                 request.addParam("userNo", userNo);
@@ -109,7 +109,7 @@ public class CloudCouponStore implements CouponStore {
         return Observable.create(new Observable.OnSubscribe<NetResponse>() {
             @Override
             public void call(Subscriber<? super NetResponse> subscriber) {
-                NetRequest request = new NetRequest(WebServiceUrlConst.URL,
+                NetRequest request = new NetRequest(WebServiceUrlConst.getUrl(),
                         WebServiceUrlConst.NAMESPACE, WebServiceUrlConst.QUERY_POINTS_REBATE);
                 request.addParam("cdinfo", command.getTrackInfo());
                 request.addParam("billno", command.getBillNo());
@@ -149,7 +149,7 @@ public class CloudCouponStore implements CouponStore {
         return Observable.create(new Observable.OnSubscribe<NetResponse>() {
             @Override
             public void call(Subscriber<? super NetResponse> subscriber) {
-                NetRequest request = new NetRequest(WebServiceUrlConst.URL,
+                NetRequest request = new NetRequest(WebServiceUrlConst.getUrl(),
                         WebServiceUrlConst.NAMESPACE, WebServiceUrlConst.CREATE_POINTS_REBATE_COUPON);
                 request.addParam("ckcode", rebate.getCardNumber());
                 request.addParam("cardtype", rebate.getCardType());

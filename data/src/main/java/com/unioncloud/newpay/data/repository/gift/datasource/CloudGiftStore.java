@@ -29,7 +29,7 @@ public class CloudGiftStore implements GiftStore {
         return Observable.create(new Observable.OnSubscribe<NetResponse>() {
             @Override
             public void call(Subscriber<? super NetResponse> subscriber) {
-                NetRequest request = new NetRequest(WebServiceUrlConst.URL,
+                NetRequest request = new NetRequest(WebServiceUrlConst.getUrl(),
                         WebServiceUrlConst.NAMESPACE, WebServiceUrlConst.QUERY_GIFT_CARD);
                 request.addParam("cdInfo", track);
                 request.addParam("shopId", posInfo.getShopId());
