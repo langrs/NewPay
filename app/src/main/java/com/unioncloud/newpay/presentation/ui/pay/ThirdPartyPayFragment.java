@@ -25,8 +25,6 @@ import com.unioncloud.newpay.presentation.presenter.payment.ThirdPartyPayHandler
 import com.unioncloud.newpay.presentation.presenter.print.PrintThirdPartyHandler;
 import com.zbar.scan.ScanCaptureActivity;
 
-import static android.R.attr.data;
-
 /**
  * Created by cwj on 16/8/15.
  */
@@ -54,19 +52,6 @@ public class ThirdPartyPayFragment extends PayFragment {
         return fragment;
     }
 
-
-    private static StateUpdateHandlerListener<ThirdPartyPayFragment, ThirdPartyPayHandler> payHandlerListener =
-            new StateUpdateHandlerListener<ThirdPartyPayFragment, ThirdPartyPayHandler>() {
-                @Override
-                public void onUpdate(String key, ThirdPartyPayFragment handler, ThirdPartyPayHandler response) {
-                    handler.dealPay(response);
-                }
-
-                @Override
-                public void onCleanup(String key, ThirdPartyPayFragment handler, ThirdPartyPayHandler response) {
-                    response.removeCompletionListener(handler.payListener);
-                }
-            };
     private UpdateCompleteCallback<ThirdPartyPayHandler> payListener =
             new UpdateCompleteCallback<ThirdPartyPayHandler>() {
         @Override
@@ -151,8 +136,7 @@ public class ThirdPartyPayFragment extends PayFragment {
     }
 
     private void fillInPay(int payAmount) {
-        Payment payment = PosDataManager.getInstance().getPaymentByNumberInt(
-                getPaymentSignpost().numberToInt());
+        Payment payment = getPayment();
         PaymentUsed used = new PaymentUsed();
         used.setPaymentId(payment.getPaymentId());
         used.setPaymentName(payment.getPaymentName());
@@ -221,7 +205,6 @@ public class ThirdPartyPayFragment extends PayFragment {
     @Override
     public void onResume() {
         super.onResume();
-        Log.e("ThirdPartyPayFragment", "onResume");
         if (getArguments().containsKey("scan_code")) {
             String code = getArguments().getString("scan_code");
             getArguments().remove("scan_code");
@@ -229,9 +212,21 @@ public class ThirdPartyPayFragment extends PayFragment {
                 thirdPartyPay(code);
             }
         }
-        if (isPaying()) {
-            updateForResponse("ThirdPartyPayFragment:pay", handler, payHandlerListener);
+        performPayWhenRestored();
+    }
+
+    private void performPayWhenRestored() {
+        if (!isPaying()) {
+            return;
         }
+        ThirdPartyPayHandler payHandler = getPayingHandler();
+        if (payHandler != null) {
+            dealPay(payHandler);
+        }
+    }
+
+    private ThirdPartyPayHandler getPayingHandler() {
+        return (ThirdPartyPayHandler) CheckoutDataManager.getInstance().getPaying(getPayment().getPaymentId());
     }
 
     private void thirdPartyPay(String code) {
@@ -248,8 +243,9 @@ public class ThirdPartyPayFragment extends PayFragment {
                     getPaymentSignpost().numberToInt(), code,
                     DeviceUtils.getLocalIpAddress());
         }
-        updateForResponse("ThirdPartyPayFragment:pay", handler, payHandlerListener);
-        handler.run();
+        CheckoutDataManager.getInstance().addPaying(getPayment().getPaymentId(), handler);
+        dealPay(handler);   // 更新UI中的转圈
+        handler.startPay();
     }
 
     private void dealPay(ThirdPartyPayHandler handler) {
@@ -260,17 +256,17 @@ public class ThirdPartyPayFragment extends PayFragment {
             if (handler.isUpdating()) {
                 showProgressDialog();
                 setPaying();
-                handler.addCompletionListener(payListener);
+                handler.callOrSubscribe(payListener);
             } else {
                 removePaying();
+                handler.removeCompletionListener(payListener);
+                CheckoutDataManager.getInstance().removePaying(getPayment().getPaymentId());
                 if (handler.isSuccess() && handler.getData().isSuccess()) {
                     print(handler.getData().getData());
                 } else {
                     dismissProgressDialog();
                     showToast(handler.getData().getErrorMessage());
                 }
-                cleanupResponse("ThirdPartyPayFragment:pay");
-
             }
         }
     }
@@ -356,5 +352,22 @@ public class ThirdPartyPayFragment extends PayFragment {
 
     private int getWillPayAmount() {
         return getArguments().getInt("willPay");
+    }
+
+    private Payment payment;
+    private Payment getPayment() {
+        if (payment == null) {
+            payment = PosDataManager.getInstance().getPaymentByNumberInt(
+                    getPaymentSignpost().numberToInt());
+        }
+        return payment;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroy();
+        if (isPaying()) {
+            getPayingHandler().removeCompletionListener(payListener);
+        }
     }
 }

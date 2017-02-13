@@ -1,6 +1,5 @@
 package com.unioncloud.newpay.presentation.presenter.payment;
 
-import com.esummer.android.updatehandler.UpdateHandler;
 import com.unioncloud.newpay.NewPayApplication;
 import com.unioncloud.newpay.domain.interactor.backcardpay.BankcardSaleInteractor;
 import com.unioncloud.newpay.domain.model.backcardpay.sale.BankcardSaleRequest;
@@ -18,8 +17,7 @@ import rx.Subscriber;
 /**
  * Created by cwj on 16/8/17.
  */
-public class BankcardPayHandler extends UpdateHandler<ResultData<BankcardSaleResult>, BankcardPayHandler>
-    implements Runnable {
+public class BankcardPayHandler extends PayHandler<ResultData<BankcardSaleResult>, BankcardPayHandler> {
 
     private BankcardSaleRequest request;
 
@@ -28,12 +26,8 @@ public class BankcardPayHandler extends UpdateHandler<ResultData<BankcardSaleRes
         this.request = request;
     }
 
-    public void reset() {
-        setIsUpdating(true);
-    }
-
     @Override
-    public void run() {
+    public void startPay() {
         BankcardSaleInteractor interactor = new BankcardSaleInteractor(
                 PresenterUtils.getExecutorProvider(),
                 request,

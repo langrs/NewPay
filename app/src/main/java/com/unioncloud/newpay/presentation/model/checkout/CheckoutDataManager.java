@@ -2,14 +2,10 @@ package com.unioncloud.newpay.presentation.model.checkout;
 
 import android.text.TextUtils;
 
-import com.raizlabs.coreutils.events.Event;
 import com.raizlabs.coreutils.functions.Delegate;
 import com.unioncloud.newpay.NewPayApplication;
 import com.unioncloud.newpay.domain.model.cart.AddProductEntry;
 import com.unioncloud.newpay.domain.model.cart.CartItem;
-import com.unioncloud.newpay.domain.model.order.OrderType;
-import com.unioncloud.newpay.domain.model.order.SaleOrder;
-import com.unioncloud.newpay.domain.model.order.SaleOrderHeader;
 import com.unioncloud.newpay.domain.model.payment.Payment;
 import com.unioncloud.newpay.domain.model.payment.PaymentUsed;
 import com.unioncloud.newpay.domain.model.pos.PosInfo;
@@ -23,13 +19,12 @@ import com.unioncloud.newpay.presentation.presenter.cart.UpdateItemQuantityHandl
 import com.unioncloud.newpay.presentation.presenter.checkout.EmptyCheckoutHandler;
 import com.unioncloud.newpay.presentation.presenter.cart.RemoveCartItemsHandler;
 import com.unioncloud.newpay.presentation.presenter.checkout.CalculateAmountsHandler;
-import com.unioncloud.newpay.presentation.presenter.checkout.GetSnAndCalcuateHandler;
 import com.unioncloud.newpay.presentation.presenter.checkout.SubmitOrderHandler;
-import com.unioncloud.newpay.presentation.presenter.refund.RefundOrderHandler;
+import com.unioncloud.newpay.presentation.presenter.payment.PayHandler;
 import com.unioncloud.newpay.presentation.presenter.sharedpreferences.PreferencesUtils;
 
-import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -43,6 +38,8 @@ public class CheckoutDataManager {
     private String lastSerialNumber = null;
     private OrderTotals orderTotals = new OrderTotals();
     private UsedPayments usedPayments = new UsedPayments();
+
+    private HashMap<String, PayHandler> payingHandler = new HashMap<>();
 
     public static CheckoutDataManager getInstance() {
         if (instance == null) {
@@ -100,6 +97,7 @@ public class CheckoutDataManager {
         CartDataManager.getInstance().updateLocalSaleStrategy(list);
         orderTotals.calculateTotals(getCartDataManager().getItemList());
         usedPayments.clear();
+        payingHandler.clear();
     }
 
     public int getPaidTotal() {
@@ -214,6 +212,7 @@ public class CheckoutDataManager {
         selectedVipCard.clear();
         orderTotals.clear();
         usedPayments.clear();
+        payingHandler.clear();
         getCartDataManager().clear();
     }
 
@@ -229,4 +228,18 @@ public class CheckoutDataManager {
         usedPayments.clear();
     }
 
+    public void addPaying(String paymentId, PayHandler payHandler) {
+        payingHandler.put(paymentId, payHandler);
+    }
+
+    public PayHandler getPaying(String paymentId) {
+        if (payingHandler.containsKey(paymentId)) {
+            return payingHandler.get(paymentId);
+        }
+        return null;
+    }
+
+    public void removePaying(String paymentId) {
+        payingHandler.remove(paymentId);
+    }
 }

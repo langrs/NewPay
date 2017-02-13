@@ -371,7 +371,7 @@ public class CheckoutFragment extends StatedFragment {
         info.setOriginalPoints(saleOrderResult.getOriginalPoints());
         info.setCoupons(saleOrderResult.getCouponList());
 
-        PrintOrderHandler handler = new PrintOrderHandlerNew(getActivity(), info);
+        PrintOrderHandler handler = new PrintOrderHandler(getActivity(), info);
 
         putLoadingItem("CheckoutFragment:PrintOrder");
         updateForResponse("CheckoutFragment:PrintOrder", handler, printHandlerListener);

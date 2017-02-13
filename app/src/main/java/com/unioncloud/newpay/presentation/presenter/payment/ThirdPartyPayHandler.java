@@ -1,38 +1,34 @@
 package com.unioncloud.newpay.presentation.presenter.payment;
 
-import com.esummer.android.updatehandler.UpdateHandler;
 import com.unioncloud.newpay.domain.interactor.thirdparty.ThirdPartyPayInteractor;
 import com.unioncloud.newpay.domain.model.payment.Payment;
 import com.unioncloud.newpay.domain.model.payment.PaymentUsed;
-import com.unioncloud.newpay.domain.model.pos.PosInfo;
 import com.unioncloud.newpay.domain.model.thirdparty.ThirdPartyOrder;
 import com.unioncloud.newpay.presentation.model.ResultData;
 import com.unioncloud.newpay.presentation.model.checkout.CheckoutDataManager;
 import com.unioncloud.newpay.presentation.model.pos.PosDataManager;
 import com.unioncloud.newpay.presentation.presenter.PresenterUtils;
-import com.unioncloud.newpay.presentation.ui.pay.PaymentSignpost;
 
 import rx.Subscriber;
 
 /**
  * Created by cwj on 16/8/18.
  */
-public class ThirdPartyPayHandler extends UpdateHandler<ResultData<ThirdPartyOrder>, ThirdPartyPayHandler>
-        implements Runnable {
+public class ThirdPartyPayHandler extends PayHandler<ResultData<ThirdPartyOrder>, ThirdPartyPayHandler> {
 
     private String barcode;
     private String ip;
     private int paymentNumberInt;
 
     public ThirdPartyPayHandler(ThirdPartyOrder data, int paymentNumberInt, String barcode, String ip) {
-        super(new ResultData<ThirdPartyOrder>(false, data, "支付失败"), true);
+        super(new ResultData<>(false, data, "支付失败"), true);
         this.barcode = barcode;
         this.ip = ip;
         this.paymentNumberInt = paymentNumberInt;
     }
 
     @Override
-    public void run() {
+    public void startPay() {
         ThirdPartyPayInteractor interactor = new ThirdPartyPayInteractor(
                 PresenterUtils.getExecutorProvider(),
                 data.getData().getOrderId(),
@@ -56,14 +52,6 @@ public class ThirdPartyPayHandler extends UpdateHandler<ResultData<ThirdPartyOrd
 
             @Override
             public void onNext(ThirdPartyOrder thirdPartyOrder) {
-                ThirdPartyOrder order = data.getData();
-                order.setThirdOrderId(thirdPartyOrder.getThirdOrderId());
-                order.setAttach(thirdPartyOrder.getAttach());
-                order.setBillNo(thirdPartyOrder.getBillNo());
-                order.setDatetime(thirdPartyOrder.getDatetime());
-                order.setTradeState(thirdPartyOrder.getTradeState());
-                order.setTotalFee(thirdPartyOrder.getTotalFee());
-                order.setCouponFee(thirdPartyOrder.getCouponFee());
                 data.onSuccess(thirdPartyOrder);
 
                 Payment payment = PosDataManager.getInstance().getPaymentByNumberInt(
@@ -83,5 +71,17 @@ public class ThirdPartyPayHandler extends UpdateHandler<ResultData<ThirdPartyOrd
                 onUpdateCompleted();
             }
         });
+    }
+
+    private void updateSuccessData(ThirdPartyOrder successData) {
+        ThirdPartyOrder order = data.getData();
+        order.setThirdOrderId(successData.getThirdOrderId());
+        order.setAttach(successData.getAttach());
+        order.setBillNo(successData.getBillNo());
+        order.setDatetime(successData.getDatetime());
+        order.setTradeState(successData.getTradeState());
+        order.setTotalFee(successData.getTotalFee());
+        order.setCouponFee(successData.getCouponFee());
+        data.onSuccess(order);
     }
 }
