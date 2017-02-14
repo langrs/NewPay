@@ -319,7 +319,9 @@ public class OrderDetailFragment extends StatedFragment {
         PosDataManager posDataManager = PosDataManager.getInstance();
         for (CartItem cartItem : saleOrder.getItemList()) {
             Product product = posDataManager.getLocalProductById(cartItem.getProductId());
-            cartItem.setProductName(product.getProductName());
+            if (product != null) {
+                cartItem.setProductName(product.getProductName());
+            }
         }
         info.setCartItemList(saleOrder.getItemList());
         if (!TextUtils.isEmpty(header.getVipCardNumber())) {

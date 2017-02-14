@@ -141,9 +141,9 @@ public class OrderHistoryFragment extends StatedFragment implements AdapterView.
         String startDateStr = startDate.getText().toString();
         Date startDate = DateFormatUtils.parseYYYY_MM_DD(startDateStr);
         String endDateStr = endDate.getText().toString();
-        Date endDate = DateFormatUtils.parseYYYY_MM_DD(endDateStr);
+//        Date endDate = DateFormatUtils.parseYYYY_MM_DD(endDateStr);
 
-        DatePickerDialog dialog = DatePickerDialog.newInstance("选择结束日期", startDate, endDate);
+        DatePickerDialog dialog = DatePickerDialog.newInstance("选择结束日期", startDate, startDate);
         dialog.setTargetFragment(this, REQUEST_CHANGE_END_DATE);
         dialog.show(getChildFragmentManager(), "OrderHistoryFragment:selectEndDate");
     }

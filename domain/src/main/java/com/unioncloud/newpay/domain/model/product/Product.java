@@ -50,7 +50,7 @@ public class Product implements Serializable {
     }
 
     public String getProductName() {
-        return productName;
+        return (productName == null) ? "" : productName;
     }
 
     public void setProductName(String productName) {
