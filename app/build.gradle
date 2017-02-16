@@ -68,4 +68,5 @@ dependencies {
     debugCompile project(path: ':data', configuration: 'debug')
     compile files('libs/zbardecoder.jar')
     compile 'com.google.zxing:core:3.2.1'
+    compile project(':pax')
 }

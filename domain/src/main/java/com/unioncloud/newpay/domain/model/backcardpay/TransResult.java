@@ -60,8 +60,4 @@ public abstract class TransResult {
         this.respMessage = respMessage;
     }
 
-    public boolean isSuccess() {
-        return "00".equals(respCode);
-    }
-
 }

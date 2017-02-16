@@ -6,6 +6,7 @@ import com.unioncloud.newpay.data.repository.appupgrade.datasource.AppStore;
 import com.unioncloud.newpay.data.repository.appupgrade.datasource.CloudAppStore;
 import com.unioncloud.newpay.data.repository.bankcardpay.datasource.BankcardPayStore;
 import com.unioncloud.newpay.data.repository.bankcardpay.datasource.PaxBankcardPayStore;
+import com.unioncloud.newpay.data.repository.bankcardpay.datasource.newversion.PaxNewStore;
 import com.unioncloud.newpay.data.repository.cart.datasource.CartStore;
 import com.unioncloud.newpay.data.repository.cart.datasource.CloudCartStore;
 import com.unioncloud.newpay.data.repository.checkout.datasource.CheckoutStore;
@@ -71,7 +72,8 @@ public class StoreFactory {
     }
 
     public static BankcardPayStore getBankcardPayStore(Context context) {
-        return new PaxBankcardPayStore(context);
+//        return new PaxBankcardPayStore(context);
+        return new PaxNewStore(context);
     }
 
     public static ThirdPartyStore getThirdPartyStore() {

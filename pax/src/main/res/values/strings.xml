@@ -1,0 +1,42 @@
+<resources>
+    <string name="app_name">Pax</string>
+    <!-- Pax交易应答码 -->
+    <string name="PaxResp.Success">交易成功</string>
+    <string name="PaxResp.Timeout">(交易)超时</string>
+    <string name="PaxResp.ConnectTimeout">连接超时</string>
+    <string name="PaxResp.SendFail">发送失败</string>
+    <string name="PaxResp.ReceiveFail">接收失败</string>
+    <string name="PaxResp.PackageEncodeError">打包失败</string>
+    <string name="PaxResp.PackageDecodeError">解包失败</string>
+    <string name="PaxResp.PackageInvalid">非法包</string>
+    <string name="PaxResp.MacError">解包MAC错</string>
+    <string name="PaxResp.MessageTypeNotMatch">消息类型不一致</string>
+    <string name="PaxResp.ProcessCodeNotMatch">处理码不一致</string>
+    <string name="PaxResp.AmountNotMatch">交易金额不一致</string>
+    <string name="PaxResp.VoucherNumberNotMatch">流水号不一致</string>
+    <string name="PaxResp.TerminalNumberMatch">终端号不一致</string>
+    <string name="PaxResp.MerchantNumberNotMatch">商户号不一致</string>
+    <string name="PaxResp.NotFoundTransaction">无交易</string>
+    <string name="PaxResp.NotFoundOriginalTransaction">无原始交易</string>
+    <string name="PaxResp.TransactionIsVoided">此交易已撤销</string>
+    <string name="PaxResp.TransactionCannotVoid">此交易不可撤销</string>
+    <string name="PaxResp.OpenComPortError">打开通讯口错误</string>
+    <string name="PaxResp.Forbidden">平台拒绝</string>
+    <string name="PaxResp.Stop">终止</string>
+    <string name="PaxResp.NotLogin">终端未签到</string>
+    <string name="PaxResp.NumberLimitAndSettleNow">交易笔数超限, 立即结算</string>
+    <string name="PaxResp.NumberLimitAndSettleLater">交易笔数超限, 稍后结算</string>
+    <string name="PaxResp.NotEnoughStorage">存储空间不足</string>
+    <string name="PaxResp.NotSupport">终端不支持该交易</string>
+
+    <string name="Pax.Exception.NoService">无法正常调用服务, 请确认是否安装银行支付APP</string>
+    <string name="Pax.Exception.ServiceError">百富支付服务调用异常, 请联系管理员</string>
+    <string name="Pax.Exception.ServiceJSonError">百富支付服务数据返回异常, 请联系管理员</string>
+    <string name="Pax.Exception.EmptyAmount">金额不能为空</string>
+    <string name="Pax.Exception.InvalidAmount">最大金额不能超过10位</string>
+    <string name="Pax.Exception.EmptyVoucherNumber">银行交易流水号不能为空!</string>
+    <string name="Pax.Exception.InvalidVoucherNumber">银行交易流水号最大长度6位!</string>
+    <string name="Pax.Exception.EmptyReference">银行交易参考号不能为空!</string>
+    <string name="Pax.Exception.InvalidReference">银行交易参考号长度不能超过12位!</string>
+    <string name="Pax.Exception.InvalidDate">无效日期, 示例12月4号请输入: 1204</string>
+</resources>
