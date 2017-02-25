@@ -7,9 +7,10 @@ import android.content.ServiceConnection;
 import android.os.IBinder;
 import android.os.RemoteException;
 import android.support.annotation.WorkerThread;
+import android.util.Log;
 
 import com.google.gson.JsonParseException;
-import com.pax.pay.PayHelper;
+import com.pax.pay.service.aidl.PayHelper;
 
 /**
  * 百富支付服务. 使用时应该保证该对象全局唯一.
@@ -43,6 +44,9 @@ public class PaxService {
         try {
             context.bindService(new Intent(ACTION_PAY), conn, Context.BIND_AUTO_CREATE);
         } catch (SecurityException e) {
+            Log.e("Pax", e.getMessage());
+        } catch (Exception e) {
+            Log.e("Pax", e.getMessage());
         }
     }
 
@@ -95,6 +99,9 @@ public class PaxService {
     }
 
     private PaxResponse transaction(PaxRequest request) throws PaxPayException {
+        if (!syncBindService()) {
+            throw new PaxPayException(R.string.Pax_Exception_ServiceError);
+        }
         try {
             String responseJson = payHelper.doTrans(JsonUtils.toJson(request));
             PaxResponse response = JsonUtils.simpleFromJson(responseJson, PaxResponse.class);

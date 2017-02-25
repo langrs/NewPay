@@ -1,5 +1,5 @@
 // PayHelper.aidl
-package com.pax.pay;
+package com.pax.pay.service.aidl;
 
 // Declare any non-default types here with import statements
 
