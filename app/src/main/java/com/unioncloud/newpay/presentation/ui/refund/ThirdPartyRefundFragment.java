@@ -9,6 +9,7 @@ import android.view.View;
 
 import com.esummer.android.stateupdatehandler.StateUpdateHandlerListener;
 import com.esummer.android.updatehandler.UpdateCompleteCallback;
+import com.unioncloud.newpay.data.repository.thirdparty.datasource.swiftpass.SwiftPassConst;
 import com.unioncloud.newpay.domain.model.pos.PosInfo;
 import com.unioncloud.newpay.domain.model.print.PrintThirdPartyOrder;
 import com.unioncloud.newpay.domain.model.thirdparty.ThirdPartyRefundOrder;
@@ -191,7 +192,7 @@ public class ThirdPartyRefundFragment extends RefundFragment {
             printInfo.setDate(DateFormatUtils.yyyyMMddHHmmss(new Date()));
         }
         printInfo.setAmount(MoneyUtils.fenToString(-order.getRefundFee()));
-        printInfo.setMchId("7551000001"); // 第三方支付的商户号
+        printInfo.setMchId(SwiftPassConst.MCH_ID); // 第三方支付的商户号
         printInfo.setTradeType("退款");
 
         PrintThirdPartyHandler handler = new PrintThirdPartyHandler(getActivity(), printInfo);

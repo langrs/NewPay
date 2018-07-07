@@ -97,6 +97,17 @@ public class PreferencesUtils {
         return sp.edit().putString("lastUser", lastUser).commit();
     }
 
+    /** 获取第三方交易中的商户单号 */
+    public static String getLastThirdPartyPayId(Context context) {
+        SharedPreferences sp = context.getSharedPreferences(PREFERENCES_NAME, Context.MODE_PRIVATE);
+        return sp.getString("lastThirdPartyPay", null);
+    }
+
+    public static void saveLastThirdPartyPayId(Context context, String lastThirdPartyPayId) {
+        SharedPreferences sp = context.getSharedPreferences(PREFERENCES_NAME, Context.MODE_PRIVATE);
+        sp.edit().putString("lastThirdPartyPay", lastThirdPartyPayId).apply();
+    }
+
     public static void coachCount(Context context) {
         int coachCount = 0;
         if(context != null) {

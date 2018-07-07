@@ -27,12 +27,12 @@ enum PaxResponseCode {
     TRANSACTION_CANNOT_VOID("-18", R.string.PaxResp_TransactionCannotVoid),
     OPEN_COM_PORT_ERROR("-19", R.string.PaxResp_OpenComPortError),
     FORBIDDEN("-20", R.string.PaxResp_Forbidden),
-    STOP("21", R.string.PaxResp_Stop),
-    NOT_LOGIN("22", R.string.PaxResp_NotLogin),
-    NUMBER_LIMIT_AND_SETTLE_NOW("23", R.string.PaxResp_NumberLimitAndSettleNow),
-    NUMBER_LIMIT_AND_SETTLE_LATER("24", R.string.PaxResp_NumberLimitAndSettleLater),
-    NOT_ENOUGH_STORAGE("25", R.string.PaxResp_NotEnoughStorage),
-    NOT_SUPPORT("26", R.string.PaxResp_NotSupport);
+    STOP("-21", R.string.PaxResp_Stop),
+    NOT_LOGIN("-22", R.string.PaxResp_NotLogin),
+    NUMBER_LIMIT_AND_SETTLE_NOW("-23", R.string.PaxResp_NumberLimitAndSettleNow),
+    NUMBER_LIMIT_AND_SETTLE_LATER("-24", R.string.PaxResp_NumberLimitAndSettleLater),
+    NOT_ENOUGH_STORAGE("-25", R.string.PaxResp_NotEnoughStorage),
+    NOT_SUPPORT("-26", R.string.PaxResp_NotSupport);
 
     public String code;
     @StringRes

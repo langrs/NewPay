@@ -61,7 +61,7 @@ public class CartItemView extends LinearLayout {
 
         rootView = findViewById(R.id.view_cart_object_background_item_container);
 
-        priceContainerView.setOnClickListener(new View.OnClickListener(){
+        priceContainerView.setOnClickListener(new OnClickListener(){
             @Override
             public void onClick(View v) {
                 if (itemMenuListener != null) {
@@ -106,7 +106,7 @@ public class CartItemView extends LinearLayout {
         this.itemMenuListener = listener;
     }
 
-    public void setProductOnClickListener(View.OnClickListener listener) {
+    public void setProductOnClickListener(OnClickListener listener) {
         this.rootView.setOnClickListener(listener);
     }
 

@@ -166,6 +166,9 @@ public class QueryCouponFragment extends StatedFragment {
             fragment = CouponFragment.newDiscountCoupon(coupon);
         } else if ("1".equals(flag)) {
             fragment = CouponFragment.newPointReturnCoupon(coupon);
+        } else {
+            showToast("无效的券类型！");
+            return;
         }
         if (fragment != null && stackDelegate != null) {
             stackDelegate.push(this, fragment);

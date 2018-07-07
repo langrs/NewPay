@@ -185,7 +185,7 @@ public class OrderDataRepository implements SaleOrderRepository {
         }
         item.setPoints(entity.getSalePoints());
         if (!TextUtils.isEmpty(entity.getVipDisc())) {
-            item.setVipDiscount(Integer.valueOf(entity.getVipDisc()));
+            item.setVipDiscount(entity.getVipDisc());
         }
         if (!TextUtils.isEmpty(entity.getVipDiscAmt())) {
             item.setVipDiscountAmount(MoneyUtils.getFen(entity.getVipDiscAmt()));

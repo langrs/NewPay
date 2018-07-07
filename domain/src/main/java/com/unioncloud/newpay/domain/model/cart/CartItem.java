@@ -18,9 +18,9 @@ public class CartItem extends Product implements Serializable {
     private int discountAmount;        // 折扣总额
     private int saleAmount;            // 实销总额
     private String promInfo;           // 优惠信息
-    private int vipDiscount;           // 会员打折率
+    private String vipDiscount;           // 会员打折率
     private int vipDiscountAmount;     // 会员打折金额
-    private int promDiscount;          // 促销打折率
+    private String promDiscount;          // 促销打折率
     private int promDiscountAmount;    // 促销打折金额
     private int reduceAmount;          // 满减优惠金额
     private String points;             // 销售积分
@@ -83,11 +83,11 @@ public class CartItem extends Product implements Serializable {
         this.promInfo = promInfo;
     }
 
-    public int getVipDiscount() {
+    public String getVipDiscount() {
         return vipDiscount;
     }
 
-    public void setVipDiscount(int vipDiscount) {
+    public void setVipDiscount(String vipDiscount) {
         this.vipDiscount = vipDiscount;
     }
 
@@ -99,11 +99,11 @@ public class CartItem extends Product implements Serializable {
         this.vipDiscountAmount = vipDiscountAmount;
     }
 
-    public int getPromDiscount() {
+    public String getPromDiscount() {
         return promDiscount;
     }
 
-    public void setPromDiscount(int promDiscount) {
+    public void setPromDiscount(String promDiscount) {
         this.promDiscount = promDiscount;
     }
 

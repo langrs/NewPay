@@ -11,6 +11,7 @@ public class PaxSaleVoidRequest extends PaxRequest {
         super();
         PaxPreconditions.checkVoucherNumber(voucherNo);
         this.voucherNo = voucherNo;
+        this.transType = PaxConstants.TRADE_VOID;
     }
 
     public String getVoucherNo() {

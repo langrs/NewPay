@@ -32,7 +32,7 @@ public class PaxNewStore implements BankcardPayStore {
             @Override
             public void call(Subscriber<? super PaxResponse> subscriber) {
                 try {
-                    paxService.sale(MapperUtils.mapperSaleRequest(request));
+                    subscriber.onNext(paxService.sale(MapperUtils.mapperSaleRequest(request)));
                 } catch (PaxPayException e) {
                     subscriber.onError(new RemoteDataException(context.getString(e.getMessageRes())));
                 }
@@ -54,7 +54,7 @@ public class PaxNewStore implements BankcardPayStore {
             @Override
             public void call(Subscriber<? super PaxResponse> subscriber) {
                 try {
-                    paxService.saleVoid(MapperUtils.mapperSaleVoidRequest(request));
+                    subscriber.onNext(paxService.saleVoid(MapperUtils.mapperSaleVoidRequest(request)));
                 } catch (PaxPayException e) {
                     subscriber.onError(new RemoteDataException(context.getString(e.getMessageRes())));
                 }
@@ -76,7 +76,7 @@ public class PaxNewStore implements BankcardPayStore {
             @Override
             public void call(Subscriber<? super PaxResponse> subscriber) {
                 try {
-                    paxService.refund(MapperUtils.mapperRefundRequest(request));
+                    subscriber.onNext(paxService.refund(MapperUtils.mapperRefundRequest(request)));
                 } catch (PaxPayException e) {
                     subscriber.onError(new RemoteDataException(context.getString(e.getMessageRes())));
                 }

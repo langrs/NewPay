@@ -30,7 +30,6 @@ public class AppUpgradeDialog extends StatedFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        // TODO 初始化
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 

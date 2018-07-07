@@ -14,15 +14,16 @@ import rx.subscriptions.Subscriptions;
 public abstract class BaseInteractor<T> {
 
     private ExecutorProvider provider;
-
+//Observable调用subscribe( )方法返回的对象，有unsubscribe( )方法，可以用来取消订阅事件
     private Subscription subscription = Subscriptions.empty();
 
     public BaseInteractor(ExecutorProvider provider) {
         this.provider = provider;
     }
-
+//通过子类来获取被观察者
     protected abstract Observable<T> bindObservable();
-
+//接收观察者参数,在子类的bindObservable中设置好被观察者,在该方法中传入观察者,通过该方法来关联
+//观察者和被观察者,并且两者开启不同的线程来运行,
     public void execute(Subscriber<T> domainSubscriber) {
         subscription = bindObservable().
                 subscribeOn(Schedulers.from(provider.providerThread())).

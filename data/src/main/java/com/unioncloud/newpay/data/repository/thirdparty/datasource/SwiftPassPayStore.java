@@ -67,7 +67,7 @@ public class SwiftPassPayStore implements ThirdPartyStore {
                 ThirdPartyOrder order = new ThirdPartyOrder();
                 order.setOrderId(payResult.getOut_trade_no());
                 order.setThirdOrderId(payResult.getTransaction_id());
-                order.setBillNo(payResult.getOut_transaction_id());
+                order.setBillNo(payResult.getTransaction_id());
                 if (!TextUtils.isEmpty(payResult.getTotal_fee())) {
                     order.setTotalFee(Integer.valueOf(payResult.getTotal_fee()));
                 }
@@ -77,6 +77,7 @@ public class SwiftPassPayStore implements ThirdPartyStore {
                 order.setAttach(payResult.getAttach());
                 order.setDatetime(payResult.getTime_end());
                 order.setTradeState(TradeState.SUCCESS);
+                order.setThirdTradeName(SwiftPassConst.TradeType.findNameByKey(payResult.getTrade_type()));
                 return order;
             }
         });
@@ -119,6 +120,8 @@ public class SwiftPassPayStore implements ThirdPartyStore {
                 } else {
                     order.setCouponFee(Integer.valueOf(queryResult.getCoupon_fee()));
                 }
+                order.setOrderId(queryResult.getOut_transaction_id());
+                order.setThirdOrderId(queryResult.getTransaction_id());
                 order.setBillNo(queryResult.getTransaction_id());
                 order.setTradeState(TradeState.getTradeStateByTag(queryResult.getTrade_state()));
                 order.setAttach(queryResult.getAttach());

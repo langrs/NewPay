@@ -1,9 +1,11 @@
 package com.unioncloud.newpay.domain.model.thirdparty;
 
+import java.io.Serializable;
+
 /**
  * Created by cwj on 16/8/11.
  */
-public class ThirdPartyOrder {
+public class ThirdPartyOrder implements Serializable {
 
     private String thirdTradeName;  // 第3方交易的名称
 

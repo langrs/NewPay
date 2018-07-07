@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import com.esummer.android.stateupdatehandler.StateUpdateHandlerListener;
 import com.esummer.android.updatehandler.UpdateCompleteCallback;
 import com.esummer.android.utils.DeviceUtils;
+import com.unioncloud.newpay.data.repository.thirdparty.datasource.swiftpass.SwiftPassConst;
 import com.unioncloud.newpay.domain.model.payment.Payment;
 import com.unioncloud.newpay.domain.model.payment.PaymentUsed;
 import com.unioncloud.newpay.domain.model.pos.PosInfo;
@@ -23,6 +24,7 @@ import com.unioncloud.newpay.presentation.model.checkout.CheckoutDataManager;
 import com.unioncloud.newpay.presentation.model.pos.PosDataManager;
 import com.unioncloud.newpay.presentation.presenter.payment.ThirdPartyPayHandler;
 import com.unioncloud.newpay.presentation.presenter.print.PrintThirdPartyHandler;
+import com.unioncloud.newpay.presentation.presenter.sharedpreferences.PreferencesUtils;
 import com.zbar.scan.ScanCaptureActivity;
 
 /**
@@ -262,7 +264,9 @@ public class ThirdPartyPayFragment extends PayFragment {
                 handler.removeCompletionListener(payListener);
                 CheckoutDataManager.getInstance().removePaying(getPayment().getPaymentId());
                 if (handler.isSuccess() && handler.getData().isSuccess()) {
-                    print(handler.getData().getData());
+                    ThirdPartyOrder order = handler.getData().getData();
+                    saveLastPay(order);
+                    print(order);
                 } else {
                     dismissProgressDialog();
                     showToast(handler.getData().getErrorMessage());
@@ -271,9 +275,14 @@ public class ThirdPartyPayFragment extends PayFragment {
         }
     }
 
+    private void saveLastPay(ThirdPartyOrder order) {
+        PreferencesUtils.saveLastThirdPartyPayId(getContext().getApplicationContext(), order.getThirdOrderId());
+    }
+
     private void print(ThirdPartyOrder order) {
         PrintThirdPartyOrder printInfo = new PrintThirdPartyOrder();
-        printInfo.setOrderTitle(getPaymentSignpost().getName() + "签购单");
+//        printInfo.setOrderTitle(getPaymentSignpost().getName() + "签购单");
+        printInfo.setOrderTitle(order.getThirdTradeName() + "签购单");
         PosInfo posInfo = PosDataManager.getInstance().getPosInfo();
         printInfo.setShopName("合胜百货");
         printInfo.setStoreName(posInfo.getShopName());
@@ -282,7 +291,7 @@ public class ThirdPartyPayFragment extends PayFragment {
         printInfo.setThirdPartyOrderId(order.getThirdOrderId());
         printInfo.setDate(order.getDatetime());
         printInfo.setAmount(MoneyUtils.fenToString(order.getTotalFee()));
-        printInfo.setMchId("7551000001"); // 第三方支付的商户号
+        printInfo.setMchId(SwiftPassConst.MCH_ID); // 第三方支付的商户号
         printInfo.setTradeType("消费");
 
         PrintThirdPartyHandler handler = new PrintThirdPartyHandler(getActivity(), printInfo);

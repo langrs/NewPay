@@ -47,7 +47,7 @@ public class PaymentsMethodView extends LinearLayout {
         defaultMethodView = (PaymentMethodView) findViewById(R.id.view_payments_method_view_default_method_view);
         addBtnIndex = methodFlipper.indexOfChild(addMethodBtn);
         defaultMethodViewIndex = methodFlipper.indexOfChild(defaultMethodView);
-        addMethodBtn.setOnClickListener(new View.OnClickListener() {
+        addMethodBtn.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (addListener != null) {

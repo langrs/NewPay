@@ -434,6 +434,20 @@
     <!-- add order -->
 
 
+    <!-- third party pay detail -->
+    <style name="thirdparty_pay_detail_head" parent="@style/Text.Material.Headline">
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <style name="thirdparty_pay_detail_content" parent="@style/Text.Material.Subhead">
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <!-- third party pay detail -->
+
+
     <!-- print -->
     <style name="print_text_size">
         <!--<item name="android:textSize">@dimen/print_text_size_small</item>-->

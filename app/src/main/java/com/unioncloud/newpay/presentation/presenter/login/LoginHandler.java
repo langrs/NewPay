@@ -15,16 +15,17 @@ import rx.Subscriber;
  */
 public class LoginHandler extends UpdateHandler<ResultData<Void>, LoginHandler>
         implements Runnable {
-
+//1.定义需要处理的VO对象,该对象通过构造函数传入
     private UserLogin userLogin;
 
     public LoginHandler(UserLogin userLogin, boolean isUpdating) {
         super(new ResultData<Void>(false, null, ""), isUpdating);
         this.userLogin = userLogin;
     }
-
+//2.主要需要实现run的线程耗时操作
     @Override
     public void run() {
+//3.
         LoginInteractor interactor = new LoginInteractor(
                 PresenterUtils.getExecutorProvider(),
                 userLogin,

@@ -157,9 +157,9 @@ public class CloudOrderStore implements OrderStore {
         itemEntity.setAllDistAmt(MoneyUtils.fenToString(cartItem.getDiscountAmount()));
         itemEntity.setItemSaleAmt(MoneyUtils.fenToString(cartItem.getSaleAmount()));
         itemEntity.setSalePoints(cartItem.getPoints());
-        itemEntity.setVipDisc(String.valueOf(cartItem.getVipDiscount()));
+        itemEntity.setVipDisc(cartItem.getVipDiscount());
         itemEntity.setVipDiscAmt(MoneyUtils.fenToString(cartItem.getVipDiscountAmount()));
-        itemEntity.setPromDisc(String.valueOf(cartItem.getPromDiscount()));
+        itemEntity.setPromDisc(cartItem.getPromDiscount());
         itemEntity.setPromDiscAmt(MoneyUtils.fenToString(cartItem.getPromDiscountAmount()));
         return itemEntity;
     }

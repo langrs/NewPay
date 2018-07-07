@@ -97,6 +97,7 @@ public class LoginFragment extends StatedFragment {
             viewBinder.accountEt.setText(lastUser);
             viewBinder.pwdEt.requestFocus();
         }
+//        编辑完之后点击软键盘上的回车键才会触发
         viewBinder.pwdEt.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {

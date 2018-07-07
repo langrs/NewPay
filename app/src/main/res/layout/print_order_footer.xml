@@ -22,8 +22,7 @@
             />
         <TextView
             android:id="@+id/print_order_invoice"
-            style="@style/print_text_size"
-            android:text="如需发票请在一个月内凭小票办理"
+            style="@style/print_text_size"/>'
             />
         <TextView
             android:id="@+id/print_order_customer_service"
@@ -32,3 +31,5 @@
             />
     </LinearLayout>
 </LinearLayout>
+    <!--android:text="服务热线:0754-81857777"-->
+    <!--android:text="服务热线:0760-86788889"-->

@@ -32,10 +32,20 @@
             />
     </RelativeLayout>
     <TextView
+        android:id="@+id/print_line_tag"
         style="@style/print_text_size_big"
         android:layout_marginBottom="5.0px"
         android:text="----------------------------------"
         android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/print_reprint_tag"
+        style="@style/print_text_size_big"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10px"
+        android:text="-----------------重打印!-------------------"
+        android:visibility="gone"
+        />
 
     <RelativeLayout
         android:layout_width="@dimen/print_width"

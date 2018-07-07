@@ -21,6 +21,7 @@ public class PrintThirdPartyHandler extends UpdateHandler<Boolean, PrintThirdPar
 
     PrintThirdPartyOrder printThirdPartyOrder;
     private Context context;
+    private boolean isReprint = false;
 
     public PrintThirdPartyHandler(Activity context, PrintThirdPartyOrder printThirdPartyOrder) {
         super(false, true);
@@ -29,6 +30,11 @@ public class PrintThirdPartyHandler extends UpdateHandler<Boolean, PrintThirdPar
     }
 
     public void print() {
+        DefaultExecutorProvider.getInstance().providerThread().execute(this);
+    }
+
+    public void print(boolean isReprint) {
+        this.isReprint = isReprint;
         DefaultExecutorProvider.getInstance().providerThread().execute(this);
     }
 
@@ -54,6 +60,8 @@ public class PrintThirdPartyHandler extends UpdateHandler<Boolean, PrintThirdPar
         TextView date = (TextView) view.findViewById(R.id.print_datetime);
         TextView thirdPartyOrderId = (TextView) view.findViewById(R.id.print_thirdparty_no);
         TextView amount = (TextView) view.findViewById(R.id.print_amount);
+        TextView reprintTag = (TextView) view.findViewById(R.id.print_reprint_tag);
+        TextView printTag = (TextView) view.findViewById(R.id.print_line_tag);
 
         title.setText(printThirdPartyOrder.getOrderTitle());
         shopName.setText(printThirdPartyOrder.getShopName());
@@ -65,11 +73,22 @@ public class PrintThirdPartyHandler extends UpdateHandler<Boolean, PrintThirdPar
         date.setText(printThirdPartyOrder.getDate());
         thirdPartyOrderId.setText(printThirdPartyOrder.getThirdPartyOrderId());
         amount.setText(printThirdPartyOrder.getAmount());
+        if (isReprint) {
+            reprintTag.setVisibility(View.VISIBLE);
+            printTag.setVisibility(View.GONE);
+        } else {
+            printTag.setVisibility(View.VISIBLE);
+            reprintTag.setVisibility(View.GONE);
+        }
 
         int resultFlag = 0;
-        int printCount = PreferencesUtils.getPrintCount(context);
-        for (int i = 0; i < printCount; i++) {
-            resultFlag += printer.startPrint();
+        if (isReprint) {
+            resultFlag = printer.startPrint();
+        } else {
+            int printCount = PreferencesUtils.getPrintCount(context);
+            for (int i = 0; i < printCount; i++) {
+                resultFlag += printer.startPrint();
+            }
         }
         data = (resultFlag == 0);
         onUpdateCompleted();

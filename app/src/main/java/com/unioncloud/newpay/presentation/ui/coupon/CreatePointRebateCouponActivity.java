@@ -58,7 +58,6 @@ public class CreatePointRebateCouponActivity extends BaseActivity {
                 }
             }
         });
-
         hideActionBar();
     }
 

@@ -11,16 +11,21 @@
         <item
             android:id="@+id/navigation_search"
             android:title="交易查询"
-            android:visible="false"
             />
 
         <item
             android:id="@+id/navigation_refund"
-            android:title="交易查询"/>
+            android:title="交易退款"
+            android:visible="false"
+            />
 
         <item
             android:id="@+id/navigation_count"
             android:title="交易日结"/>
+
+        <item
+            android:id="@+id/navigation_reprint_thirdpay"
+            android:title="重打印微信/支付宝"/>
 
         <item
             android:id="@+id/navigation_create_coupon"

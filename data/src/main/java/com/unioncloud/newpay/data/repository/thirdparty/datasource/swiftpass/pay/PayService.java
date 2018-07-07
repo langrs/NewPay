@@ -17,12 +17,11 @@ import static java.lang.Thread.sleep;
  */
 public class PayService {
 
-    private static final int payQueryLoopCount = 3;
+    private static final int payQueryLoopCount = 15;
     private static final int WAITING_TIME = 5000;
 
     ReverseService reverseService;
     PayQueryService queryTrans;
-
 
     public PayService() {
         reverseService = new ReverseService();

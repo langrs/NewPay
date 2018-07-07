@@ -51,9 +51,9 @@ public class CheckoutDataRepository implements CheckoutRepository {
             cartItem.setDiscountAmount(MoneyUtils.getFen(entity.getAllDistAmt()));
             cartItem.setSaleAmount(MoneyUtils.getFen(entity.getItemSaleAmt()));
             cartItem.setPromInfo(entity.getPromInfo());
-            cartItem.setPromDiscount(Integer.valueOf(entity.getPromDisc()));
+            cartItem.setPromDiscount(entity.getPromDisc());
             cartItem.setPromDiscountAmount(MoneyUtils.getFen(entity.getPromDiscAmt()));
-            cartItem.setVipDiscount(Integer.valueOf(entity.getVipDisc()));
+            cartItem.setVipDiscount(entity.getVipDisc());
             cartItem.setVipDiscountAmount(MoneyUtils.getFen(entity.getVipDiscAmt()));
             cartItem.setReduceAmount(MoneyUtils.getFen(entity.getReduceAmt()));
             cartItem.setPoints(entity.getPoints());

@@ -123,7 +123,6 @@ public class RefundOrderHandler extends UpdateHandler<SaleOrderResult, RefundOrd
         if (cartItem == null) {
             return null;
         }
-
         Product product = PosDataManager.getInstance().getLocalProductById(cartItem.getProductId());
 
         CartItem refundItem = new CartItem();
@@ -139,9 +138,11 @@ public class RefundOrderHandler extends UpdateHandler<SaleOrderResult, RefundOrd
         if (!TextUtils.isEmpty(cartItem.getPoints())) {
             refundItem.setPoints("-" + cartItem.getPoints());
         }
+//        lzm增加退货的换倍字段
         refundItem.setVipDiscount(cartItem.getVipDiscount());
         refundItem.setVipDiscountAmount(-cartItem.getVipDiscountAmount());
-
+        refundItem.setPromDiscount(cartItem.getPromDiscount());
+        refundItem.setPromDiscountAmount(-cartItem.getPromDiscountAmount());
         return refundItem;
     }
 

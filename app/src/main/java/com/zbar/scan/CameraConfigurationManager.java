@@ -78,7 +78,7 @@ public final class CameraConfigurationManager {
 		final Point point = new Point();
 		try {
 			display.getSize(point);
-		} catch (java.lang.NoSuchMethodError ignore) {
+		} catch (NoSuchMethodError ignore) {
 			point.x = display.getWidth();
 			point.y = display.getHeight();
 		}
