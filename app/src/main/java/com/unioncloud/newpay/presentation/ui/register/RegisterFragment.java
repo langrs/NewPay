@@ -145,7 +145,7 @@ public class RegisterFragment extends StatedFragment {
             return null;
         }
         int selectPosition = viewBinder.posTypeSpinner.getSelectedItemPosition();
-        String posType = (selectPosition == 0) ? "01" :"02";
+        String posType = (selectPosition == 0) ? "01" : "02";
         PosRegister registerInfo = new PosRegister();
 //        registerInfo.setShopNo(shopNo);
         registerInfo.setStoreNo(storeNo);

@@ -25,6 +25,8 @@ public abstract class BaseInteractor<T> {
 //接收观察者参数,在子类的bindObservable中设置好被观察者,在该方法中传入观察者,通过该方法来关联
 //观察者和被观察者,并且两者开启不同的线程来运行,
     public void execute(Subscriber<T> domainSubscriber) {
+//        subscribeOn指定被观察者Observable在哪个线程上
+//        observeOn指定观察者Subscriber or Observe 在哪个线程上
         subscription = bindObservable().
                 subscribeOn(Schedulers.from(provider.providerThread())).
                 observeOn(provider.providerMainScheduler()).

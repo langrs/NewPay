@@ -22,7 +22,9 @@ public class LoginHandler extends UpdateHandler<ResultData<Void>, LoginHandler>
         super(new ResultData<Void>(false, null, ""), isUpdating);
         this.userLogin = userLogin;
     }
-//2.主要需要实现run的线程耗时操作
+//需要注意的是这个线程是运行在子线程,因为是在fragment中run的该handle的线程方法,而针对
+//    iteractor的execute,因为传入进去了一个线程对象PresenterUtils.getExecutorProvider,
+//    那么观察者是运行在了主线程上的
     @Override
     public void run() {
 //3.
@@ -41,10 +43,12 @@ public class LoginHandler extends UpdateHandler<ResultData<Void>, LoginHandler>
                 data.onFailed(e.getMessage());
                 onUpdateFailed();
             }
-
+//响应耗时的观察者方法,被执行在主线程
             @Override
             public void onNext(LoginResult loginResult) {
+//                通过单例对象保存全局变量
                 PosDataManager.getInstance().onLogin(loginResult);
+//                由于这个是继承于UpdateHandler的接口的,而最终
                 data.onSuccess(null);
                 onUpdateCompleted();
             }

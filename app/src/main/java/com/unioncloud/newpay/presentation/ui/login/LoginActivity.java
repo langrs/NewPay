@@ -21,6 +21,7 @@ public class LoginActivity extends SingleFragmentActivity {
         return intent;
     }
 
+//    每个activity对应着一个fragment,在该事件中返回对应的fragment
     @Override
     protected Fragment createContentFragment() {
         return LoginFragment.newInstace();

@@ -128,6 +128,7 @@ public class LoginFragment extends StatedFragment {
         });
     }
 
+//    绑定在确认登录按钮触发事件
     private void toLogin() {
         String userNumber = viewBinder.accountEt.getText().toString();
         if (TextUtils.isEmpty(userNumber)) {
@@ -212,11 +213,13 @@ public class LoginFragment extends StatedFragment {
         activity.finish();
     }
 
+//    绑定在注册按钮事件
     private void toRegister() {
         Intent intent = RegisterActivity.getStartIntent(getActivity());
         getActivity().startActivity(intent);
     }
 
+//    绑定在修改密码按钮事件
     private void toChangePassword() {
         Intent intent = ChangePasswordActivity.getStartIntent(getActivity());
         getActivity().startActivity(intent);
