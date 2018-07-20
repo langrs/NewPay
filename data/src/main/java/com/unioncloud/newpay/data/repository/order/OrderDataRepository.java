@@ -190,6 +190,14 @@ public class OrderDataRepository implements SaleOrderRepository {
         if (!TextUtils.isEmpty(entity.getVipDiscAmt())) {
             item.setVipDiscountAmount(MoneyUtils.getFen(entity.getVipDiscAmt()));
         }
+        if (!TextUtils.isEmpty(entity.getPromDisc())) {
+            item.setPromDiscount(entity.getPromDisc());
+        }
+        if (!TextUtils.isEmpty(entity.getPromDiscAmt())) {
+            item.setPromDiscountAmount(MoneyUtils.getFen(entity.getPromDiscAmt()));
+        }
+
+
         return item;
     }
 

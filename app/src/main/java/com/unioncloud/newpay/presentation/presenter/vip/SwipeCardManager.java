@@ -1,5 +1,8 @@
 package com.unioncloud.newpay.presentation.presenter.vip;
 
+import android.util.Log;
+import android.widget.Toast;
+
 import com.pax.baselib.card.MagCard;
 import com.pax.baselib.card.MagException;
 import com.pax.baselib.card.TrackData;
@@ -79,6 +82,15 @@ public class SwipeCardManager {
 
         @Override
         public void run() {
+//            先reset磁卡阅读器
+            try{
+                MagCard magCard = MagCard.getInstance();
+
+                magCard.getInstance().reset();
+            }catch (MagException e){
+//                Toast.makeText()
+                Log.i("----reset error----",e.toString());
+            }
             while (running) {
                 try {
                     TrackData trackData = MagCard.getInstance().read();

@@ -8,17 +8,17 @@ import com.unioncloud.newpay.data.BuildConfig;
 public class WebServiceUrlConst {
 
 //    本机地址
-    private static final String HOST_RELEASE = "http://192.168.0.109:8288";
+//    private static final String HOST_RELEASE = "http://192.168.0.109:8288";
     // 汕头地址
 //    private static final String HOST_RELEASE = "http://183.239.195.196:8288";
     // 中山坦洲地址112.91.60.74:8066
- //   private static final String HOST_RELEASE = "http://112.91.60.74:8066";
+    private static final String HOST_RELEASE = "http://112.91.60.74:8066";
     // 中山坦洲debug地址
- //   private static final String HOST_DEBUG = "http://112.91.60.74:8066";
+    private static final String HOST_DEBUG = "http://112.91.60.74:8066";
     //    汕头debug地址
 //    private static final String HOST_DEBUG = "http://183.239.195.196:8288";
 //    本地debug地址
-    private static final String HOST_DEBUG = "http://192.168.0.109:8288";
+//    private static final String HOST_DEBUG = "http://192.168.0.109:8288";
 
     public static final  String NAMESPACE = "http://webService.site.com/";
 

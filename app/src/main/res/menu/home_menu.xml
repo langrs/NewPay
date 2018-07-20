@@ -39,5 +39,8 @@
         <item
             android:id="@+id/navigation_setting"
             android:title="设置"/>
+        <!--<item-->
+            <!--android:id="@+id/navigation_testing"-->
+            <!--android:title="测试页面"/>-->
     </group>
 </menu>

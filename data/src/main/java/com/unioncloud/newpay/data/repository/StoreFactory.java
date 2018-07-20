@@ -29,6 +29,8 @@ import com.unioncloud.newpay.data.repository.product.datasource.CloudProductStor
 import com.unioncloud.newpay.data.repository.product.datasource.ProductStore;
 import com.unioncloud.newpay.data.repository.right.datasource.CloudRightStore;
 import com.unioncloud.newpay.data.repository.right.datasource.RightStore;
+import com.unioncloud.newpay.data.repository.testp.datasource.CloudTestpStore;
+import com.unioncloud.newpay.data.repository.testp.datasource.TestpStore;
 import com.unioncloud.newpay.data.repository.thirdparty.datasource.SwiftPassPayStore;
 import com.unioncloud.newpay.data.repository.thirdparty.datasource.ThirdPartyStore;
 import com.unioncloud.newpay.data.repository.vip.datasource.VipDataStore;
@@ -94,6 +96,9 @@ public class StoreFactory {
 
     public static NoticeStore getNoticeStore(Context context) {
         return new CloudNoticeStore(context);
+    }
+    public static TestpStore getTestpStore() {
+        return new CloudTestpStore();
     }
 
     public static RightStore getRightStore() {

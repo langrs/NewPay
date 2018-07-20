@@ -52,9 +52,16 @@ public class BankcardRefundFragment extends RefundFragment {
             return;
         }
         BankcardRefundRequest request = new BankcardRefundRequest();
+        String originalSaleDate;
         request.setManagerPwd("123456");
         request.setOriVoucherNo(originalId);
         request.setTransAmount(getRefundAmount());
+        originalSaleDate = getRefundSaleDate();
+        if(!originalSaleDate.equals("")){
+            //交易日期MMDD
+            originalSaleDate = originalSaleDate.substring(5,7) + originalSaleDate.substring(8,10);
+        }
+        request.setOriData(originalSaleDate);
         BankcardRefundHandler handler = new BankcardRefundHandler(request);
         updateForResponse("BankcardRefundFragment:refund", handler, handlerListener);
         handler.run();

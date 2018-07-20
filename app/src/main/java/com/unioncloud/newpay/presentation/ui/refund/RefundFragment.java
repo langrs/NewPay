@@ -70,6 +70,14 @@ public abstract class RefundFragment extends StatedFragment {
         return 0;
     }
 
+    public String getRefundSaleDate(){
+        OriginalRefundInfo info = getOriginalRefundInfo();
+        if(info != null){
+            return info.getOriginalSaleDate();
+        }
+        return "";
+    }
+
     public void setOriginalOrderId(String orderId) {
         getArguments().putString("originalOrderId", orderId);
     }

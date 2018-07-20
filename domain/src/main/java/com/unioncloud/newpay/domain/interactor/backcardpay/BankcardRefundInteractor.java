@@ -1,5 +1,7 @@
 package com.unioncloud.newpay.domain.interactor.backcardpay;
 
+import android.util.Log;
+
 import com.unioncloud.newpay.domain.executor.ExecutorProvider;
 import com.unioncloud.newpay.domain.interactor.BaseInteractor;
 import com.unioncloud.newpay.domain.model.backcardpay.refund.BankcardRefundRequest;
@@ -26,6 +28,7 @@ public class BankcardRefundInteractor extends BaseInteractor<BankcardRefundResul
 
     @Override
     protected Observable<BankcardRefundResult> bindObservable() {
-        return repository.saleVoid(request);    // 实际调用的是"当日撤销"
+//        return repository.saleVoid(request);    // 实际调用的是"当日撤销"
+        return  repository.refund(request);
     }
 }

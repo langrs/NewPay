@@ -21,9 +21,10 @@ public class MapperUtils {
     }
 
     public static PaxRefundRequest mapperRefundRequest(BankcardRefundRequest request) throws PaxPayException {
-        return new PaxRefundRequest(Integer.toString(request.getTransAmount()),
+        PaxRefundRequest paxRefundRequest = new PaxRefundRequest(Integer.toString(request.getTransAmount()),
                 request.getOriVoucherNo(),  // TODO 应该传递交易参考号. 而不是交易流水
                 request.getOriData());
+        return paxRefundRequest;
     }
 
     public static BankcardSaleResult mapperSaleResponse(PaxResponse response) {

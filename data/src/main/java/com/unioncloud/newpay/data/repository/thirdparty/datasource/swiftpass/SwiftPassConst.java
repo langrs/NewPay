@@ -26,18 +26,18 @@ public class SwiftPassConst {
 //    public static final String MCH_ID = "7541100001";
     //    汕头商户id
 
-   public static final String MCH_ID = "133500001422";
+//   public static final String MCH_ID = "133500001422";
     //    坦洲商户id
-//    public static final String MCH_ID = "101540254692";             //"7601000036";
+    public static final String MCH_ID = "101540254692";             //"7601000036";
 
     /** 测试的MD5签名的KEY */
     public static final String KEY_DEBUD = "9d101c97133837e13dde2d32a5054abb";
 //    测试或者旧的汕头原有
 //    public static final String KEY = "3fb765b25fd9e7191993c245740042b9";
     //    汕头md5key
-   public static final String KEY = "01269e5f1a77eba91c97daa768633b5d";
+//   public static final String KEY = "01269e5f1a77eba91c97daa768633b5d";
     //    坦洲md5key
-//    public static final String KEY = "5976fe4be751c69b067f9b6372e84056";   //"fcc29b78499f4ceff00d561dad5ae886";
+    public static final String KEY = "5976fe4be751c69b067f9b6372e84056";   //"fcc29b78499f4ceff00d561dad5ae886";
 
     public static final int LOOP_WAITING_TIME = 5000;
 

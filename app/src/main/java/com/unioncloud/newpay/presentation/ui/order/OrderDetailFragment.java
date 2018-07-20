@@ -221,6 +221,7 @@ public class OrderDetailFragment extends StatedFragment {
                 info.setOriginalBillNo(paymentUsed.getRelationNumber());
                 info.setRefundAmount(paymentUsed.getPayAmount());
                 info.setOriginalOrderId(saleOrder.getHeader().getSaleNumber());
+                info.setOriginalSaleDate(saleOrder.getHeader().getSaleDate());
                 Intent intent = RefundActivity.getOriginalRefundIntent(getActivity(), signpost, info);
                 startActivityForResult(intent, getRefundPaidRequestCode());
             } else {
