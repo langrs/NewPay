@@ -26,9 +26,9 @@ public class SwiftPassConst {
 //    public static final String MCH_ID = "7541100001";
     //    汕头商户id
 
-//   public static final String MCH_ID = "133500001422";
+   public static final String MCH_ID = "133500001422";
     //    坦洲商户id
-    public static final String MCH_ID = "101540254692";             //"7601000036";
+//    public static final String MCH_ID = "101540254692";             //"7601000036";
 
     /** 测试的MD5签名的KEY */
     public static final String KEY_DEBUD = "9d101c97133837e13dde2d32a5054abb";

@@ -41,6 +41,8 @@ public class CheckoutDataManager {
 
     private HashMap<String, PayHandler> payingHandler = new HashMap<>();
 
+
+
     public static CheckoutDataManager getInstance() {
         if (instance == null) {
             instance = new CheckoutDataManager();
@@ -242,4 +244,5 @@ public class CheckoutDataManager {
     public void removePaying(String paymentId) {
         payingHandler.remove(paymentId);
     }
+
 }

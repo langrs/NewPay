@@ -33,6 +33,8 @@ public class SaleHeadEntity {
     private String ebillType;       // (是否领取)电子小票,"01"表示未领取
     private String upFlag;          // 上传标记
     private String upData;          // 上传日期;
+    private String sSaleNo;         //退货单的话,对应原销售单号
+    private String salesId;         //退货授权人
 
     public String getSaleNo() {
         return saleNo;
@@ -232,5 +234,54 @@ public class SaleHeadEntity {
 
     public void setUpData(String upData) {
         this.upData = upData;
+    }
+
+    public String getsSaleNo() {
+        return sSaleNo;
+    }
+
+    public void setsSaleNo(String sSaleNo) {
+        this.sSaleNo = sSaleNo;
+    }
+
+    public String getSalesId() {
+        return salesId;
+    }
+
+    public void setSalesId(String salesId) {
+        this.salesId = salesId;
+    }
+
+    @Override
+    public String toString() {
+        return "SaleHeadEntity{" +
+                "saleNo='" + saleNo + '\'' +
+                ", saleDate='" + saleDate + '\'' +
+                ", companyId='" + companyId + '\'' +
+                ", shopId='" + shopId + '\'' +
+                ", storeId='" + storeId + '\'' +
+                ", posId='" + posId + '\'' +
+                ", userId='" + userId + '\'' +
+                ", dealType='" + dealType + '\'' +
+                ", saleType='" + saleType + '\'' +
+                ", vipNo='" + vipNo + '\'' +
+                ", originalPoints='" + originalPoints + '\'' +
+                ", salePoints='" + salePoints + '\'' +
+                ", originalAmt='" + originalAmt + '\'' +
+                ", saleAmt='" + saleAmt + '\'' +
+                ", payAmt='" + payAmt + '\'' +
+                ", dicAmt='" + dicAmt + '\'' +
+                ", vipDicAmt='" + vipDicAmt + '\'' +
+                ", changeAmt='" + changeAmt + '\'' +
+                ", excessAmt='" + excessAmt + '\'' +
+                ", isTrain='" + isTrain + '\'' +
+                ", reason='" + reason + '\'' +
+                ", retAmt='" + retAmt + '\'' +
+                ", ebillType='" + ebillType + '\'' +
+                ", upFlag='" + upFlag + '\'' +
+                ", upData='" + upData + '\'' +
+                ", sSaleNo='" + sSaleNo + '\'' +
+                ", salesId='" + salesId + '\'' +
+                '}';
     }
 }

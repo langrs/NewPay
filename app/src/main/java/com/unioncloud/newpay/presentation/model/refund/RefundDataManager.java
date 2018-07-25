@@ -41,6 +41,9 @@ public class RefundDataManager {
     private IEvent<RefundDataManager> itemChanged = new Event<>();
     private OrderTotals orderTotals = new OrderTotals();
 
+    //    退货授权人
+    private String authorizer;
+
     public void usePayment(PaymentUsed used) {
         if (used != null) {
             if (usedPayments.getUsedList().isEmpty()) {
@@ -114,5 +117,15 @@ public class RefundDataManager {
         orderTotals.clear();
         itemList.clear();
         itemChanged.raiseEvent(this);
+        authorizer = null;
     }
+
+    public String getAuthorizer() {
+        return authorizer;
+    }
+
+    public void setAuthorizer(String authorizer) {
+        this.authorizer = authorizer;
+    }
+
 }

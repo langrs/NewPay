@@ -21,6 +21,7 @@ import com.esummer.android.stateupdatehandler.StateUpdateHandlerListener;
 import com.esummer.android.updatehandler.UpdateCompleteCallback;
 import com.unioncloud.newpay.R;
 import com.unioncloud.newpay.domain.model.cart.CartItem;
+import com.unioncloud.newpay.domain.model.order.QuerySaleOrderCommand;
 import com.unioncloud.newpay.domain.model.order.SaleOrder;
 import com.unioncloud.newpay.domain.model.order.SaleOrderHeader;
 import com.unioncloud.newpay.domain.model.order.SaleOrderResult;
@@ -33,6 +34,7 @@ import com.unioncloud.newpay.presentation.model.checkout.CheckoutDataManager;
 import com.unioncloud.newpay.presentation.model.pos.PosDataManager;
 import com.unioncloud.newpay.presentation.model.refund.OriginalRefundInfo;
 import com.unioncloud.newpay.presentation.model.refund.RefundDataManager;
+import com.unioncloud.newpay.presentation.presenter.order.QuerySaleOrderHandler;
 import com.unioncloud.newpay.presentation.presenter.print.PrintOrderHandler;
 import com.unioncloud.newpay.presentation.presenter.refund.RefundOrderHandler;
 import com.unioncloud.newpay.presentation.ui.pay.PaymentSignpost;
@@ -85,6 +87,26 @@ public class OrderDetailFragment extends StatedFragment {
         }
     };
 
+    private static StateUpdateHandlerListener<OrderDetailFragment, QuerySaleOrderHandler> queryHandlerListener =
+            new StateUpdateHandlerListener<OrderDetailFragment, QuerySaleOrderHandler>() {
+                @Override
+                public void onUpdate(String key, OrderDetailFragment handler, QuerySaleOrderHandler response) {
+                    handler.dealQuery(response);
+                }
+
+                @Override
+                public void onCleanup(String key, OrderDetailFragment handler, QuerySaleOrderHandler response) {
+                    response.removeCompletionListener(handler.queryListener);
+                }
+            };
+
+    private UpdateCompleteCallback<QuerySaleOrderHandler> queryListener =
+            new UpdateCompleteCallback<QuerySaleOrderHandler>() {
+                @Override
+                public void onCompleted(QuerySaleOrderHandler response, boolean isSuccess) {
+                    dealQuery(response);
+                }
+            };
     private static final int REQUEST_REFUND_RIGHT = 1001;
 
     private TextView orderNoTv;
@@ -251,6 +273,26 @@ public class OrderDetailFragment extends StatedFragment {
 
     }
 
+    private void dealQuery(QuerySaleOrderHandler handler) {
+        if (handler == null) {
+            return;
+        }
+        synchronized (handler.getStatusLock()) {
+            if (handler.isUpdating()) {
+                showProgressDialog();
+                handler.addCompletionListener(queryListener);
+            } else {
+                dismissProgressDialog();
+                cleanupResponse("OrderHistoryFragment:query");
+                if (handler.isSuccess()) {
+                    showToast("销售交易已经退过货,不允许重复退货");
+                } else {
+                    requestRefundRight();
+                }
+            }
+        }
+    }
+
     private void dealRefund(RefundOrderHandler handler) {
         if (handler == null) {
             return;
@@ -377,7 +419,6 @@ public class OrderDetailFragment extends StatedFragment {
 
     private void checkRefundPaid() {
         RefundDataManager.getInstance().createOrderId();
-
         List<PaymentUsed> paidList = saleOrder.getPaymentUsedList();
         if (currentRefundPaidIndex < paidList.size()) {
             requestRefundPaid(paidList.get(currentRefundPaidIndex));
@@ -391,6 +432,8 @@ public class OrderDetailFragment extends StatedFragment {
         if (requestCode == getRefundPaidRequestCode()) {
             switch (resultCode) {
                 case Activity.RESULT_OK:
+//                    处理查询流水号是否已经退过货
+
                     setRefundChanged();
                     break;
                 case Activity.RESULT_CANCELED:
@@ -399,10 +442,13 @@ public class OrderDetailFragment extends StatedFragment {
             }
         } else if (requestCode == REQUEST_REFUND_RIGHT){
             switch (resultCode) {
+//                授权成功
                 case Activity.RESULT_OK:
                     checkRefundPaid();
                     break;
                 case Activity.RESULT_CANCELED:
+//                    清空授权人
+                    RefundDataManager.getInstance().setAuthorizer(null);
                     showToast("没有查询到权限!");
                     break;
             }
@@ -469,7 +515,8 @@ public class OrderDetailFragment extends StatedFragment {
                 getActivity().finish();
                 return true;
             case R.id.action_refund:
-                requestRefundRight();
+//                requestRefundRight();
+                requestCheckSaleno();
                 return true;
             case R.id.action_reprint:
                 reprint();
@@ -481,6 +528,15 @@ public class OrderDetailFragment extends StatedFragment {
     private void requestRefundRight() {
         Intent intent = QueryRightActivity.getStartIntent(getActivity());
         startActivityForResult(intent, REQUEST_REFUND_RIGHT);
+    }
+//检查销售单是否有过退货记录
+    private void requestCheckSaleno(){
+        String saleNo = "B" + saleOrder.getHeader().getSaleNumber();
+        QuerySaleOrderCommand command = new QuerySaleOrderCommand();
+        command.setSaleNo(saleNo);
+        QuerySaleOrderHandler handler = new QuerySaleOrderHandler(command);
+        updateForResponse("OrderHistoryFragment:query", handler, queryHandlerListener);
+        handler.run();
     }
 
     private boolean isRefunding() {

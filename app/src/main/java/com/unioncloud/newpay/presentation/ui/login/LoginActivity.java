@@ -16,12 +16,13 @@ import com.unioncloud.newpay.R;
 public class LoginActivity extends SingleFragmentActivity {
 //    private FragmentStackManagerFragment stackManager;
 
+//    如果其他的activity需要打开本activity,那么需要提供给其他activity的调用Indent
     public static Intent getLoginIntent(Context context) {
         Intent intent = new Intent(context, LoginActivity.class);
         return intent;
     }
 
-//    每个activity对应着一个fragment,在该事件中返回对应的fragment
+//    钩子函数,定义需要在activity中打开的fragment
     @Override
     protected Fragment createContentFragment() {
         return LoginFragment.newInstace();

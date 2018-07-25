@@ -15,6 +15,7 @@ import java.util.Map;
 public class StateUpdateHandlerManager<Handler> implements UpdateHandlerManager<Handler> {
     private static final String TAG = StateUpdateHandlerManager.class.getSimpleName();
 
+//    这个就是个内容类,来存放listener和response
     static class ResponseDelegate<HandlerType, ResponseType> {
         StateUpdateHandlerListener<HandlerType, ResponseType> loadListener;
         ResponseType response;

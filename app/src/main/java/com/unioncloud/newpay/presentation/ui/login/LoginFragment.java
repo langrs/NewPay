@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,11 +36,14 @@ public class LoginFragment extends StatedFragment {
 
     private static StateUpdateHandlerListener<LoginFragment, LoginHandler> handlerListener =
             new StateUpdateHandlerListener<LoginFragment, LoginHandler>() {
+//                updateForResponse(Handler,StateUpdateHandlerListener)方法被调用后,listener的onUpdate方法(override)
+//                会被调用,入参就是Handler(extents UpdateHandler)
                 @Override
                 public void onUpdate(String key, LoginFragment handler, LoginHandler response) {
                     handler.dealLogin(response);
                 }
-
+//在LoginFragment的cleanupResponse方法被调用后触发,如果成功或失败都必须要调用该方法,remove掉监听器,在isUpdating的状态则不
+//                需要remove监听器,因为没有结果返回
                 @Override
                 public void onCleanup(String key, LoginFragment handler, LoginHandler response) {
                     response.removeCompletionListener(handler.loginListener);
@@ -73,7 +77,7 @@ public class LoginFragment extends StatedFragment {
             };
 
     LoginViewBinder viewBinder;
-
+//由于在activity的createContentFragment需要返回打开的fragment,所以每个fragment都要提供这个函数
     public static LoginFragment newInstace() {
         LoginFragment fragment = new LoginFragment();
         return fragment;
@@ -146,6 +150,7 @@ public class LoginFragment extends StatedFragment {
     private LoginHandler createLoginHandler(String userNo, String password) {
         UserLogin userLogin = new UserLogin(userNo, password);
         userLogin.setMac(DeviceUtils.getWifiMac(getContext()));
+//        设置isUpdating = true,主线程UI就会一直显示在**中...,一直到handler被调用onUpdateCompleted或onUpdateFailed,这样才会被设置为false,清除了在**中..弹框
         LoginHandler handler = new LoginHandler(userLogin, true);
         handler.run();
         return handler;
@@ -157,6 +162,7 @@ public class LoginFragment extends StatedFragment {
             return;
         }
         synchronized (response.getStatusLock()) {
+//            如果入参的isUpdating=true,证明子线程正在做耗时操作,那么
             if (response.isUpdating()) {
                 showProgressDialog("登录中....");
                 response.addCompletionListener(loginListener);

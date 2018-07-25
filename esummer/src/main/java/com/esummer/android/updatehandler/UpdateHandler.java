@@ -24,7 +24,7 @@ public class UpdateHandler<DataType, ResponseType extends UpdateHandler<DataType
             callback.onCompleted((ResponseType)UpdateHandler.this, true);
         }
     };
-
+//可以通过构造函数指定货后期响应后赋值的返回类型
     protected DataType data;
     private boolean isSuccess;
     private volatile boolean isUpdating;

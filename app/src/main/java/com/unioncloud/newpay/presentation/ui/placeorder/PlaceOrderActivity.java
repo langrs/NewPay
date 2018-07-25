@@ -27,6 +27,7 @@ import com.unioncloud.newpay.presentation.ui.order.OrderHistoryActivity;
 import com.unioncloud.newpay.presentation.ui.order.OrderTodayCountActivity;
 import com.unioncloud.newpay.presentation.ui.refund.RefundMainActivity;
 import com.unioncloud.newpay.presentation.ui.settings.SettingsActivity;
+import com.unioncloud.newpay.presentation.ui.testp.TestpActivity;
 import com.unioncloud.newpay.presentation.ui.thirdpayreprint.ThirdPartyPayReprintActivity;
 
 /**
@@ -150,9 +151,9 @@ public class PlaceOrderActivity extends SingleFragmentActivity {
             case R.id.navigation_setting:
                 toSettings();
                 break;
-//            case R.id.navigation_testing:
-//                toTesting();
-//                break;
+            case R.id.navigation_testing:
+                toTesting();
+                break;
         }
         selectedNavigationId = 0;
     }
@@ -188,7 +189,8 @@ public class PlaceOrderActivity extends SingleFragmentActivity {
     }
 
     private void toTesting(){
-
+        Intent intent = TestpActivity.getTestpIntent(this);
+        startActivity(intent);
     }
     private void toSettings() {
         Intent intent = SettingsActivity.getStartIntent(this);

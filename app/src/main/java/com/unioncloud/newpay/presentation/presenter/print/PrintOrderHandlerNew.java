@@ -189,9 +189,9 @@ public class PrintOrderHandlerNew extends PrintOrderHandler {
         devPrinter.printStr("欢迎再次光临", CHARSET);
         devPrinter.printStr("如需发票请在一个月内凭小票办理", CHARSET);
 //        汕头热线电话
-//        devPrinter.printStr("服务热线:0754-81857777", CHARSET);
+        devPrinter.printStr("服务热线:0754-81857777", CHARSET);
 //        坦洲热线电话
-        devPrinter.printStr("服务热线:0760-86788889", CHARSET);
+//        devPrinter.printStr("服务热线:0760-86788889", CHARSET);
     }
 
     private void printCoupon() throws PrintException {

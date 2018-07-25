@@ -10,7 +10,7 @@ android {
         targetSdkVersion 23
         versionCode 1
 //        升级版本号  坦洲2.4   汕头2.3
-        versionName "2.6"
+        versionName "2.7"
         multiDexEnabled true
     }
     signingConfigs {

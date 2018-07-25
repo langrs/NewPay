@@ -74,6 +74,8 @@ public class RefundOrderHandler extends UpdateHandler<SaleOrderResult, RefundOrd
 
     private SaleOrder createRefundOrder() {
         SaleOrderHeader header = new SaleOrderHeader();
+//        原单流水
+        header.setOriginalSaleNo(originalOrder.getHeader().getSaleNumber());
         header.setCompanyId(posInfo.getCompanyId());
         header.setShopId(posInfo.getShopId());
         header.setStoreId(posInfo.getStoreId());
@@ -99,6 +101,8 @@ public class RefundOrderHandler extends UpdateHandler<SaleOrderResult, RefundOrd
         header.setIsTrain("");
         header.setRefundAmount("0");
         header.setEbillType("01");
+//        退货授权人
+        header.setSalesId(RefundDataManager.getInstance().getAuthorizer());
 
 //        header.setChangedAmount(MoneyUtils.fenToString(changedAmount));
 //        header.setExcessAmount(MoneyUtils.fenToString(excessAmount))

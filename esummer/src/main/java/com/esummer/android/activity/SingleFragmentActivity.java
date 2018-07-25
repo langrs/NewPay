@@ -26,6 +26,7 @@ public abstract class SingleFragmentActivity extends BaseActivity {
     }
 
     protected int getLayoutResId() {
+//        是否有侧滑菜单布局
         return hasDrawer() ?
                 R.layout.activity_single_frame_with_drawer :
                 R.layout.activity_single_frame;
@@ -52,7 +53,9 @@ public abstract class SingleFragmentActivity extends BaseActivity {
     protected void restoreOnCreate(Bundle savedInstanceState) {
 
     }
-
+    /*
+    * 钩子函数,子类定义返回的fragment,这样在父类onCreate方法中就能被将该fragment在布局中调用到了
+    * */
     protected abstract Fragment createContentFragment();
 
     @Override

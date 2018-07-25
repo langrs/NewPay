@@ -37,6 +37,7 @@ public class SaleOrderHeader implements Serializable {
     private String ebillType;       // (是否领取)电子小票,"01"表示未领取
     private String upFlag;          // 上传标记
     private String upData;          // 上传日期;
+    private String salesId;         //授权人
 
     public String getCompanyId() {
         return companyId;
@@ -244,5 +245,13 @@ public class SaleOrderHeader implements Serializable {
 
     public void setUpData(String upData) {
         this.upData = upData;
+    }
+
+    public String getSalesId() {
+        return salesId;
+    }
+
+    public void setSalesId(String salesId) {
+        this.salesId = salesId;
     }
 }

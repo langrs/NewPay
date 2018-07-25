@@ -13,6 +13,8 @@ import com.esummer.android.fragment.StatedFragment;
 import com.esummer.android.stateupdatehandler.StateUpdateHandlerListener;
 import com.esummer.android.updatehandler.UpdateCompleteCallback;
 import com.unioncloud.newpay.R;
+import com.unioncloud.newpay.presentation.model.checkout.CheckoutDataManager;
+import com.unioncloud.newpay.presentation.model.refund.RefundDataManager;
 import com.unioncloud.newpay.presentation.presenter.right.QueryRefundRightHandler;
 
 /**
@@ -108,6 +110,8 @@ public class QueryRefundRightFragment extends StatedFragment {
             showToast("请输入密码!");
             return;
         }
+//        先把授权人写入,如果校验不成功,再清空
+        RefundDataManager.getInstance().setAuthorizer(number);
         QueryRefundRightHandler handler = new QueryRefundRightHandler(number, password);
         updateForResponse("QueryRefundRightFragment:queryRefundRight", handler, queryHandlerListener);
         handler.run();

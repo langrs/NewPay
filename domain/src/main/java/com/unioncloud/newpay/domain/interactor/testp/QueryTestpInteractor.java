@@ -19,6 +19,11 @@ public class QueryTestpInteractor extends BaseInteractor{
 
     @Override
     protected Observable bindObservable() {
+        try{
+            Thread.sleep(5000);
+        }catch (Exception e){
+
+        }
 //        耗时操作,调用仓库方法被观察者
         return testpRepository.queryByNo(testp);
     }

@@ -1,5 +1,7 @@
 package com.unioncloud.newpay.data.repository.order.datasource;
 
+import android.util.Log;
+
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 import com.unioncloud.newpay.data.entity.ResultEntity;
@@ -110,6 +112,10 @@ public class CloudOrderStore implements OrderStore {
         headEntity.setEbillType(header.getEbillType());
         headEntity.setUpFlag(header.getUpFlag());
         headEntity.setUpData(header.getUpData());
+        headEntity.setsSaleNo(header.getOriginalSaleNo());
+//        退货授权人
+        headEntity.setSalesId(header.getSalesId());
+        Log.i("--headEntity--",headEntity.toString());
 
         ArrayList<SaleItemEntity> itemEntities = new ArrayList<>();
         for (CartItem cartItem : order.getItemList()) {
