@@ -185,8 +185,12 @@ public class CheckoutFragment extends StatedFragment {
     private boolean hasSameThridPartyPayment(PaymentSignpost signpost) {
         if (signpost == PaymentSignpost.ALI ||
                 signpost == PaymentSignpost.WECHAT) {
-            Payment aliPay = PosDataManager.getInstance().getPaymentByNumberInt(signpost.numberToInt());
-            Payment wechatPay = PosDataManager.getInstance().getPaymentByNumberInt(signpost.numberToInt());
+//            Payment aliPay = PosDataManager.getInstance().getPaymentByNumberInt(signpost.numberToInt());
+//            Payment wechatPay = PosDataManager.getInstance().getPaymentByNumberInt(signpost.numberToInt());
+//            原来的判断有问题,由于无法将支付宝和微信2个编号做绑定的判断,所以只有写死了,不然如何设置判断一单中只允许
+//            微信和支付宝只能支付一次呢?
+            Payment aliPay = PosDataManager.getInstance().getPaymentByNumberInt(3);
+            Payment wechatPay = PosDataManager.getInstance().getPaymentByNumberInt(4);
             return CheckoutDataManager.getInstance().hasUsedPayment(aliPay)
                     || CheckoutDataManager.getInstance().hasUsedPayment(wechatPay);
         }

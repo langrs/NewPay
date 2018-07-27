@@ -35,9 +35,9 @@ public class SwiftPassConst {
 //    测试或者旧的汕头原有
 //    public static final String KEY = "3fb765b25fd9e7191993c245740042b9";
     //    汕头md5key
-//   public static final String KEY = "01269e5f1a77eba91c97daa768633b5d";
+   public static final String KEY = "01269e5f1a77eba91c97daa768633b5d";
     //    坦洲md5key
-    public static final String KEY = "5976fe4be751c69b067f9b6372e84056";   //"fcc29b78499f4ceff00d561dad5ae886";
+//    public static final String KEY = "5976fe4be751c69b067f9b6372e84056";   //"fcc29b78499f4ceff00d561dad5ae886";
 
     public static final int LOOP_WAITING_TIME = 5000;
 
