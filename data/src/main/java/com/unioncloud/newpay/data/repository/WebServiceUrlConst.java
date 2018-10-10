@@ -7,7 +7,7 @@ import com.unioncloud.newpay.data.BuildConfig;
  */
 public class WebServiceUrlConst {
 /////////////////////////////////////本机地址////////////////////////////////////////
-//
+//2018-10-10
     private static final String HOST_RELEASE = "http://192.168.0.102:8288";
     private static final String HOST_DEBUG = "http://192.168.0.102:8288";
 //
