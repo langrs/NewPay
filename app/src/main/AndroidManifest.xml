@@ -80,6 +80,8 @@
         <activity android:name="com.zbar.scan.ScanCaptureActivity" />
 
         <receiver android:name="com.esummer.android.net.connectivity.ConnectionReceiver" />
+        <!--测试页面-->
+        <activity android:name=".presentation.ui.testp.TestpActivity"/>
     </application>
 
 </manifest>
