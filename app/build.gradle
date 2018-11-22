@@ -9,8 +9,8 @@ android {
         minSdkVersion 17
         targetSdkVersion 23
         versionCode 1
-//        升级版本号  坦洲2.4   汕头2.3
-        versionName "2.7"
+//        升级版本号  坦洲3.0   汕头3.1
+        versionName "3.1"
         multiDexEnabled true
     }
     signingConfigs {

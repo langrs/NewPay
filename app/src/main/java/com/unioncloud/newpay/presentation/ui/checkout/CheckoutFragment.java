@@ -135,6 +135,7 @@ public class CheckoutFragment extends StatedFragment {
         paymentsListView = (ListView) view.findViewById(R.id.fragment_checkout_payment_list);
         adapter = new PaymentAdapter(getActivity());
         paymentsListView.setAdapter(adapter);
+//        点击支付方式触发事件
         paymentsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -161,7 +162,7 @@ public class CheckoutFragment extends StatedFragment {
         Intent intent = QueryRightActivity.getStartIntent(getActivity());
         startActivityForResult(intent, REQUEST_FILLIN_RIGHT);
     }
-
+//点击支付方式的处理
     private void showPayment(PaymentSignpost signpost) {
         OrderType orderType = CheckoutDataManager.getInstance().getSelectedOrderType().getOrderType();
         if (orderType == OrderType.SALE) {
@@ -169,6 +170,11 @@ public class CheckoutFragment extends StatedFragment {
                 showToast("第三方在线支付只能使用一个");
                 return;
             }
+            if (hasSameCoupon4Payment(signpost)) {
+                showToast("微信券支付只能使用一张");
+                return;
+            }
+
             if (signpost.supportPay()) {
                 Intent intent = PayActivity.getStartIntent(getActivity(), signpost, isFillInOpen());
                 startActivityForResult(intent, REQUEST_TO_PAY);
@@ -184,19 +190,30 @@ public class CheckoutFragment extends StatedFragment {
     // 威富通的第三方支付, 一个订单只能支付一次
     private boolean hasSameThridPartyPayment(PaymentSignpost signpost) {
         if (signpost == PaymentSignpost.ALI ||
-                signpost == PaymentSignpost.WECHAT) {
+                signpost == PaymentSignpost.WECHAT ) {
 //            Payment aliPay = PosDataManager.getInstance().getPaymentByNumberInt(signpost.numberToInt());
 //            Payment wechatPay = PosDataManager.getInstance().getPaymentByNumberInt(signpost.numberToInt());
 //            原来的判断有问题,由于无法将支付宝和微信2个编号做绑定的判断,所以只有写死了,不然如何设置判断一单中只允许
 //            微信和支付宝只能支付一次呢?
             Payment aliPay = PosDataManager.getInstance().getPaymentByNumberInt(3);
             Payment wechatPay = PosDataManager.getInstance().getPaymentByNumberInt(4);
+
+
             return CheckoutDataManager.getInstance().hasUsedPayment(aliPay)
                     || CheckoutDataManager.getInstance().hasUsedPayment(wechatPay);
         }
         return false;
     }
 
+//    判断微信卡券,一个订单只能支付一次
+    private boolean hasSameCoupon4Payment(PaymentSignpost signpost) {
+        if ( signpost ==PaymentSignpost.COUPON4) {
+            //            微信卡券支付方式
+            Payment coupon4 = PosDataManager.getInstance().getPaymentByNumberInt(9);
+            return CheckoutDataManager.getInstance().hasUsedPayment(coupon4);
+        }
+        return false;
+    }
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);

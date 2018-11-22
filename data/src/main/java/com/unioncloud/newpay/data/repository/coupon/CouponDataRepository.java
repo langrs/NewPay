@@ -87,4 +87,9 @@ public class CouponDataRepository implements CouponRepository {
                     }
                 });
     }
+
+    @Override
+    public Observable<Coupon> consumeWeChatCoupon(String code,String shopId) {
+        return StoreFactory.getCouponStore().queryWeChatCoupon(code,shopId);
+    }
 }

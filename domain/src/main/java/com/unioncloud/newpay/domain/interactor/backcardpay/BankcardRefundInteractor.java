@@ -28,7 +28,8 @@ public class BankcardRefundInteractor extends BaseInteractor<BankcardRefundResul
 
     @Override
     protected Observable<BankcardRefundResult> bindObservable() {
+//        坦洲用撤销,汕头用退货
 //        return repository.saleVoid(request);    // 实际调用的是"当日撤销"
-        return  repository.refund(request);
+        return  repository.refund(request);   //实际调用是隔天退货
     }
 }

@@ -39,4 +39,10 @@ public interface CouponRepository {
      * @return
      */
     Observable<Coupon> pointsRebateCoupon(VipPointsRebate rebateInfo, String operatorNo);
+    /**
+     * 微信卡券查询核销
+     * @param code
+     * @return
+     */
+    Observable<Coupon> consumeWeChatCoupon(String code,String shopId);
 }

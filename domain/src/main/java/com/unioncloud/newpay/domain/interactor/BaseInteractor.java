@@ -20,17 +20,17 @@ public abstract class BaseInteractor<T> {
     public BaseInteractor(ExecutorProvider provider) {
         this.provider = provider;
     }
-//通过子类来获取被观察者
+//通过子类来获取被观察者,就是具体业务开展的操作
     protected abstract Observable<T> bindObservable();
 //接收观察者参数,在子类的bindObservable中设置好被观察者,在该方法中传入观察者,通过该方法来关联
 //观察者和被观察者,并且两者开启不同的线程来运行,
-    public void execute(Subscriber<T> domainSubscriber) {
+    public void execute(Subscriber<T> domainSubscriber) { //该参数就是需要通知的对象
 //        subscribeOn指定被观察者Observable在哪个线程上
 //        observeOn指定观察者Subscriber or Observe 在哪个线程上
         subscription = bindObservable().
                 subscribeOn(Schedulers.from(provider.providerThread())).
                 observeOn(provider.providerMainScheduler()).
-                subscribe(domainSubscriber);
+                subscribe(domainSubscriber); //只要调用了subscribe这个函数,就相当于绑定观察者和被观察者的关系了
     }
 
     public void unsubscribe() {

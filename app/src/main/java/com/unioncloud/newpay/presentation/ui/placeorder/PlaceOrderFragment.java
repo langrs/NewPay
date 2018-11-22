@@ -169,12 +169,14 @@ public class PlaceOrderFragment extends StatedFragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         productChooseViewBinder.bindView(view);
+//        加入购物车
         productChooseViewBinder.addToCartBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 addToCart();
             }
         });
+//        跳转到结算页面
         productChooseViewBinder.checkoutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

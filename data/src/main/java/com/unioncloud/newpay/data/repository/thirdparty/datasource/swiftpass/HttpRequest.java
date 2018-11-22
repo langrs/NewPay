@@ -6,6 +6,7 @@ package com.unioncloud.newpay.data.repository.thirdparty.datasource.swiftpass;
 //import com.unioncloud.newpay.data.repository.thirdparty.datasource.swiftpass.query.QueryResult;
 //import com.unioncloud.newpay.data.repository.thirdparty.datasource.swiftpass.reverse.ReverseRequest;
 //import com.unioncloud.newpay.data.repository.thirdparty.datasource.swiftpass.reverse.ReverseResult;
+import com.unioncloud.newpay.data.repository.coupon.datasource.wechat.WeChatCouponConst;
 import com.unioncloud.newpay.data.utils.XmlUtils;
 
 import org.xutils.http.RequestParams;

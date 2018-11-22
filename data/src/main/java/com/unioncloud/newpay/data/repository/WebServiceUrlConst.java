@@ -8,8 +8,8 @@ import com.unioncloud.newpay.data.BuildConfig;
 public class WebServiceUrlConst {
 /////////////////////////////////////本机地址////////////////////////////////////////
 //2018-10-10
-    private static final String HOST_RELEASE = "http://192.168.0.102:8288";
-    private static final String HOST_DEBUG = "http://192.168.0.102:8288";
+    private static final String HOST_RELEASE = "http://192.168.0.101:8288";
+    private static final String HOST_DEBUG = "http://192.168.0.101:8288";
 //
 /////////////////////////////////////////////////////////////////////////////
 
@@ -24,7 +24,7 @@ public class WebServiceUrlConst {
 //
 //    private static final String HOST_RELEASE = "http://112.91.60.74:8066";
 //    private static final String HOST_DEBUG = "http://112.91.60.74:8066";
-//
+
 /////////////////////////////////////////////////////////////////////////////
 
 
@@ -65,6 +65,8 @@ public class WebServiceUrlConst {
     public static final String CREATE_SALE_COUPON = "makeCoupon";
     /** 查询退货权限 */
     public static final String QUERY_REFUND_RIGHT = "getRtnRight";
+    //查询accessToken
+    public static final String QUERY_ACCESS_TOKEN = "getAccessToken";
 
     public static String getHost() {
         if (BuildConfig.DEBUG) {

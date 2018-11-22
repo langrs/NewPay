@@ -21,14 +21,14 @@ public class SwiftPassConst {
     public static final String REFUND_QUERY_SERVICE = "unified.trade.refundquery";
 
 //////////////////////////////    汕头商户id和key  ///////////////////////////////////////
-//   public static final String MCH_ID = "133500001422";
-//    public static final String KEY = "01269e5f1a77eba91c97daa768633b5d";
+   public static final String MCH_ID = "133500001422";
+    public static final String KEY = "01269e5f1a77eba91c97daa768633b5d";
 ///////////////////////////////////////////////////////////////////////////////
 
 
 ////////////////////////////    坦洲商户id和key  /////////////////////////////////////////
-    public static final String MCH_ID = "101540254692";
-    public static final String KEY = "5976fe4be751c69b067f9b6372e84056";
+//    public static final String MCH_ID = "101540254692";
+//    public static final String KEY = "5976fe4be751c69b067f9b6372e84056";
 ///////////////////////////////////////////////////////////////////////////////
 
 ////////////////////////////////////测试的MD5签名的KEY/////////////////////////////////

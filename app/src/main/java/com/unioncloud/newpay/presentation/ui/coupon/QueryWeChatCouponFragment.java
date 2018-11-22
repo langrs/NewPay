@@ -19,38 +19,36 @@ import com.esummer.android.updatehandler.UpdateCompleteCallback;
 import com.unioncloud.newpay.R;
 import com.unioncloud.newpay.domain.model.erp.Coupon;
 import com.unioncloud.newpay.presentation.model.pos.PosDataManager;
-import com.unioncloud.newpay.presentation.presenter.coupon.QueryCouponHandler;
+import com.unioncloud.newpay.presentation.presenter.coupon.QueryWeChatCouponHandler;
 import com.unioncloud.newpay.presentation.ui.pay.CouponFragment;
 import com.zbar.scan.ScanCaptureActivity;
-
-import static android.R.attr.data;
 
 /**
  * Created by cwj on 16/9/6.
  */
-public class QueryCouponFragment extends StatedFragment {
+public class QueryWeChatCouponFragment extends StatedFragment {
 
-    public static QueryCouponFragment newInstance() {
-        QueryCouponFragment fragment = new QueryCouponFragment();
+    public static QueryWeChatCouponFragment newInstance() {
+        QueryWeChatCouponFragment fragment = new QueryWeChatCouponFragment();
         return fragment;
     }
 
-    private static StateUpdateHandlerListener<QueryCouponFragment, QueryCouponHandler> queryHandlerListener
-            = new StateUpdateHandlerListener<QueryCouponFragment, QueryCouponHandler>() {
+    private static StateUpdateHandlerListener<QueryWeChatCouponFragment, QueryWeChatCouponHandler> queryHandlerListener
+            = new StateUpdateHandlerListener<QueryWeChatCouponFragment, QueryWeChatCouponHandler>() {
         @Override
-        public void onUpdate(String key, QueryCouponFragment handler, QueryCouponHandler response) {
+        public void onUpdate(String key, QueryWeChatCouponFragment handler, QueryWeChatCouponHandler response) {
             handler.dealQueryCoupon(response);
         }
 
         @Override
-        public void onCleanup(String key, QueryCouponFragment handler, QueryCouponHandler response) {
+        public void onCleanup(String key, QueryWeChatCouponFragment handler, QueryWeChatCouponHandler response) {
             response.removeCompletionListener(handler.queryListener);
         }
     };
-    private UpdateCompleteCallback<QueryCouponHandler> queryListener =
-            new UpdateCompleteCallback<QueryCouponHandler>() {
+    private UpdateCompleteCallback<QueryWeChatCouponHandler> queryListener =
+            new UpdateCompleteCallback<QueryWeChatCouponHandler>() {
                 @Override
-                public void onCompleted(QueryCouponHandler response, boolean isSuccess) {
+                public void onCompleted(QueryWeChatCouponHandler response, boolean isSuccess) {
                     dealQueryCoupon(response);
                 }
             };
@@ -131,16 +129,16 @@ public class QueryCouponFragment extends StatedFragment {
         queryCoupon(input);
     }
 
-
+//根据券号查询微信卡券信息
     private void queryCoupon(String couponNo) {
-        QueryCouponHandler handler = new QueryCouponHandler(
-                PosDataManager.getInstance().getPosInfo().getShopId(),
-                couponNo);
+        String shopId = PosDataManager.getInstance().getPosInfo().getShopId();
+        QueryWeChatCouponHandler handler = new QueryWeChatCouponHandler(
+                couponNo,shopId);
         updateForResponse("QueryCouponFragment:queryCoupon", handler, queryHandlerListener);
         handler.run();
     }
 
-    private void dealQueryCoupon(QueryCouponHandler handler) {
+    private void dealQueryCoupon(QueryWeChatCouponHandler handler) {
         if (handler == null) {
             return;
         }
@@ -167,8 +165,9 @@ public class QueryCouponFragment extends StatedFragment {
             fragment = CouponFragment.newDiscountCoupon(coupon);
         } else if ("1".equals(flag)) {
             fragment = CouponFragment.newPointReturnCoupon(coupon);
-        }
-        else{
+        } else if("3".equals(flag)){
+            fragment = CouponFragment.newWeChatCoupon(coupon);
+        }else {
             showToast("无效的券类型！");
             return;
         }

@@ -5,6 +5,7 @@ import com.esummer.android.fragment.StatedFragment;
 import com.unioncloud.newpay.R;
 import com.unioncloud.newpay.domain.model.payment.Payment;
 import com.unioncloud.newpay.presentation.ui.coupon.QueryCouponFragment;
+import com.unioncloud.newpay.presentation.ui.coupon.QueryWeChatCouponFragment;
 import com.unioncloud.newpay.presentation.ui.gift.QueryGiftCardFragment;
 import com.unioncloud.newpay.presentation.ui.refund.BankcardRefundFragment;
 import com.unioncloud.newpay.presentation.ui.refund.CashRefundFragment;
@@ -115,7 +116,7 @@ public enum PaymentSignpost {
     },
     COUPON(R.drawable.ic_checkout_coupon,
             R.color.TextColor_Payment_Coupon,
-            "购物券") {
+            "购物券") {  //不用校验券号
         @Override
         public StatedFragment toPay(boolean isFillIn) {
             return CouponFragment.newShoppingCoupon();
@@ -133,7 +134,7 @@ public enum PaymentSignpost {
     },
     COUPON2(R.drawable.ic_checkout_coupon,
            R.color.TextColor_Payment_Coupon,
-           "折扣券") {
+           "折扣券") {  //需要校验券号
         @Override
         public StatedFragment toPay(boolean isFillIn) {
             if (isFillIn) {
@@ -171,6 +172,45 @@ public enum PaymentSignpost {
         @Override
         public StatedFragment toRefund() {
             return CouponRefundFragment.newPointReturnCoupon();
+        }
+    },
+    COUPON4(R.drawable.ic_checkout_coupon,
+            R.color.TextColor_Payment_Coupon,
+            "微信卡券") {  //需要校验券号
+        @Override
+        public StatedFragment toPay(boolean isFillIn) {
+            if(isFillIn){
+                return CouponFragment.fillInWeChatCoupon();
+            }
+            return QueryWeChatCouponFragment.newInstance();
+        }
+
+        @Override
+        public int numberToInt() {
+            return 9;
+        }
+
+        @Override
+        public StatedFragment toRefund() {
+            return CouponRefundFragment.newWeChatReturnCoupon();
+        }
+    },
+    PRESALE(R.drawable.ic_checkout_coupon,
+            R.color.TextColor_Payment_Coupon,
+            "预售券"){
+        @Override
+        public StatedFragment toPay(boolean isFillIn) {
+            return CouponFragment.newPreSaleCoupon();
+        }
+
+        @Override
+        public int numberToInt() {
+            return 10;
+        }
+
+        @Override
+        public StatedFragment toRefund() {
+            return CouponRefundFragment.newPreSaleCoupon();
         }
     };
 
@@ -241,7 +281,9 @@ public enum PaymentSignpost {
         return (number == 5) ||
                (number == 6) ||
                (number == 7) ||
-               (number == 8);
+               (number == 8)||
+                (number==9)||
+                (number == 10);
     }
 
     public static PaymentSignpost getSignpost(String paymentNumber) {
@@ -266,6 +308,10 @@ public enum PaymentSignpost {
                 return COUPON2;
             case 8:
                 return COUPON3;
+            case 9:
+                return COUPON4;
+            case 10:
+                return PRESALE;
             default:
                 return null;
         }

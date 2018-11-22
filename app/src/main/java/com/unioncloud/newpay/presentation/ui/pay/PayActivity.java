@@ -23,6 +23,7 @@ public class PayActivity extends BaseActivity implements OnPaidListener {
     }
 
     public static Intent getStartIntent(Context context, PaymentSignpost signpost, boolean isFillIn) {
+//        第二个参数是需要打开PayActivity
         Intent intent = new Intent(context, PayActivity.class);
         intent.putExtra("paymentSignpost", signpost);
         intent.putExtra("isFillIn", isFillIn);
@@ -58,8 +59,11 @@ public class PayActivity extends BaseActivity implements OnPaidListener {
             @Override
             public void run() {
                 if (stackManager.isEmpty()) {
+//                    获取到入参,判断是打开哪个Fragment
                     PaymentSignpost signpost = getPaymentSignPost();
                     if (signpost != null) {
+//                        一个支付方式可以有2种界面,一种是正常销售支付,另外一种是补录销售支付,所以需要增加另外一个
+//                        标志来判断,每种支付方式的toPay会返回需要打开的Fragment的
                         Fragment fragment = signpost.toPay(isFillIn);
                         stackManager.push(fragment);
                     }
